@@ -36,4 +36,4 @@ The two American prices on a total are the two sides of the number. The feed doe
 
 ## Daily update
 
-`.github/workflows/sync.yml` runs the same sync twice a day and commits the database and the site when something changed.
+`.github/workflows/sync.yml` runs the same sync every hour from 9:00am through 1:00am Eastern. That covers the window when the books post and move lines, and the window when games finish and can be graded. A run that finds nothing new does not commit. Finished games already stored are left alone. The workflow can also be started by hand from the Actions tab.

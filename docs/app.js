@@ -686,7 +686,8 @@ function shortDate(iso) {
 
 function stamp(iso) {
   if (!iso) return "";
-  return iso.replace("T", " ").replace(/-\d\d:\d\d$/, "");
+  const eastern = iso.endsWith("-05:00") || iso.endsWith("-04:00");
+  return iso.replace("T", " ").replace(/[+-]\d\d:\d\d$/, "") + (eastern ? " ET" : "");
 }
 
 function labeled(text, control) {

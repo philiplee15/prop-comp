@@ -2,16 +2,22 @@ name: Sync board
 
 on:
   schedule:
-    - cron: "0 16 * * *"
-    - cron: "0 22 * * *"
+    # Hourly from 9:00am through 1:00am Eastern, while lines are posting and games are ending.
+    # GitHub schedules in UTC. In summer these land one hour later on the Eastern clock.
+    - cron: "0 14-23,0-6 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: propcomp-sync
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -23,5 +29,5 @@ jobs:
         run: |
           git add data docs
           git diff --cached --quiet && exit 0
-          git -c user.name="prop-comp" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Update prop board"
-          git push
+          git -c user.name="prop-comp" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Refresh lines and results."
+          git push origin HEAD:main
