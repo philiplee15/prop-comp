@@ -88,6 +88,20 @@ CREATE INDEX IF NOT EXISTS idx_games_date ON games (slate_date);
 CREATE INDEX IF NOT EXISTS idx_props_game ON props (game_id);
 CREATE INDEX IF NOT EXISTS idx_props_player ON props (player_id);
 CREATE INDEX IF NOT EXISTS idx_snapshots_game ON line_snapshots (game_id, player_id, market);
+
+CREATE TABLE IF NOT EXISTS availability (
+    game_id TEXT NOT NULL,
+    player_id TEXT NOT NULL,
+    team_id TEXT,
+    pos TEXT,
+    role TEXT,
+    rank INTEGER,
+    status TEXT,
+    label TEXT,
+    detail TEXT,
+    replaces TEXT,
+    PRIMARY KEY (game_id, player_id)
+);
 """
 
 

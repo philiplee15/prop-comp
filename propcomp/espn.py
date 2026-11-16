@@ -48,6 +48,14 @@ def teams() -> list[dict]:
     return [item["team"] for item in leagues[0].get("teams", [])]
 
 
+def depth_chart(team_id: str) -> dict | None:
+    url = (
+        "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/"
+        f"{team_id}/depthcharts"
+    )
+    return get_json(url)
+
+
 def roster(team_id: str) -> list[dict]:
     url = (
         "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/"

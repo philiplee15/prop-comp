@@ -6,8 +6,10 @@ from datetime import datetime
 from html import escape
 from zoneinfo import ZoneInfo
 
+from propcomp.availability import out_teammates
 from propcomp.db import DOCS
 from propcomp.grade import CORE_MARKETS
+from propcomp.signals import clear_reasons
 
 EASTERN = ZoneInfo("America/New_York")
 CORE_OU = ["pts", "reb", "ast", "fg3m", "pra", "stl", "blk"]
@@ -29,6 +31,20 @@ def build(conn) -> None:
     stats_by_game = defaultdict(dict)
     for row in conn.execute("SELECT * FROM player_games"):
         stats_by_game[row["game_id"]][row["player_id"]] = dict(row)
+    avail_by_game = defaultdict(list)
+    for row in conn.execute("SELECT * FROM availability"):
+        avail_by_game[row["game_id"]].append(dict(row))
+    history = defaultdict(list)
+    for row in conn.execute(
+        """
+        SELECT pg.*, g.slate_date
+        FROM player_games pg
+        JOIN games g ON g.id = pg.game_id
+        WHERE g.status='final' AND pg.seconds > 0
+        ORDER BY g.slate_date DESC, g.tip_utc DESC
+        """
+    ):
+        history[row["player_id"]].append(dict(row))
 
     day_dir = DOCS / "data" / "days"
     day_dir.mkdir(parents=True, exist_ok=True)
@@ -55,6 +71,8 @@ def build(conn) -> None:
                 stats_by_game.get(game["id"], {}),
                 teams,
                 players,
+                avail_by_game.get(game["id"], []),
+                history,
             )
             payload_games.append(packed)
             if game["status"] == "final":
@@ -142,7 +160,19 @@ def build(conn) -> None:
         {"players": season_rows, "league": {code: dict(counts) for code, counts in league.items()}},
     )
     write_json(DOCS / "data" / "logs.json", logs)
-    write_snapshot(manifest, season_rows, league, blotter, by_date, props_by_game, stats_by_game, teams, players)
+    write_snapshot(
+        manifest,
+        season_rows,
+        league,
+        blotter,
+        by_date,
+        props_by_game,
+        stats_by_game,
+        teams,
+        players,
+        avail_by_game,
+        history,
+    )
     print(
         f"Exported {manifest['counts']['games']} games, "
         f"{manifest['counts']['props']} props, {len(dates)} slates"
@@ -164,23 +194,50 @@ def ou_game_count(packed: dict, result: str) -> int:
     return total
 
 
-def pack_game(game, props, stats, teams, players) -> dict:
+def pack_game(game, props, stats, teams, players, avail_rows=None, history=None) -> dict:
+    avail_rows = avail_rows or []
+    history = history or {}
+    avail_by_player = {row["player_id"]: row for row in avail_rows}
+    upcoming = game["status"] != "final"
     grouped = defaultdict(list)
     for prop in props:
-        grouped[prop["player_id"]].append(compact_prop(prop))
+        grouped[prop["player_id"]].append(prop)
     rows = []
+    seen_ids = set()
     for player_id, player_props in grouped.items():
         person = players.get(player_id) or {}
         stat = stats.get(player_id) or {}
-        team_id = stat.get("team_id") or person.get("team_id")
+        avail = avail_by_player.get(player_id) or {}
+        team_id = avail.get("team_id") or stat.get("team_id") or person.get("team_id")
+        packed_props = []
+        mates = out_teammates(avail_rows, history, players, team_id, player_id) if upcoming else []
+        for prop in player_props:
+            packed = compact_prop(prop)
+            if upcoming and packed["k"] == "ou" and avail.get("status") != "out":
+                reasons = clear_reasons(
+                    packed["c"],
+                    prop.get("line_num"),
+                    history.get(player_id) or [],
+                    avail,
+                    mates,
+                )
+                if reasons:
+                    packed["why"] = reasons
+            packed_props.append(packed)
+        seen_ids.add(player_id)
         rows.append(
             {
                 "id": player_id,
-                "name": person.get("name") or f"Player {player_id}",
+                "name": person.get("name") or avail.get("name") or f"Player {player_id}",
                 "team": abbr(teams, team_id),
-                "pos": person.get("position") or "",
+                "pos": avail.get("pos") or person.get("position") or "",
                 "min": stat.get("minutes") or "",
-                "starter": bool(stat.get("starter")),
+                "starter": avail.get("role") == "starter" or bool(stat.get("starter")),
+                "role": avail.get("role") or "",
+                "rank": avail.get("rank") if avail.get("rank") is not None else 90,
+                "avail": avail.get("status") or "",
+                "avail_label": avail.get("label") or "",
+                "avail_note": avail.get("detail") or "",
                 "stat": {
                     "pts": stat.get("pts"),
                     "reb": stat.get("reb"),
@@ -192,10 +249,21 @@ def pack_game(game, props, stats, teams, players) -> dict:
                 }
                 if stat
                 else None,
-                "props": sorted(player_props, key=lambda item: (item["k"], item["m"], item.get("line") or "")),
+                "props": sorted(packed_props, key=lambda item: (item["k"], item["m"], item.get("line") or "")),
             }
         )
-    rows.sort(key=row_sort_key)
+    away = abbr(teams, game["away_id"])
+    home = abbr(teams, game["home_id"])
+    if upcoming:
+        for avail in avail_rows:
+            player_id = avail["player_id"]
+            if player_id in seen_ids:
+                continue
+            if avail.get("status") not in {"out", "risk"} and avail.get("role") != "starter":
+                continue
+            person = players.get(player_id) or {}
+            rows.append(blank_row(player_id, person, avail, teams))
+    rows.sort(key=lambda row: display_sort_key(row, upcoming, away, home))
     return {
         "id": game["id"],
         "status": game["status"],
@@ -231,6 +299,40 @@ def compact_prop(prop: dict) -> dict:
     if actual is not None:
         packed["act"] = actual
     return packed
+
+
+def blank_row(player_id: str, person: dict, avail: dict, teams: dict) -> dict:
+    return {
+        "id": player_id,
+        "name": person.get("name") or f"Player {player_id}",
+        "team": abbr(teams, avail.get("team_id") or person.get("team_id")),
+        "pos": avail.get("pos") or person.get("position") or "",
+        "min": "",
+        "starter": avail.get("role") == "starter",
+        "role": avail.get("role") or "",
+        "rank": avail.get("rank") if avail.get("rank") is not None else 90,
+        "avail": avail.get("status") or "",
+        "avail_label": avail.get("label") or "",
+        "avail_note": avail.get("detail") or "",
+        "stat": None,
+        "props": [],
+    }
+
+
+def display_sort_key(row: dict, upcoming: bool, away: str = "", home: str = ""):
+    if not upcoming:
+        return row_sort_key(row)
+    if row.get("team") == away:
+        side = 0
+    elif row.get("team") == home:
+        side = 1
+    else:
+        side = 2
+    role_order = {"starter": 0, "rotation": 1}.get(row.get("role") or "", 2)
+    rank = row.get("rank") if row.get("rank") is not None else 90
+    if row.get("avail") == "out":
+        return (3, side, role_order, rank, row["name"])
+    return (side, role_order, rank, row["name"])
 
 
 def row_sort_key(row: dict):
@@ -289,7 +391,19 @@ def record_text(counts: dict, kind: str) -> str:
     return text
 
 
-def write_snapshot(manifest, season_rows, league, blotter, by_date, props_by_game, stats_by_game, teams, players) -> None:
+def write_snapshot(
+    manifest,
+    season_rows,
+    league,
+    blotter,
+    by_date,
+    props_by_game,
+    stats_by_game,
+    teams,
+    players,
+    avail_by_game,
+    history,
+) -> None:
     upcoming = [item["date"] for item in manifest["dates"] if item["scheduled"]]
     focus_dates = upcoming[-3:] if upcoming else manifest["dates"][-1:]
     leaders = []
@@ -366,6 +480,8 @@ def write_snapshot(manifest, season_rows, league, blotter, by_date, props_by_gam
                 stats_by_game.get(game["id"], {}),
                 teams,
                 players,
+                avail_by_game.get(game["id"], []),
+                history,
             )
             parts.append(static_game(packed))
         if not by_date.get(slate):
@@ -425,7 +541,11 @@ def static_game(game: dict) -> str:
     if not game["rows"]:
         body.append('<tr><td class="name" colspan="10">Lines are not posted yet.</td></tr>')
     for row in game["rows"]:
-        cells = [f"<td class=\"name\">{escape(row['team'])} {escape(row['name'])}</td>"]
+        tag = status_tag(row)
+        star = row_star(row)
+        cells = [
+            f"<td class=\"name\">{escape(row['team'])} {escape(row['name'])} {tag}{star}</td>"
+        ]
         indexed = {prop["c"]: prop for prop in row["props"] if prop["k"] != "milestone"}
         for market in columns:
             prop = indexed.get(market["code"])
@@ -435,9 +555,11 @@ def static_game(game: dict) -> str:
         if extras:
             bits = []
             for prop in extras:
+                why = " ".join(prop.get("why") or [])
+                star = f' <span class="star" title="{escape(why)}">★</span>' if why else ""
                 bits.append(
                     f"<li>{escape(prop['m'])} {escape(prop.get('line') or '')} "
-                    f"{escape(result_word(prop['r']))}</li>"
+                    f"{escape(result_word(prop['r']))}{star}</li>"
                 )
             extra_html = (
                 '<tr class="extra"><td colspan="10"><details><summary>'
@@ -445,7 +567,8 @@ def static_game(game: dict) -> str:
                 + "".join(bits)
                 + "</ul></details></td></tr>"
             )
-        body.append("<tr>" + "".join(cells) + "</tr>" + extra_html)
+        row_class = {"out": "out", "risk": "risk"}.get(row.get("avail") or "", "")
+        body.append(f"<tr class=\"{row_class}\">" + "".join(cells) + "</tr>" + extra_html)
     return (
         '<article class="game">'
         f"<h3>{escape(game['away'])} at {escape(game['home'])}</h3>"
@@ -472,7 +595,31 @@ def static_cell(prop: dict | None) -> str:
     open_line = f" open {escape(prop['open'])}" if prop.get("open") else ""
     prices = " / ".join(escape(prop[key]) for key in ("a", "b") if prop.get(key))
     price_bit = f"<small>{prices}</small>" if prices else ""
-    return f'<span class="cell {css}">{actual_text} <b>{word} {line}</b>{open_line}{price_bit}</span>'
+    why = " ".join(prop.get("why") or [])
+    star = f'<span class="star" title="{escape(why)}">★</span>' if why else ""
+    return f'<span class="cell {css}">{star}{actual_text} <b>{word} {line}</b>{open_line}{price_bit}</span>'
+
+
+def status_tag(row: dict) -> str:
+    if row.get("avail") == "out":
+        return '<span class="tag out">OUT</span>'
+    if row.get("avail") == "risk":
+        label = escape(row.get("avail_label") or "RISK")
+        note = escape(row.get("avail_note") or "")
+        return f'<span class="tag risk" title="{note}">{label}</span>'
+    if row.get("role") == "starter":
+        return '<span class="tag start">START</span>'
+    return ""
+
+
+def row_star(row: dict) -> str:
+    reasons = []
+    for prop in row.get("props") or []:
+        if prop.get("why"):
+            reasons.append(f"{prop['m']} {prop.get('line') or ''}: {' '.join(prop['why'])}")
+    if not reasons:
+        return ""
+    return f'<span class="star" title="{escape(" ".join(reasons))}">★</span>'
 
 
 def result_word(result: str) -> str:

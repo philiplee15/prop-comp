@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
-from propcomp import espn, export
+from propcomp import availability, espn, export
 from propcomp.db import connect
 from propcomp.grade import (
     american_value,
@@ -618,6 +618,7 @@ def main() -> None:
                 flush=True,
             )
     regrade_incomplete(conn)
+    availability.refresh(conn)
     print("Writing the site")
     export.build(conn)
     conn.close()

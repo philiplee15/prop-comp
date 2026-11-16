@@ -116,6 +116,42 @@ td strong, .cell b { display: block; color: #f4f7ef; font-size: 15px; }
 
 td em, .cell small { display: block; font-style: normal; font-size: 11px; }
 
+tr.out td { background: rgba(232, 92, 108, 0.2); }
+tr.out .name button { color: #ffb4be; }
+tr.risk td { background: rgba(214, 176, 92, 0.16); }
+tr.risk .name button { color: #f3d48a; }
+
+.tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  vertical-align: 1px;
+}
+.tag.start { background: #31402c; color: #d6f25c; }
+.tag.out { background: #e85c6c; color: #1a0c0e; }
+.tag.risk { background: #e2b15a; color: #1c1406; }
+.star { color: #d6f25c; cursor: pointer; }
+.tip {
+  position: fixed;
+  z-index: 30;
+  max-width: 340px;
+  padding: 8px 10px;
+  border: 1px solid #31402c;
+  border-radius: 8px;
+  background: #1c2418;
+  color: #e7ecdf;
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  pointer-events: none;
+}
+.trend, .hover-readout, .legend { margin: 0 0 8px; font-size: 13px; }
+.trend { color: #d6f25c; }
+svg.chart circle { cursor: pointer; }
+
 td.hit { background: rgba(61, 196, 132, 0.16); }
 td.miss { background: rgba(232, 92, 108, 0.16); }
 td.push { background: rgba(214, 176, 92, 0.16); }

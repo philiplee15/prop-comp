@@ -118,6 +118,12 @@ function paintBoard() {
     meta.className = "meta";
     meta.textContent = gameMeta(game);
     article.append(title, meta);
+    if (game.status !== "final" && game.status !== "live") {
+      const legend = document.createElement("p");
+      legend.className = "legend";
+      legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. A star is a line with a case to clear. Hover the star for the reason.";
+      article.append(legend);
+    }
     if (!game.rows.length) {
       const empty = document.createElement("p");
       empty.textContent = "Lines are not posted yet. The next refresh will pick them up.";
@@ -132,14 +138,27 @@ function paintBoard() {
     const thead = document.createElement("thead");
     thead.append(head);
     const tbody = document.createElement("tbody");
-    (rows.length ? rows : game.rows).forEach((row) => {
+    const ordered = (rows.length ? rows : game.rows).slice().sort((left, right) => {
+      if (game.status === "final" || game.status === "live") return 0;
+      return orderKey(left, game) - orderKey(right, game) || left.name.localeCompare(right.name);
+    });
+    ordered.forEach((row) => {
       const tr = document.createElement("tr");
+      if (row.avail === "out") tr.classList.add("out");
+      if (row.avail === "risk") tr.classList.add("risk");
       const name = addCell(tr, "td", "");
       name.classList.add("name");
       const button = document.createElement("button");
       button.type = "button";
       button.textContent = `${row.team} ${row.name}`;
       button.addEventListener("click", () => openPlayer(row.id));
+      if (game.status !== "final" && row.role === "starter") addTag(button, "START", "start");
+      if (row.avail === "out") addTag(button, "OUT", "out", row.avail_note);
+      if (row.avail === "risk") addTag(button, row.avail_label || "RISK", "risk", row.avail_note);
+      const reasons = starTitle(row);
+      if (reasons) {
+        button.append(makeStar(" ★", reasons));
+      }
       name.append(button);
       const indexed = indexMain(row.props);
       core.forEach((market) => fillCell(addCell(tr, "td", ""), indexed.get(market.code)));
@@ -285,10 +304,24 @@ function paintPlayer() {
     card.className = "panel chart-card";
     const heading = document.createElement("h3");
     const counts = person && person.markets[market.code];
+    const trend = trailingAverage(series, market.code);
     heading.textContent = `${market.label} ${recordText(counts, market.code)}`;
     card.append(heading);
-    if (market.code !== "dd" && market.code !== "first") card.append(lineChart(series));
-    card.append(resultStrip(series, market.code));
+    if (trend) {
+      const note = document.createElement("p");
+      note.className = "trend";
+      note.textContent = market.code === "dd" || market.code === "first"
+        ? `Last ${trend.n}: ${trend.hits} hit`
+        : `Last ${trend.n} average ${trend.avg.toFixed(1)}`;
+      card.append(note);
+    }
+    const readout = document.createElement("p");
+    readout.className = "hover-readout";
+    readout.textContent = "Hover a point to see the value.";
+    if (market.code !== "dd" && market.code !== "first") {
+      card.append(lineChart(series, trend ? trend.avg : null, readout));
+    }
+    card.append(readout, resultStrip(series, market.code));
     app.append(card);
   });
   if (!app.querySelector(".panel")) {
@@ -298,7 +331,7 @@ function paintPlayer() {
   }
 }
 
-function lineChart(series) {
+function lineChart(series, average, readout) {
   const values = [];
   series.forEach((row) => {
     const line = Number(row[1]);
@@ -306,6 +339,7 @@ function lineChart(series) {
     if (Number.isFinite(line)) values.push(line);
     if (Number.isFinite(actual)) values.push(actual);
   });
+  if (Number.isFinite(average)) values.push(average);
   const svg = svgEl("svg");
   svg.classList.add("chart");
   svg.setAttribute("viewBox", "0 0 640 140");
@@ -321,13 +355,47 @@ function lineChart(series) {
   };
   const line = [];
   const actual = [];
+  const dots = [];
   series.forEach((row, index) => {
     const x = 12 + index * step;
-    if (row[1] !== null && row[1] !== "") line.push(`${x},${yFor(Number(row[1]))}`);
-    if (row[3] !== null && row[3] !== undefined) actual.push(`${x},${yFor(Number(row[3]))}`);
+    if (row[1] !== null && row[1] !== "") {
+      const y = yFor(Number(row[1]));
+      line.push(`${x},${y}`);
+      dots.push(dot(x, y, "#d6f25c", `${shortDate(row[0])} line ${row[1]}`, readout));
+    }
+    if (row[3] !== null && row[3] !== undefined) {
+      const y = yFor(Number(row[3]));
+      actual.push(`${x},${y}`);
+      dots.push(dot(x, y, "#f4f7ef", `${shortDate(row[0])} actual ${row[3]}, line ${row[1]}`, readout));
+    }
   });
   svg.append(poly(line.join(" "), "#d6f25c", "4,4"), poly(actual.join(" "), "#f4f7ef", ""));
+  if (Number.isFinite(average)) {
+    const guide = svgEl("line");
+    const y = yFor(average);
+    guide.setAttribute("x1", "8");
+    guide.setAttribute("x2", String(width - 8));
+    guide.setAttribute("y1", y);
+    guide.setAttribute("y2", y);
+    guide.setAttribute("stroke", "#8ea384");
+    guide.setAttribute("stroke-dasharray", "3 4");
+    svg.append(guide);
+  }
+  dots.forEach((node) => svg.append(node));
   return svg;
+}
+
+function trailingAverage(series, code) {
+  const sample = [];
+  for (let index = series.length - 1; index >= 0 && sample.length < 5; index -= 1) {
+    const row = series[index];
+    if (code === "dd" || code === "first") sample.push(row[1] === "y" ? 1 : 0);
+    else if (row[3] !== null && row[3] !== undefined && row[3] !== "") sample.push(Number(row[3]));
+  }
+  const finite = sample.filter((value) => Number.isFinite(value));
+  if (finite.length < 3) return null;
+  const total = finite.reduce((sum, value) => sum + value, 0);
+  return { avg: total / finite.length, n: finite.length, hits: total };
 }
 
 function resultStrip(series, code) {
@@ -386,9 +454,12 @@ function extraGrid(props) {
     const actual = prop.act == null ? "" : `actual ${prop.act} `;
     detail.textContent = `${actual}${word(prop.r)} ${priceText(prop)}`.trim();
     chip.append(title, detail);
+    if (prop.why && prop.why.length) {
+      title.append(makeStar(" ★", prop.why.join(" ")));
+    }
     if (prop.open) {
       const small = document.createElement("small");
-      small.textContent = `opened ${prop.open}`;
+      small.textContent = `opened at ${prop.open}`;
       chip.append(small);
     }
     grid.append(chip);
@@ -414,13 +485,17 @@ function fillCell(cell, prop) {
     strong.textContent = prop.line || "";
     em.textContent = "";
   }
+  if (prop.why && prop.why.length) {
+    cell.append(makeStar("★ ", prop.why.join(" ")));
+  }
   cell.append(strong, em);
   if (prop.open) {
     const small = document.createElement("small");
-    small.textContent = `opened ${prop.open}`;
+    small.textContent = `opened at ${prop.open}`;
     cell.append(small);
   }
-  cell.title = `${prop.m} ${prop.line || ""} ${priceText(prop)}`.trim();
+  const because = prop.why && prop.why.length ? prop.why.join(" ") : "";
+  cell.title = `${prop.m} ${prop.line || ""} ${priceText(prop)} ${because}`.trim();
   return cell;
 }
 
@@ -431,6 +506,69 @@ function indexMain(props) {
     if (!indexed.has(prop.c)) indexed.set(prop.c, prop);
   });
   return indexed;
+}
+
+function orderKey(row, game) {
+  const side = row.team === game.away ? 0 : row.team === game.home ? 1 : 2;
+  const role = { starter: 0, rotation: 1 }[row.role];
+  const roleRank = role === undefined ? 2 : role;
+  const rank = row.rank == null ? 90 : row.rank;
+  if (row.avail === "out") return 3000 + side * 100 + roleRank * 10 + rank;
+  return side * 1000 + roleRank * 100 + rank;
+}
+
+function makeStar(text, reason) {
+  const star = document.createElement("span");
+  star.className = "star";
+  star.textContent = text;
+  star.addEventListener("pointerenter", () => showTip(star, reason));
+  star.addEventListener("pointerleave", hideTip);
+  star.addEventListener("click", (event) => event.stopPropagation());
+  return star;
+}
+
+let tipNode;
+
+function showTip(anchor, text) {
+  if (!tipNode) {
+    tipNode = document.createElement("div");
+    tipNode.className = "tip";
+    tipNode.hidden = true;
+    document.body.append(tipNode);
+  }
+  tipNode.textContent = text;
+  tipNode.hidden = false;
+  const box = anchor.getBoundingClientRect();
+  const width = Math.min(340, window.innerWidth - 16);
+  let left = box.left;
+  if (left + width > window.innerWidth - 8) left = window.innerWidth - width - 8;
+  if (left < 8) left = 8;
+  tipNode.style.width = `${width}px`;
+  tipNode.style.left = `${left}px`;
+  tipNode.style.top = `${box.bottom + 6}px`;
+  const tipBox = tipNode.getBoundingClientRect();
+  if (tipBox.bottom > window.innerHeight - 8) {
+    tipNode.style.top = `${Math.max(8, box.top - tipBox.height - 6)}px`;
+  }
+}
+
+function hideTip() {
+  if (tipNode) tipNode.hidden = true;
+}
+
+function starTitle(row) {
+  return (row.props || [])
+    .filter((prop) => prop.why && prop.why.length)
+    .map((prop) => `${prop.m} ${prop.line}: ${prop.why.join(" ")}`)
+    .join("\n");
+}
+
+function addTag(parent, text, kind, title) {
+  const tag = document.createElement("span");
+  tag.className = `tag ${kind}`;
+  tag.textContent = text;
+  if (title) tag.title = title;
+  parent.append(tag);
 }
 
 function matches(row) {
@@ -593,6 +731,21 @@ function addCell(row, tag, text) {
   if (text) cell.textContent = text;
   row.append(cell);
   return cell;
+}
+
+function dot(x, y, color, label, readout) {
+  const node = svgEl("circle");
+  node.setAttribute("cx", x);
+  node.setAttribute("cy", y);
+  node.setAttribute("r", "5");
+  node.setAttribute("fill", color);
+  const title = svgEl("title");
+  title.textContent = label;
+  node.append(title);
+  node.addEventListener("pointerenter", () => {
+    readout.textContent = label;
+  });
+  return node;
 }
 
 function poly(points, color, dash) {
