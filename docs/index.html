@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prop Comp</title>
+  <meta name="description" content="NBA player prop lines and whether they hit, one slate at a time.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="mark">Prop Comp</p>
+      <h1 id="title">NBA player props</h1>
+    </div>
+    <p class="meta" id="meta"></p>
+  </header>
+  <nav class="tabs" id="tabs">
+    <button type="button" data-view="board" class="on">Board</button>
+    <button type="button" data-view="season">Season</button>
+    <button type="button" data-view="player">Player</button>
+    <a href="snapshot.html">Static snapshot</a>
+  </nav>
+  <div id="dates" class="dates" hidden></div>
+  <div id="tools" class="tools"></div>
+  <main id="app"><p class="meta">Loading the board.</p></main>
+  <footer class="foot" id="foot"></footer>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+name: Sync board
+
+on:
+  schedule:
+    - cron: "0 16 * * *"
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Sync lines and rebuild the site
+        run: python -m propcomp
+      - name: Commit the updated board
+        run: |
+          git add data docs
+          git diff --cached --quiet && exit 0
+          git -c user.name="prop-comp" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Update prop board"
+          git push

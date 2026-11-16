@@ -1,0 +1,207 @@
+:root {
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: #10140f;
+  color: #e7ecdf;
+  font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+body { padding: 20px 22px 64px; }
+
+button, input, select, a { font: inherit; color: inherit; }
+
+button, select, input {
+  background: #1c2418;
+  border: 1px solid #31402c;
+  border-radius: 8px;
+  padding: 7px 10px;
+}
+
+button { cursor: pointer; }
+
+button.on, a.on {
+  background: #d6f25c;
+  color: #17200f;
+  border-color: #d6f25c;
+}
+
+a { color: #d6f25c; }
+
+.top, .tabs, .tools, .dates {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.top h1, .mark { margin: 0; }
+
+.mark {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #d6f25c;
+}
+
+h1 { font-size: 32px; font-weight: 650; letter-spacing: -0.03em; }
+
+h2, h3 { margin: 0 0 10px; }
+
+.meta, .foot, small, em { color: #b7c2ad; }
+
+.meta { margin: 0; text-align: right; font-size: 13px; }
+
+.tabs, .tools, .dates { justify-content: flex-start; align-items: center; margin-top: 14px; }
+
+.dates {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.dates button { flex: 0 0 auto; }
+
+.dates button.soon { border-color: #d6f25c; }
+
+.tools { flex-wrap: wrap; }
+
+main { margin-top: 16px; }
+
+.panel, .game {
+  background: #171d14;
+  border: 1px solid #2a3626;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.table-wrap { overflow-x: auto; }
+
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+
+th, td {
+  border-bottom: 1px solid #2a3626;
+  padding: 6px 7px;
+  text-align: right;
+  vertical-align: top;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+th { color: #9eae94; font-weight: 600; font-size: 11px; letter-spacing: 0.06em; }
+
+td.name, th.sticky {
+  text-align: left;
+  position: sticky;
+  left: 0;
+  background: #171d14;
+  min-width: 180px;
+}
+
+.name button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.name button:hover { color: #d6f25c; }
+
+td strong, .cell b { display: block; color: #f4f7ef; font-size: 15px; }
+
+td em, .cell small { display: block; font-style: normal; font-size: 11px; }
+
+td.hit { background: rgba(61, 196, 132, 0.16); }
+td.miss { background: rgba(232, 92, 108, 0.16); }
+td.push { background: rgba(214, 176, 92, 0.16); }
+td.void { background: rgba(255, 255, 255, 0.03); }
+td.wait strong { color: #d6f25c; }
+
+.cell.hit b { color: #8ee0b4; }
+.cell.miss b { color: #ffb3bc; }
+.cell.wait b { color: #d6f25c; }
+
+.extra {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 6px;
+  padding: 8px 0 4px;
+}
+
+.chip {
+  border: 1px solid #31402c;
+  border-radius: 8px;
+  padding: 6px 8px;
+  text-align: left;
+  white-space: normal;
+}
+
+.chip b { font-size: 13px; }
+.chip.hit { border-color: #3dc484; }
+.chip.miss { border-color: #e85c6c; }
+
+.bars { display: grid; gap: 8px; }
+
+.bar-row, .game-link {
+  display: grid;
+  grid-template-columns: 52px 1fr 140px;
+  gap: 10px;
+  align-items: center;
+}
+
+.track {
+  height: 10px;
+  background: #2a3626;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.fill { display: block; height: 100%; background: #d6f25c; }
+
+.blotter {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 8px;
+}
+
+.game-link {
+  grid-template-columns: 54px 1fr 1fr auto;
+  text-decoration: none;
+  color: inherit;
+  background: #10140f;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.game-link:hover { outline: 1px solid #d6f25c; }
+
+.heat td { text-align: center; font-size: 12px; }
+
+.chart-card { margin-top: 8px; }
+
+svg.chart { width: 100%; height: 140px; background: #10140f; border-radius: 10px; }
+
+.strip { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+
+.strip button { min-width: 18px; padding: 4px; }
+
+.strip .hit { background: #3dc484; color: #102016; border-color: #3dc484; }
+.strip .miss { background: #e85c6c; color: #1a0c0e; border-color: #e85c6c; }
+
+.jump { margin-top: 12px; }
+
+.foot { margin-top: 22px; font-size: 13px; max-width: 760px; }
+
+ul { margin: 8px 0 0; padding-left: 18px; }
+
+@media (max-width: 720px) {
+  body { padding: 14px 10px 48px; }
+  h1 { font-size: 26px; }
+  .top { display: block; }
+  .meta { text-align: left; margin-top: 8px; }
+}
