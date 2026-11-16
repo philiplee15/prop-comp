@@ -6,10 +6,9 @@ from datetime import datetime
 from html import escape
 from zoneinfo import ZoneInfo
 
-from propcomp.availability import out_teammates
 from propcomp.db import DOCS
 from propcomp.grade import CORE_MARKETS
-from propcomp.signals import clear_reasons
+from propcomp.signals import choose_star
 
 EASTERN = ZoneInfo("America/New_York")
 CORE_OU = ["pts", "reb", "ast", "fg3m", "pra", "stl", "blk"]
@@ -210,20 +209,22 @@ def pack_game(game, props, stats, teams, players, avail_rows=None, history=None)
         avail = avail_by_player.get(player_id) or {}
         team_id = avail.get("team_id") or stat.get("team_id") or person.get("team_id")
         packed_props = []
-        mates = out_teammates(avail_rows, history, players, team_id, player_id) if upcoming else []
+        star_candidates = []
         for prop in player_props:
             packed = compact_prop(prop)
-            if upcoming and packed["k"] == "ou" and avail.get("status") != "out":
-                reasons = clear_reasons(
-                    packed["c"],
-                    prop.get("line_num"),
-                    history.get(player_id) or [],
-                    avail,
-                    mates,
-                )
-                if reasons:
-                    packed["why"] = reasons
             packed_props.append(packed)
+            if upcoming and packed["k"] == "ou" and avail.get("status") != "out":
+                star_candidates.append((packed, prop.get("line_num")))
+        if star_candidates:
+            choice = choose_star(
+                [(packed["c"], line) for packed, line in star_candidates],
+                history.get(player_id) or [],
+            )
+            if choice:
+                for packed, line in star_candidates:
+                    if packed["c"] == choice["code"] and line == choice["line"]:
+                        packed["why"] = choice["why"]
+                        break
         seen_ids.add(player_id)
         rows.append(
             {

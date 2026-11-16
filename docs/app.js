@@ -121,7 +121,7 @@ function paintBoard() {
     if (game.status !== "final" && game.status !== "live") {
       const legend = document.createElement("p");
       legend.className = "legend";
-      legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. A star is a line with a case to clear. Hover the star for the reason.";
+      legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. One star per player is the line their recent average clears by the most that they have also cleared most often. Hover the star for the gap and the record.";
       article.append(legend);
     }
     if (!game.rows.length) {

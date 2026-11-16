@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from propcomp import espn
-from propcomp.signals import POSITIONS, families, minutes_profile
+from propcomp.signals import POSITIONS
 
 STATUS_RANK = {"active": 0, "risk": 1, "out": 2}
 
@@ -247,25 +247,3 @@ def refresh(conn) -> None:
                     (row["player_id"], row["name"], row["team_id"], row["pos"]),
                 )
     conn.commit()
-
-
-def out_teammates(avail_rows: list[dict], history: dict, players: dict, team_id: str, player_id: str) -> list[dict]:
-    mates = []
-    for row in avail_rows:
-        if row["team_id"] != team_id or row["player_id"] == player_id or row["status"] != "out":
-            continue
-        profile = minutes_profile(history.get(row["player_id"]) or [], 5)
-        person = players.get(row["player_id"]) or {}
-        mates.append(
-            {
-                "name": person.get("name") or row["player_id"],
-                "minutes": profile["minutes"],
-                "pos": row.get("pos") or "",
-                "families": families_for(row.get("pos")),
-            }
-        )
-    return mates
-
-
-def families_for(pos: str | None):
-    return families(pos)

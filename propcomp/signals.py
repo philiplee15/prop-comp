@@ -60,103 +60,65 @@ def recent_values(history: list[dict], code: str, count: int = 5) -> list[float]
     return values
 
 
-def minutes_profile(history: list[dict], count: int = 5) -> dict:
-    sample = [game for game in history if (game.get("seconds") or 0) > 0][:count]
-    minutes = [(game.get("seconds") or 0) / 60 for game in sample]
-    starts = [1 if game.get("starter") else 0 for game in sample]
-    return {
-        "games": len(sample),
-        "minutes": mean(minutes) or 0,
-        "floor": min(minutes) if minutes else 0,
-        "starter_rate": mean(starts) or 0,
-    }
-
-
-def families(pos: str | None) -> set[str]:
-    key = (pos or "").lower()
-    if key in {"pg", "g"}:
-        return {"guard"}
-    if key == "sg":
-        return {"guard", "wing"}
-    if key in {"sf", "f"}:
-        return {"wing"}
-    if key == "pf":
-        return {"wing", "big"}
-    if key == "c":
-        return {"big"}
-    return set()
-
-
-def clear_reasons(
-    code: str,
-    line: float | None,
-    history: list[dict],
-    avail: dict | None,
-    out_teammates: list[dict],
-) -> list[str]:
-    if line is None or code not in EDGE:
-        return []
-    if avail and avail.get("status") == "out":
-        return []
-    recent = recent_values(history, code, 5)
-    season = recent_values(history, code, 30)
-    if len(recent) < 4:
-        return []
-    recent_avg = mean(recent) or 0
-    season_avg = mean(season) if len(season) >= 8 else None
-    profile = minutes_profile(history, 5)
-    edge = EDGE[code]
-    reasons = []
-
-    if recent_avg >= line + edge:
-        reasons.append(
-            f"Last 5 average {recent_avg:.1f} clears {line:g} by {recent_avg - line:.1f}."
+def choose_star(lines: list[tuple[str, float | None]], history: list[dict]) -> dict | None:
+    """One total per player: the widest recent gap that is also cleared most often."""
+    scored = []
+    for code, line in lines:
+        if line is None or code not in EDGE:
+            continue
+        recent = recent_values(history, code, 5)
+        season = recent_values(history, code, 30)
+        if len(recent) < 4 or len(season) < 4:
+            continue
+        recent_avg = mean(recent) or 0
+        margin = recent_avg - line
+        if margin <= 0:
+            continue
+        clears = sum(1 for value in season if value > line)
+        played = len(season)
+        rate = clears / played
+        if rate < 0.5:
+            continue
+        scored.append(
+            {
+                "code": code,
+                "line": line,
+                "avg": recent_avg,
+                "margin": margin,
+                "clears": clears,
+                "played": played,
+                "rate": rate,
+            }
         )
-
-    secure = (
-        profile["games"] >= 4
-        and profile["minutes"] >= 30
-        and profile["floor"] >= 24
-        and profile["starter_rate"] >= 0.8
-        and recent_avg >= line + (edge * 0.6)
+    if not scored:
+        return None
+    margin_order = sorted(range(len(scored)), key=lambda index: scored[index]["margin"], reverse=True)
+    rate_order = sorted(
+        range(len(scored)),
+        key=lambda index: (scored[index]["rate"], scored[index]["clears"], scored[index]["margin"]),
+        reverse=True,
     )
-    if secure:
-        reasons.append(
-            f"Last 5 average {recent_avg:.1f} against {line:g}, with {profile['minutes']:.0f} minutes a night and none under {profile['floor']:.0f}."
-        )
+    margin_rank = {index: rank for rank, index in enumerate(margin_order)}
+    rate_rank = {index: rank for rank, index in enumerate(rate_order)}
+    winner_index = min(
+        range(len(scored)),
+        key=lambda index: (
+            margin_rank[index] + rate_rank[index],
+            -scored[index]["margin"],
+            -scored[index]["rate"],
+        ),
+    )
+    winner = scored[winner_index]
+    line_text = _number(winner["line"])
+    why = (
+        f"Last 5 average {_number(winner['avg'])} clears {line_text} by {_number(winner['margin'])}. "
+        f"Cleared {line_text} in {winner['clears']} of {winner['played']} games."
+    )
+    return {"code": winner["code"], "line": winner["line"], "why": [why]}
 
-    replaces = (avail or {}).get("replaces") or ""
-    new_start = (avail or {}).get("role") == "starter" and profile["starter_rate"] < 0.5
-    if new_start and recent_avg >= line + (edge * 0.4):
-        who = replaces or "a starter"
-        reasons.append(
-            f"Projects to start in place of {who}, which should add minutes. Last 5 average {recent_avg:.1f}."
-        )
-    elif out_teammates and recent_avg >= line:
-        spot = ((avail or {}).get("pos") or "").upper()
-        shared = [
-            mate
-            for mate in out_teammates
-            if spot and spot == (mate.get("pos") or "").upper() and mate["minutes"] >= 26
-        ]
-        if shared and profile["minutes"] >= 18 and recent_avg >= line + (edge * 0.5):
-            names = ", ".join(mate["name"] for mate in shared[:2])
-            if len(shared) == 1:
-                reasons.append(
-                    f"{names} is out and plays the same spot. Last 5 average {recent_avg:.1f} against {line:g}."
-                )
-            else:
-                reasons.append(
-                    f"{names} are out and play the same spot. Last 5 average {recent_avg:.1f} against {line:g}."
-                )
 
-    if (
-        season_avg is not None
-        and recent_avg >= season_avg * 0.85
-        and line <= season_avg * 0.88
-        and line <= recent_avg - (edge * 1.4)
-    ):
-        reasons.append(
-            f"Line {line:g} is light against a {season_avg:.1f} season average and a {recent_avg:.1f} last-5 average."
-        )
-    return reasons
+def _number(value: float) -> str:
+    text = f"{value:.1f}"
+    if text.endswith(".0"):
+        return text[:-2]
+    return text
