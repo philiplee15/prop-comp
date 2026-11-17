@@ -14,11 +14,18 @@ const state = {
   playerId: "",
   openKey: "",
   showAll: false,
+  chart: "",
+  stars: 0,
+  scrollChart: false,
+  folded: {},
   liveDays: {},
   checking: false,
   playerIndex: null,
   lookups: null,
 };
+
+const CHART_CODES = new Set(["pts", "reb", "ast", "fg3m", "pra", "stl", "blk", "dd", "first"]);
+const STAR_CODES = new Set(["pts", "reb", "ast", "fg3m", "pra", "stl", "blk"]);
 
 const app = document.querySelector("#app");
 const tools = document.querySelector("#tools");
@@ -27,17 +34,54 @@ const dates = document.querySelector("#dates");
 document.querySelectorAll("#tabs button").forEach((button) => {
   button.addEventListener("click", () => visit(button.dataset.view));
 });
-window.addEventListener("popstate", () => {
-  restore().catch((error) => {
-    app.textContent = `The board could not load. ${error.message}`;
-  });
+document.querySelector("#theme").addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("propcomp-theme", next);
+  paintThemeButton();
+  if (state.view === "player" && state.logs && state.season) paintPlayer();
+  else if (state.view === "board" && state.day) paintBoard();
 });
+document.querySelector("#copy").addEventListener("click", () => copyLink());
+window.addEventListener("popstate", queueRestore);
+window.addEventListener("hashchange", queueRestore);
+paintThemeButton();
 
 boot().catch((error) => {
   app.textContent = `The board could not load. ${error.message}`;
 });
 
 let restoring = false;
+let restoreFrame = 0;
+
+function queueRestore() {
+  cancelAnimationFrame(restoreFrame);
+  restoreFrame = requestAnimationFrame(() => {
+    restore().catch((error) => {
+      app.textContent = `The board could not load. ${error.message}`;
+    });
+  });
+}
+
+function paintThemeButton() {
+  const button = document.querySelector("#theme");
+  const dark = document.documentElement.dataset.theme !== "light";
+  button.textContent = dark ? "Light" : "Dark";
+  button.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+}
+
+async function copyLink() {
+  const button = document.querySelector("#copy");
+  try {
+    await navigator.clipboard.writeText(location.href);
+    button.textContent = "Copied";
+  } catch (error) {
+    button.textContent = "Copy the address";
+  }
+  setTimeout(() => {
+    button.textContent = "Copy link";
+  }, 1200);
+}
 
 async function boot() {
   state.manifest = await fetchJson("data/manifest.json");
@@ -60,30 +104,88 @@ function knownDate(date) {
 }
 
 function readPlace() {
-  const params = new URLSearchParams(location.hash.replace(/^#/, ""));
+  const raw = location.hash.replace(/^#/, "");
+  if (!raw) {
+    state.view = "board";
+    state.chart = "";
+    return;
+  }
+  if (raw.startsWith("/")) {
+    readPath(raw);
+    return;
+  }
+  const params = new URLSearchParams(raw);
   const requested = params.get("d");
   if (knownDate(requested)) state.date = requested;
   const view = params.get("v");
   state.view = view === "season" || view === "player" ? view : "board";
   state.playerId = params.get("p") || "";
+  state.chart = CHART_CODES.has(params.get("c")) ? params.get("c") : "";
+  readFilters(params);
+  state.scrollChart = Boolean(state.chart);
+}
+
+function readPath(raw) {
+  const [path, query = ""] = raw.split("?");
+  const parts = path.split("/").filter(Boolean);
+  const params = new URLSearchParams(query);
+  const head = parts[0];
+  state.chart = "";
+  if (head === "season") {
+    state.view = "season";
+  } else if (head === "player") {
+    state.view = "player";
+    state.playerId = parts[1] || "";
+    state.chart = CHART_CODES.has(parts[2]) ? parts[2] : "";
+  } else {
+    state.view = "board";
+    if (knownDate(parts[1])) state.date = parts[1];
+  }
+  readFilters(params);
+  state.scrollChart = Boolean(state.chart);
+}
+
+function readFilters(params) {
+  state.query = params.get("q") || "";
+  state.team = params.get("team") || "";
+  const stars = Number(params.get("stars"));
+  state.stars = stars === 1 || stars === 2 || stars === 3 ? stars : 0;
+  if (params.get("sort")) state.sort = params.get("sort");
+  if (params.get("min")) state.minimum = Number(params.get("min")) || state.minimum;
 }
 
 function place() {
   const params = new URLSearchParams();
-  if (state.date) params.set("d", state.date);
-  if (state.view && state.view !== "board") params.set("v", state.view);
-  if (state.view === "player" && state.playerId) params.set("p", state.playerId);
-  return `#${params.toString()}`;
+  if (state.view !== "player") {
+    if (state.query) params.set("q", state.query);
+    if (state.team) params.set("team", state.team);
+  }
+  if (state.view === "board" && state.stars) params.set("stars", String(state.stars));
+  if (state.view === "season") {
+    if (state.sort && state.sort !== "pts") params.set("sort", state.sort);
+    if (state.minimum !== 5) params.set("min", String(state.minimum));
+  }
+  let path = "/board";
+  if (state.view === "season") path = "/season";
+  else if (state.view === "player") {
+    path = state.playerId ? `/player/${state.playerId}` : "/player";
+    if (state.playerId && state.chart) path += `/${state.chart}`;
+  } else if (state.date) path = `/board/${state.date}`;
+  const query = params.toString();
+  return `#${path}${query ? `?${query}` : ""}`;
 }
 
-function remember() {
+function remember(replace) {
   if (restoring) return;
   const next = place();
   if (next === location.hash) return;
-  history.pushState({ propcomp: true }, "", next);
+  const data = { propcomp: true };
+  if (replace) history.replaceState(data, "", next);
+  else history.pushState(data, "", next);
 }
 
 async function restore() {
+  if (!state.manifest) return;
   restoring = true;
   readPlace();
   paintChrome();
@@ -109,15 +211,15 @@ async function setView(view) {
 }
 
 function paintChrome() {
-  const counts = state.manifest.counts;
   document.querySelector("#title").textContent = `${state.manifest.season} player props`;
-  document.querySelector("#meta").textContent = `${counts.final} finals · ${counts.props} props · updated ${stamp(state.manifest.generated_at)}`;
+  paintMeta();
   document.querySelector("#foot").textContent = `${state.manifest.source}. The two prices on a total are the two sides of the number. ESPN does not label which one is the over. Players who did not play are void. Past slates stay on this site. Opening the board checks today and the next two days, then fills any lines posted since the last publish.`;
   dates.replaceChildren();
   state.manifest.dates.forEach((item) => {
     const button = document.createElement("button");
     button.type = "button";
     button.textContent = shortDate(item.date);
+    button.title = `${item.games} game${item.games === 1 ? "" : "s"}`;
     button.classList.toggle("on", item.date === state.date);
     if (item.scheduled) button.classList.add("soon");
     button.addEventListener("click", () => selectDate(item.date));
@@ -141,9 +243,15 @@ async function showBoard() {
   tools.append(
     labeled("Player", input(state.query, "Search a player", (value) => {
       state.query = value;
+      remember(true);
       paintBoard();
     })),
     labeled("Team", teamSelect()),
+    labeled("Stars", select([["0", "Any"], ["1", "1+"], ["2", "2+"], ["3", "3+"]], String(state.stars || 0), (value) => {
+      state.stars = Number(value);
+      remember();
+      paintBoard();
+    })),
     toggle("Show every line", state.showAll, (checked) => {
       state.showAll = checked;
       paintBoard();
@@ -151,8 +259,11 @@ async function showBoard() {
   );
   app.textContent = "Loading this slate.";
   const date = state.date;
+  const logsPromise = state.logs ? Promise.resolve(state.logs) : fetchJson("data/logs.json");
   const loaded = state.liveDays[date] || await fetchJson(`data/days/${date}.json`);
+  const logs = await logsPromise;
   if (state.date !== date || state.view !== "board") return;
+  state.logs = logs;
   if (!state.liveDays[date]) state.liveDays[date] = loaded;
   state.day = state.liveDays[date];
   paintBoard();
@@ -163,33 +274,66 @@ function paintBoard() {
   const coreCodes = new Set(core.map((market) => market.code));
   app.replaceChildren();
   const games = (state.day && state.day.games) || [];
+  paintMeta();
   if (!games.length) {
     app.textContent = "No games on this slate.";
     return;
   }
+  const folded = foldedSet();
+  const bar = document.createElement("div");
+  bar.className = "slate-bar";
+  const heading = document.createElement("h2");
+  heading.textContent = longDate(state.date);
+  const count = document.createElement("p");
+  count.className = "slate-count";
+  count.textContent = `${games.length} game${games.length === 1 ? "" : "s"}`;
+  const actions = document.createElement("div");
+  actions.className = "slate-actions";
+  actions.append(
+    textButton("Collapse all", () => foldGames(games, true)),
+    textButton("Expand all", () => foldGames(games, false)),
+  );
+  bar.append(heading, count, actions);
+  app.append(bar);
   let visible = 0;
   games.forEach((game) => {
     const rows = game.rows.filter((row) => matches(row));
-    if (!rows.length && (state.query || state.team)) return;
+    if (!rows.length && (state.query || state.team || state.stars)) return;
     visible += 1;
+    const open = !folded.has(game.id);
     const article = document.createElement("article");
-    article.className = "game";
+    article.className = open ? "game" : "game shut";
+    const toggleRow = document.createElement("button");
+    toggleRow.type = "button";
+    toggleRow.className = "game-toggle";
+    toggleRow.setAttribute("aria-expanded", open ? "true" : "false");
     const title = document.createElement("h2");
     title.textContent = `${game.away} at ${game.home}`;
     const meta = document.createElement("p");
     meta.className = "meta";
     meta.textContent = gameMeta(game);
-    article.append(title, meta);
+    const titles = document.createElement("span");
+    titles.append(title, meta);
+    toggleRow.append(titles);
+    toggleRow.addEventListener("click", () => {
+      if (folded.has(game.id)) folded.delete(game.id);
+      else folded.add(game.id);
+      paintBoard();
+    });
+    const body = document.createElement("div");
+    body.className = "game-body";
+    body.hidden = !open;
+    article.append(toggleRow, body);
     if (game.status !== "final" && game.status !== "live") {
       const legend = document.createElement("p");
       legend.className = "legend";
-      legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. One star per player is the line their recent average clears by the most that they have also cleared most often. Hover the star for the gap and the record.";
-      article.append(legend);
+      legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. A star on a stat means the line is under the last five average and the player has cleared that number more than 70% of the time.";
+      body.append(legend);
     }
     if (!gameHasLines(game)) {
       const empty = document.createElement("p");
       empty.textContent = lineStatus(game);
-      article.append(empty);
+      body.append(empty);
       if (!game.rows.length) {
         app.append(article);
         return;
@@ -219,13 +363,12 @@ function paintBoard() {
       if (game.status !== "final" && row.role === "starter") addTag(button, "START", "start");
       if (row.avail === "out") addTag(button, "OUT", "out", row.avail_note);
       if (row.avail === "risk") addTag(button, row.avail_label || "RISK", "risk", row.avail_note);
-      const reasons = starTitle(row);
-      if (reasons) {
-        button.append(makeStar(" ★", reasons));
-      }
       name.append(button);
       const indexed = indexMain(row.props);
-      core.forEach((market) => fillCell(addCell(tr, "td", ""), indexed.get(market.code)));
+      core.forEach((market) => {
+        const prop = indexed.get(market.code);
+        fillCell(addCell(tr, "td", ""), prop, starReason(row, prop));
+      });
       const extras = row.props.filter((prop) => prop.k === "milestone" || !coreCodes.has(prop.c));
       const key = `${game.id}:${row.id}`;
       if (extras.length) {
@@ -248,7 +391,7 @@ function paintBoard() {
     wrap.className = "table-wrap";
     table.append(thead, tbody);
     wrap.append(table);
-    article.append(wrap);
+    body.append(wrap);
     app.append(article);
   });
   if (!visible) {
@@ -268,15 +411,18 @@ async function showSeason() {
   tools.append(
     labeled("Player", input(state.query, "Search a player", (value) => {
       state.query = value;
+      remember(true);
       paintSeason();
     })),
     labeled("Team", teamSelect()),
     labeled("Sort", select(markets.map((market) => [market.code, market.label]), state.sort, (value) => {
       state.sort = value;
+      remember();
       paintSeason();
     })),
     labeled("Min games", select([["1", "1"], ["3", "3"], ["5", "5"], ["8", "8"]], String(state.minimum), (value) => {
       state.minimum = Number(value);
+      remember();
       paintSeason();
     })),
   );
@@ -284,6 +430,7 @@ async function showSeason() {
 }
 
 function paintSeason() {
+  paintMeta();
   const columns = state.manifest.core;
   const players = state.season.players.filter((player) => {
     if (state.team && player.team !== state.team) return false;
@@ -325,7 +472,7 @@ function paintSeason() {
       const tone = heatTone(player.markets[market.code], market.code);
       if (tone) {
         cell.style.background = tone;
-        cell.style.color = "#10140f";
+        cell.style.color = "#10141c";
       }
     });
     tbody.append(tr);
@@ -345,6 +492,7 @@ async function showPlayer() {
   const people = state.season.players.slice().sort((left, right) => left.name.localeCompare(right.name));
   tools.append(labeled("Player", select(people.map((player) => [player.id, `${player.team} ${player.name}`]), state.playerId, (value) => {
     state.playerId = value;
+    state.chart = "";
     remember();
     paintPlayer();
   })));
@@ -353,11 +501,12 @@ async function showPlayer() {
 
 function paintPlayer() {
   app.replaceChildren();
+  paintMeta();
   if (!state.playerId) {
     app.textContent = "Pick a player to see every main line against the result.";
     return;
   }
-  const person = state.season.players.find((player) => player.id === state.playerId);
+  const person = (state.season.players || []).find((player) => player.id === state.playerId);
   const log = state.logs[state.playerId] || {};
   const title = document.createElement("h2");
   title.textContent = person ? `${person.team} ${person.name}` : "Player";
@@ -367,10 +516,15 @@ function paintPlayer() {
     if (!series.length) return;
     const card = document.createElement("section");
     card.className = "panel chart-card";
+    card.id = `chart-${market.code}`;
+    if (state.chart === market.code) card.classList.add("on");
     const heading = document.createElement("h3");
     const counts = person && person.markets[market.code];
     const trend = trailingAverage(series, market.code);
-    heading.textContent = `${market.label} ${recordText(counts, market.code)}`;
+    const link = document.createElement("a");
+    link.href = `#/player/${state.playerId}/${market.code}`;
+    link.textContent = `${market.label} ${recordText(counts, market.code)}`.trim();
+    heading.append(link);
     card.append(heading);
     if (trend) {
       const note = document.createElement("p");
@@ -393,6 +547,13 @@ function paintPlayer() {
     const empty = document.createElement("p");
     empty.textContent = "No graded main lines yet.";
     app.append(empty);
+  }
+  if (state.scrollChart && state.chart) {
+    state.scrollChart = false;
+    requestAnimationFrame(() => {
+      const node = app.querySelector(".chart-card.on");
+      if (node) node.scrollIntoView({ block: "start" });
+    });
   }
 }
 
@@ -426,15 +587,15 @@ function lineChart(series, average, readout) {
     if (row[1] !== null && row[1] !== "") {
       const y = yFor(Number(row[1]));
       line.push(`${x},${y}`);
-      dots.push(dot(x, y, "#d6f25c", `${shortDate(row[0])} line ${row[1]}`, readout));
+      dots.push(dot(x, y, paintColor("--accent"), `${shortDate(row[0])} line ${row[1]}`, readout));
     }
     if (row[3] !== null && row[3] !== undefined) {
       const y = yFor(Number(row[3]));
       actual.push(`${x},${y}`);
-      dots.push(dot(x, y, "#f4f7ef", `${shortDate(row[0])} actual ${row[3]}, line ${row[1]}`, readout));
+      dots.push(dot(x, y, paintColor("--ink"), `${shortDate(row[0])} actual ${row[3]}, line ${row[1]}`, readout));
     }
   });
-  svg.append(poly(line.join(" "), "#d6f25c", "4,4"), poly(actual.join(" "), "#f4f7ef", ""));
+  svg.append(poly(line.join(" "), paintColor("--accent"), "4 4"), poly(actual.join(" "), paintColor("--ink"), ""));
   if (Number.isFinite(average)) {
     const guide = svgEl("line");
     const y = yFor(average);
@@ -442,7 +603,7 @@ function lineChart(series, average, readout) {
     guide.setAttribute("x2", String(width - 8));
     guide.setAttribute("y1", y);
     guide.setAttribute("y2", y);
-    guide.setAttribute("stroke", "#8ea384");
+    guide.setAttribute("stroke", paintColor("--muted"));
     guide.setAttribute("stroke-dasharray", "3 4");
     svg.append(guide);
   }
@@ -519,9 +680,6 @@ function extraGrid(props) {
     const actual = prop.act == null ? "" : `actual ${prop.act} `;
     detail.textContent = `${actual}${word(prop.r)} ${priceText(prop)}`.trim();
     chip.append(title, detail);
-    if (prop.why && prop.why.length) {
-      title.append(makeStar(" ★", prop.why.join(" ")));
-    }
     if (prop.open) {
       const small = document.createElement("small");
       small.textContent = `opened at ${prop.open}`;
@@ -532,9 +690,9 @@ function extraGrid(props) {
   return grid;
 }
 
-function fillCell(cell, prop) {
+function fillCell(cell, prop, reason) {
   if (!prop) return cell;
-  cell.classList.add(tone(prop.r));
+  cell.classList.add("stat", tone(prop.r));
   const strong = document.createElement("strong");
   const em = document.createElement("em");
   if (prop.r === "void") {
@@ -550,16 +708,14 @@ function fillCell(cell, prop) {
     strong.textContent = prop.line || "";
     em.textContent = "";
   }
-  if (prop.why && prop.why.length) {
-    cell.append(makeStar("★ ", prop.why.join(" ")));
-  }
   cell.append(strong, em);
+  if (reason) cell.append(makeStar("★", reason));
   if (prop.open) {
     const small = document.createElement("small");
     small.textContent = `opened at ${prop.open}`;
     cell.append(small);
   }
-  const because = prop.why && prop.why.length ? prop.why.join(" ") : "";
+  const because = reason || "";
   cell.title = `${prop.m} ${prop.line || ""} ${priceText(prop)} ${because}`.trim();
   return cell;
 }
@@ -621,13 +777,6 @@ function hideTip() {
   if (tipNode) tipNode.hidden = true;
 }
 
-function starTitle(row) {
-  return (row.props || [])
-    .filter((prop) => prop.why && prop.why.length)
-    .map((prop) => `${prop.m} ${prop.line}: ${prop.why.join(" ")}`)
-    .join("\n");
-}
-
 function addTag(parent, text, kind, title) {
   const tag = document.createElement("span");
   tag.className = `tag ${kind}`;
@@ -639,6 +788,7 @@ function addTag(parent, text, kind, title) {
 function matches(row) {
   if (state.team && row.team !== state.team) return false;
   if (state.query && !row.name.toLowerCase().includes(state.query.toLowerCase())) return false;
+  if (state.stars && rowStarCount(row) < state.stars) return false;
   return true;
 }
 
@@ -657,6 +807,7 @@ function teamSelect() {
   );
   return select(options, state.team, (value) => {
     state.team = value;
+    remember();
     if (state.view === "board") paintBoard();
     if (state.view === "season") paintSeason();
   });
@@ -664,6 +815,7 @@ function teamSelect() {
 
 function openPlayer(playerId) {
   state.playerId = playerId;
+  state.chart = "";
   visit("player");
 }
 
@@ -742,6 +894,87 @@ function tipLabel(iso) {
     minute: "2-digit",
     timeZoneName: "short",
   }).format(new Date(iso));
+}
+
+function paintMeta() {
+  const counts = state.manifest.counts;
+  let slate = "";
+  if (state.view === "board" && state.day && state.day.games) {
+    const total = state.day.games.length;
+    slate = `${longDate(state.date)} · ${total} game${total === 1 ? "" : "s"} · `;
+    document.title = `${longDate(state.date)} · ${total} games · Prop Comp`;
+  } else if (state.view === "player" && state.playerId) {
+    const person = state.season && (state.season.players || []).find((player) => player.id === state.playerId);
+    const name = person ? person.name : "Player";
+    const chart = state.chart ? ` · ${state.chart.toUpperCase()}` : "";
+    document.title = `${name}${chart} · Prop Comp`;
+  } else if (state.view === "season") {
+    document.title = "Season · Prop Comp";
+  } else {
+    document.title = "Prop Comp";
+  }
+  document.querySelector("#meta").textContent = `${slate}${counts.final} finals · ${counts.props} props · updated ${stamp(state.manifest.generated_at)}`;
+}
+
+function longDate(iso) {
+  if (!iso) return "";
+  const [year, month, day] = iso.split("-").map(Number);
+  return new Intl.DateTimeFormat("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
+function foldedSet() {
+  if (!state.folded[state.date]) state.folded[state.date] = new Set();
+  return state.folded[state.date];
+}
+
+function foldGames(games, shut) {
+  const folded = foldedSet();
+  folded.clear();
+  if (shut) games.forEach((game) => folded.add(game.id));
+  paintBoard();
+}
+
+function textButton(label, onClick) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.textContent = label;
+  button.addEventListener("click", onClick);
+  return button;
+}
+
+function paintColor(token) {
+  return getComputedStyle(document.documentElement).getPropertyValue(token).trim();
+}
+
+function rowStarCount(row) {
+  const indexed = indexMain(row.props || []);
+  let count = 0;
+  STAR_CODES.forEach((code) => {
+    if (starReason(row, indexed.get(code))) count += 1;
+  });
+  return count;
+}
+
+function starReason(row, prop) {
+  if (!row || row.avail === "out" || !prop || !state.logs) return "";
+  if (prop.k === "milestone" || !STAR_CODES.has(prop.c)) return "";
+  const line = Number(prop.line);
+  if (!Number.isFinite(line)) return "";
+  const recent = recentActuals(row.id, prop.c, 5);
+  const season = recentActuals(row.id, prop.c, 30);
+  if (recent.length < 5 || season.length < 5) return "";
+  const average = recent.reduce((sum, value) => sum + value, 0) / recent.length;
+  if (!(line < average)) return "";
+  const clears = season.filter((value) => value > line).length;
+  const rate = clears / season.length;
+  if (!(rate > 0.7)) return "";
+  const lineText = formatNumber(line);
+  return `Last 5 average ${formatNumber(average)} is above ${lineText}. Cleared ${lineText} in ${clears} of ${season.length} games.`;
 }
 
 function shortDate(iso) {
@@ -902,7 +1135,6 @@ const FIELD_CODES = {
 };
 const QUARTER_RE = /^(Points|Rebounds|Assists|Steals|Blocks|3-Point Field Goals|Turnovers)(?: \+ (Rebounds|Assists|Blocks))?(?: \+ (Rebounds|Assists))? Milestones - (1st|2nd|3rd|4th) Quarter$/;
 const QUARTER_TOTAL_RE = /^Total (First|Second|Third|Fourth) Quarter (Points|Rebounds|Assists|Steals|Blocks|3-Point Field Goals|Turnovers)$/;
-const STAR_EDGE = { pts: 3, reb: 1.5, ast: 1.2, fg3m: 0.7, stl: 0.4, blk: 0.4, pra: 4 };
 
 function easternToday() {
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -1139,18 +1371,8 @@ function mergeGame(game, items, odds) {
   if (odds && odds.total != null) game.total = odds.total;
 }
 
-function packProps(props, row) {
-  const packed = props.map(compactProp);
-  if (!row || row.avail === "out") {
-    return sortProps(packed);
-  }
-  const choice = chooseStar(props);
-  if (choice) {
-    packed.forEach((prop) => {
-      if (prop.c === choice.code && Number(prop.line) === choice.line) prop.why = choice.why;
-    });
-  }
-  return sortProps(packed);
+function packProps(props) {
+  return sortProps(props.map(compactProp));
 }
 
 function sortProps(props) {
@@ -1178,7 +1400,7 @@ function newRow(playerId, props) {
     stat: null,
     props: [],
   };
-  row.props = packProps(props, row);
+  row.props = packProps(props);
   return row;
 }
 
@@ -1303,58 +1525,6 @@ function americanValue(price) {
   if (!price) return 0;
   const value = Number(String(price).replace("+", ""));
   return Number.isFinite(value) ? value : 0;
-}
-
-function chooseStar(props) {
-  if (!state.logs) return null;
-  const scored = [];
-  props.forEach((prop) => {
-    if (prop.kind !== "ou" || prop.line_num == null || !(prop.code in STAR_EDGE)) return;
-    const recent = recentActuals(prop.player_id, prop.code, 5);
-    const season = recentActuals(prop.player_id, prop.code, 30);
-    if (recent.length < 4 || season.length < 4) return;
-    const recentAvg = recent.reduce((sum, value) => sum + value, 0) / recent.length;
-    const margin = recentAvg - prop.line_num;
-    if (margin <= 0) return;
-    const clears = season.filter((value) => value > prop.line_num).length;
-    const rate = clears / season.length;
-    if (rate < 0.5) return;
-    scored.push({
-      code: prop.code,
-      line: prop.line_num,
-      avg: recentAvg,
-      margin,
-      clears,
-      played: season.length,
-      rate,
-    });
-  });
-  if (!scored.length) return null;
-  const marginOrder = scored.map((item, index) => index).sort((left, right) => scored[right].margin - scored[left].margin);
-  const rateOrder = scored.map((item, index) => index).sort((left, right) => {
-    return scored[right].rate - scored[left].rate
-      || scored[right].clears - scored[left].clears
-      || scored[right].margin - scored[left].margin;
-  });
-  const marginRank = new Map(marginOrder.map((index, rank) => [index, rank]));
-  const rateRank = new Map(rateOrder.map((index, rank) => [index, rank]));
-  let winnerIndex = 0;
-  scored.forEach((item, index) => {
-    const better = marginRank.get(index) + rateRank.get(index) < marginRank.get(winnerIndex) + rateRank.get(winnerIndex)
-      || (marginRank.get(index) + rateRank.get(index) === marginRank.get(winnerIndex) + rateRank.get(winnerIndex)
-        && (item.margin > scored[winnerIndex].margin
-          || (item.margin === scored[winnerIndex].margin && item.rate > scored[winnerIndex].rate)));
-    if (better) winnerIndex = index;
-  });
-  const winner = scored[winnerIndex];
-  const lineText = formatNumber(winner.line);
-  return {
-    code: winner.code,
-    line: winner.line,
-    why: [
-      `Last 5 average ${formatNumber(winner.avg)} clears ${lineText} by ${formatNumber(winner.margin)}. Cleared ${lineText} in ${winner.clears} of ${winner.played} games.`,
-    ],
-  };
 }
 
 function recentActuals(playerId, code, count) {

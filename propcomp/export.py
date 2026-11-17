@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 
 from propcomp.db import DOCS
 from propcomp.grade import CORE_MARKETS
-from propcomp.signals import choose_star
+from propcomp.signals import qualifying_stars
 
 EASTERN = ZoneInfo("America/New_York")
 CORE_OU = ["pts", "reb", "ast", "fg3m", "pra", "stl", "blk"]
@@ -216,15 +216,17 @@ def pack_game(game, props, stats, teams, players, avail_rows=None, history=None)
             if upcoming and packed["k"] == "ou" and avail.get("status") != "out":
                 star_candidates.append((packed, prop.get("line_num")))
         if star_candidates:
-            choice = choose_star(
-                [(packed["c"], line) for packed, line in star_candidates],
-                history.get(player_id) or [],
-            )
-            if choice:
-                for packed, line in star_candidates:
-                    if packed["c"] == choice["code"] and line == choice["line"]:
-                        packed["why"] = choice["why"]
-                        break
+            choices = {
+                (item["code"], item["line"]): item["why"]
+                for item in qualifying_stars(
+                    [(packed["c"], line) for packed, line in star_candidates],
+                    history.get(player_id) or [],
+                )
+            }
+            for packed, line in star_candidates:
+                why = choices.get((packed["c"], line))
+                if why:
+                    packed["why"] = why
         seen_ids.add(player_id)
         rows.append(
             {
@@ -463,7 +465,7 @@ def write_snapshot(
     parts.append('<section class="panel"><h2>Every final, main-line overs and unders</h2><div class="blotter">')
     for game in blotter:
         parts.append(
-            "<a class=\"game-link\" href=\"index.html#d="
+            "<a class=\"game-link\" href=\"index.html#/board/"
             f"{escape(game['date'])}\">"
             f"<span>{escape(game['date'][5:])}</span>"
             f"<span>{escape(game['away'])} {game['away_score']}</span>"

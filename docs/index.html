@@ -1,19 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Prop Comp</title>
   <meta name="description" content="NBA player prop lines and whether they hit, one slate at a time.">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="icon" href="favicon.svg">
+  <script>
+    (function () {
+      var saved = localStorage.getItem("propcomp-theme");
+      var theme = saved || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
   <header class="top">
-    <div>
-      <p class="mark">Prop Comp</p>
-      <h1 id="title">NBA player props</h1>
+    <a class="brand" href="#/board">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="currentColor"/>
+        <path d="M8 21 L14 15 L18 18 L24 10" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="24" cy="10" r="1.7" fill="#fff"/>
+      </svg>
+      <span>
+        <span class="mark">Prop Comp</span>
+        <h1 id="title">NBA player props</h1>
+      </span>
+    </a>
+    <div class="head-side">
+      <p class="meta" id="meta"></p>
+      <div class="head-actions">
+        <button type="button" id="copy">Copy link</button>
+        <button type="button" id="theme">Light</button>
+      </div>
     </div>
-    <p class="meta" id="meta"></p>
   </header>
   <nav class="tabs" id="tabs">
     <button type="button" data-view="board" class="on">Board</button>
@@ -25,6 +46,6 @@
   <div id="tools" class="tools"></div>
   <main id="app"><p class="meta">Loading the board.</p></main>
   <footer class="foot" id="foot"></footer>
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>

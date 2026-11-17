@@ -14,15 +14,7 @@ FIELDS = {
     "pra": ("pts", "reb", "ast"),
 }
 
-EDGE = {
-    "pts": 3.0,
-    "reb": 1.5,
-    "ast": 1.2,
-    "fg3m": 0.7,
-    "stl": 0.4,
-    "blk": 0.4,
-    "pra": 4.0,
-}
+STAR_CODES = {"pts", "reb", "ast", "fg3m", "stl", "blk", "pra"}
 
 POSITIONS = ("pg", "sg", "sf", "pf", "c")
 
@@ -60,61 +52,49 @@ def recent_values(history: list[dict], code: str, count: int = 5) -> list[float]
     return values
 
 
-def choose_star(lines: list[tuple[str, float | None]], history: list[dict]) -> dict | None:
-    """One total per player: the widest recent gap that is also cleared most often."""
+def qualifying_stars(lines: list[tuple[str, float | None]], history: list[dict]) -> list[dict]:
+    """Every total whose line sits under the last five average and has cleared more than 70%."""
     scored = []
     for code, line in lines:
-        if line is None or code not in EDGE:
+        if line is None or code not in STAR_CODES:
             continue
         recent = recent_values(history, code, 5)
         season = recent_values(history, code, 30)
-        if len(recent) < 4 or len(season) < 4:
+        if len(recent) < 5 or len(season) < 5:
             continue
         recent_avg = mean(recent) or 0
-        margin = recent_avg - line
-        if margin <= 0:
+        if not line < recent_avg:
             continue
         clears = sum(1 for value in season if value > line)
         played = len(season)
         rate = clears / played
-        if rate < 0.5:
+        if not rate > 0.7:
             continue
+        line_text = _number(line)
+        why = (
+            f"Last 5 average {_number(recent_avg)} is above {line_text}. "
+            f"Cleared {line_text} in {clears} of {played} games."
+        )
         scored.append(
             {
                 "code": code,
                 "line": line,
                 "avg": recent_avg,
-                "margin": margin,
+                "margin": recent_avg - line,
                 "clears": clears,
                 "played": played,
                 "rate": rate,
+                "why": [why],
             }
         )
-    if not scored:
+    return scored
+
+
+def choose_star(lines: list[tuple[str, float | None]], history: list[dict]) -> dict | None:
+    found = qualifying_stars(lines, history)
+    if not found:
         return None
-    margin_order = sorted(range(len(scored)), key=lambda index: scored[index]["margin"], reverse=True)
-    rate_order = sorted(
-        range(len(scored)),
-        key=lambda index: (scored[index]["rate"], scored[index]["clears"], scored[index]["margin"]),
-        reverse=True,
-    )
-    margin_rank = {index: rank for rank, index in enumerate(margin_order)}
-    rate_rank = {index: rank for rank, index in enumerate(rate_order)}
-    winner_index = min(
-        range(len(scored)),
-        key=lambda index: (
-            margin_rank[index] + rate_rank[index],
-            -scored[index]["margin"],
-            -scored[index]["rate"],
-        ),
-    )
-    winner = scored[winner_index]
-    line_text = _number(winner["line"])
-    why = (
-        f"Last 5 average {_number(winner['avg'])} clears {line_text} by {_number(winner['margin'])}. "
-        f"Cleared {line_text} in {winner['clears']} of {winner['played']} games."
-    )
-    return {"code": winner["code"], "line": winner["line"], "why": [why]}
+    return max(found, key=lambda item: (item["rate"], item["margin"]))
 
 
 def _number(value: float) -> str:
