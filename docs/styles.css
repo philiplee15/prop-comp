@@ -358,6 +358,7 @@ svg.chart { width: 100%; height: 140px; background: var(--chart); border-radius:
 
 .strip .hit { background: var(--good); color: #fff; border-color: var(--good); }
 .strip .miss { background: var(--bad); color: #fff; border-color: var(--bad); }
+.strip .open-line { background: transparent; color: var(--accent); border-color: var(--accent); }
 
 .jump { margin-top: 12px; }
 

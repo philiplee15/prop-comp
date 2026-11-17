@@ -496,6 +496,8 @@ async function showPlayer() {
     remember();
     paintPlayer();
   })));
+  await loadLineDays();
+  if (state.view !== "player") return;
   paintPlayer();
 }
 
@@ -513,7 +515,8 @@ function paintPlayer() {
   app.append(title);
   state.manifest.core.forEach((market) => {
     const series = log[market.code] || [];
-    if (!series.length) return;
+    const upcoming = openLine(state.playerId, market.code, series);
+    if (!series.length && !upcoming) return;
     const card = document.createElement("section");
     card.className = "panel chart-card";
     card.id = `chart-${market.code}`;
@@ -526,21 +529,28 @@ function paintPlayer() {
     link.textContent = `${market.label} ${recordText(counts, market.code)}`.trim();
     heading.append(link);
     card.append(heading);
-    if (trend) {
+    if (trend || upcoming) {
       const note = document.createElement("p");
       note.className = "trend";
-      note.textContent = market.code === "dd" || market.code === "first"
-        ? `Last ${trend.n}: ${trend.hits} hit`
-        : `Last ${trend.n} average ${trend.avg.toFixed(1)}`;
+      const parts = [];
+      if (trend) {
+        parts.push(market.code === "dd" || market.code === "first"
+          ? `Last ${trend.n}: ${trend.hits} hit`
+          : `Last ${trend.n} average ${trend.avg.toFixed(1)}`);
+      }
+      if (upcoming) parts.push(`${shortDate(upcoming.date)} line ${formatNumber(upcoming.line)}`);
+      note.textContent = parts.join(" · ");
       card.append(note);
     }
     const readout = document.createElement("p");
     readout.className = "hover-readout";
-    readout.textContent = "Hover a point to see the value.";
-    if (market.code !== "dd" && market.code !== "first") {
-      card.append(lineChart(series, trend ? trend.avg : null, readout));
+    readout.textContent = upcoming
+      ? `${shortDate(upcoming.date)} line ${formatNumber(upcoming.line)} is the open point on the right.`
+      : "Hover a point to see the value.";
+    if (market.code !== "dd" && market.code !== "first" && (series.length || upcoming)) {
+      card.append(lineChart(series, trend ? trend.avg : null, readout, upcoming));
     }
-    card.append(readout, resultStrip(series, market.code));
+    card.append(readout, resultStrip(series, market.code, upcoming));
     app.append(card);
   });
   if (!app.querySelector(".panel")) {
@@ -557,7 +567,7 @@ function paintPlayer() {
   }
 }
 
-function lineChart(series, average, readout) {
+function lineChart(series, average, readout, upcoming) {
   const values = [];
   series.forEach((row) => {
     const line = Number(row[1]);
@@ -566,15 +576,17 @@ function lineChart(series, average, readout) {
     if (Number.isFinite(actual)) values.push(actual);
   });
   if (Number.isFinite(average)) values.push(average);
+  if (upcoming) values.push(upcoming.line);
   const svg = svgEl("svg");
   svg.classList.add("chart");
   svg.setAttribute("viewBox", "0 0 640 140");
-  if (values.length < 2) return svg;
+  const count = series.length + (upcoming ? 1 : 0);
+  if (values.length < 2 || count < 1) return svg;
   const low = Math.min(...values);
   const high = Math.max(...values);
   const width = 640;
   const height = 140;
-  const step = series.length === 1 ? 0 : (width - 24) / (series.length - 1);
+  const step = count === 1 ? 0 : (width - 24) / (count - 1);
   const yFor = (value) => {
     if (high === low) return height / 2;
     return height - 16 - ((value - low) / (high - low)) * (height - 32);
@@ -595,6 +607,21 @@ function lineChart(series, average, readout) {
       dots.push(dot(x, y, paintColor("--ink"), `${shortDate(row[0])} actual ${row[3]}, line ${row[1]}`, readout));
     }
   });
+  if (upcoming) {
+    const x = 12 + series.length * step;
+    const y = yFor(upcoming.line);
+    line.push(`${x},${y}`);
+    const ring = svgEl("circle");
+    ring.setAttribute("cx", x);
+    ring.setAttribute("cy", y);
+    ring.setAttribute("r", "7");
+    ring.setAttribute("fill", paintColor("--surface"));
+    ring.setAttribute("stroke", paintColor("--accent"));
+    ring.setAttribute("stroke-width", "2");
+    const label = `${shortDate(upcoming.date)} line ${formatNumber(upcoming.line)}, not played`;
+    dots.push(ring);
+    dots.push(dot(x, y, paintColor("--accent"), label, readout));
+  }
   svg.append(poly(line.join(" "), paintColor("--accent"), "4 4"), poly(actual.join(" "), paintColor("--ink"), ""));
   if (Number.isFinite(average)) {
     const guide = svgEl("line");
@@ -624,7 +651,7 @@ function trailingAverage(series, code) {
   return { avg: total / finite.length, n: finite.length, hits: total };
 }
 
-function resultStrip(series, code) {
+function resultStrip(series, code, upcoming) {
   const strip = document.createElement("div");
   strip.className = "strip";
   series.forEach((row) => {
@@ -637,7 +664,58 @@ function resultStrip(series, code) {
     button.addEventListener("click", () => selectDate(row[0]));
     strip.append(button);
   });
+  if (upcoming) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "open-line";
+    button.textContent = shortDate(upcoming.date).split(" ")[1];
+    button.title = `${upcoming.date} line ${formatNumber(upcoming.line)}, not played`;
+    button.addEventListener("click", () => selectDate(upcoming.date));
+    strip.append(button);
+  }
   return strip;
+}
+
+function lineDates() {
+  const today = easternToday();
+  const dates = [];
+  if (state.date && knownDate(state.date)) dates.push(state.date);
+  for (let offset = 0; offset < 3; offset += 1) {
+    const date = addDays(today, offset);
+    if (knownDate(date) && !dates.includes(date)) dates.push(date);
+  }
+  return dates;
+}
+
+async function loadLineDays() {
+  await Promise.all(lineDates().map(async (date) => {
+    if (state.liveDays[date]) return;
+    try {
+      state.liveDays[date] = await fetchJson(`data/days/${date}.json`);
+    } catch (error) {
+      return error;
+    }
+  }));
+}
+
+function openLine(playerId, code, series) {
+  if (code === "dd" || code === "first") return null;
+  const played = new Set((series || []).map((row) => row[0]));
+  for (const date of lineDates()) {
+    if (played.has(date)) continue;
+    const day = state.liveDays[date];
+    if (!day) continue;
+    for (const game of day.games || []) {
+      if (game.status === "final") continue;
+      const row = (game.rows || []).find((item) => String(item.id) === String(playerId));
+      if (!row) continue;
+      const prop = (row.props || []).find((item) => item.c === code && item.k !== "milestone" && item.line !== "");
+      const line = prop ? Number(prop.line) : NaN;
+      if (!Number.isFinite(line)) continue;
+      return { date, line, matchup: `${game.away} at ${game.home}` };
+    }
+  }
+  return null;
 }
 
 function leagueBars() {
@@ -1222,6 +1300,7 @@ function adoptDay(date, day) {
     state.day = day;
     paintBoard();
   }
+  if (state.view === "player" && state.logs && state.season) paintPlayer();
 }
 
 async function populateDay(day) {

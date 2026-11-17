@@ -1,0 +1,13 @@
+---
+description: Commit and push finished work so the published site stays current
+alwaysApply: true
+---
+
+# Publish finished work
+
+When a request that changes this repo is finished, commit the relevant files and push `main` so GitHub Pages refreshes. Do this at the end of the turn, before the reply.
+
+- Skip the commit when nothing changed, or when the user said not to commit.
+- Leave out secrets such as `.env` and credential files.
+- If `git push` is rejected because the hourly sync moved `origin/main`, run `git pull --rebase origin main` and push again.
+- Never force-push.
