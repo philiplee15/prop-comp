@@ -14,6 +14,10 @@ const state = {
   playerId: "",
   openKey: "",
   showAll: false,
+  liveDays: {},
+  checking: false,
+  playerIndex: null,
+  lookups: null,
 };
 
 const app = document.querySelector("#app");
@@ -21,22 +25,76 @@ const tools = document.querySelector("#tools");
 const dates = document.querySelector("#dates");
 
 document.querySelectorAll("#tabs button").forEach((button) => {
-  button.addEventListener("click", () => setView(button.dataset.view));
+  button.addEventListener("click", () => visit(button.dataset.view));
+});
+window.addEventListener("popstate", () => {
+  restore().catch((error) => {
+    app.textContent = `The board could not load. ${error.message}`;
+  });
 });
 
 boot().catch((error) => {
   app.textContent = `The board could not load. ${error.message}`;
 });
 
+let restoring = false;
+
 async function boot() {
   state.manifest = await fetchJson("data/manifest.json");
-  const requested = new URLSearchParams(location.hash.replace(/^#/, "")).get("d");
-  const known = state.manifest.dates.map((item) => item.date);
-  const today = state.manifest.today || "";
-  const upcoming = state.manifest.dates.find((item) => item.date >= today && item.games);
-  state.date = known.includes(requested) ? requested : (upcoming || known[known.length - 1]).date;
+  readPlace();
+  if (!state.date) {
+    const today = state.manifest.today || "";
+    const upcoming = state.manifest.dates.find((item) => item.date >= today && item.games);
+    state.date = (upcoming || state.manifest.dates[state.manifest.dates.length - 1]).date;
+  }
+  history.replaceState({ propcomp: true }, "", place());
+  state.checking = true;
+  const refreshed = refreshOpenSlates();
   paintChrome();
   await setView(state.view);
+  refreshed.catch(() => {});
+}
+
+function knownDate(date) {
+  return state.manifest.dates.some((item) => item.date === date);
+}
+
+function readPlace() {
+  const params = new URLSearchParams(location.hash.replace(/^#/, ""));
+  const requested = params.get("d");
+  if (knownDate(requested)) state.date = requested;
+  const view = params.get("v");
+  state.view = view === "season" || view === "player" ? view : "board";
+  state.playerId = params.get("p") || "";
+}
+
+function place() {
+  const params = new URLSearchParams();
+  if (state.date) params.set("d", state.date);
+  if (state.view && state.view !== "board") params.set("v", state.view);
+  if (state.view === "player" && state.playerId) params.set("p", state.playerId);
+  return `#${params.toString()}`;
+}
+
+function remember() {
+  if (restoring) return;
+  const next = place();
+  if (next === location.hash) return;
+  history.pushState({ propcomp: true }, "", next);
+}
+
+async function restore() {
+  restoring = true;
+  readPlace();
+  paintChrome();
+  await setView(state.view);
+  restoring = false;
+}
+
+async function visit(view) {
+  state.view = view;
+  remember();
+  await setView(view);
 }
 
 async function setView(view) {
@@ -54,7 +112,7 @@ function paintChrome() {
   const counts = state.manifest.counts;
   document.querySelector("#title").textContent = `${state.manifest.season} player props`;
   document.querySelector("#meta").textContent = `${counts.final} finals · ${counts.props} props · updated ${stamp(state.manifest.generated_at)}`;
-  document.querySelector("#foot").textContent = `${state.manifest.source}. The two prices on a total are the two sides of the number. ESPN does not label which one is the over. Players who did not play are void. Past slates stay on this site, and only today plus the next two days are refreshed.`;
+  document.querySelector("#foot").textContent = `${state.manifest.source}. The two prices on a total are the two sides of the number. ESPN does not label which one is the over. Players who did not play are void. Past slates stay on this site. Opening the board checks today and the next two days, then fills any lines posted since the last publish.`;
   dates.replaceChildren();
   state.manifest.dates.forEach((item) => {
     const button = document.createElement("button");
@@ -72,10 +130,10 @@ function paintChrome() {
 async function selectDate(date) {
   state.date = date;
   state.openKey = "";
-  history.replaceState(null, "", `#d=${date}`);
+  state.view = "board";
+  remember();
   paintChrome();
-  if (state.view !== "board") await setView("board");
-  else await showBoard();
+  await setView("board");
 }
 
 async function showBoard() {
@@ -92,7 +150,11 @@ async function showBoard() {
     }),
   );
   app.textContent = "Loading this slate.";
-  state.day = await fetchJson(`data/days/${state.date}.json`);
+  const date = state.date;
+  const loaded = state.liveDays[date] || await fetchJson(`data/days/${date}.json`);
+  if (state.date !== date || state.view !== "board") return;
+  if (!state.liveDays[date]) state.liveDays[date] = loaded;
+  state.day = state.liveDays[date];
   paintBoard();
 }
 
@@ -124,12 +186,14 @@ function paintBoard() {
       legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. One star per player is the line their recent average clears by the most that they have also cleared most often. Hover the star for the gap and the record.";
       article.append(legend);
     }
-    if (!game.rows.length) {
+    if (!gameHasLines(game)) {
       const empty = document.createElement("p");
-      empty.textContent = "Lines are not posted yet. The next refresh will pick them up.";
+      empty.textContent = lineStatus(game);
       article.append(empty);
-      app.append(article);
-      return;
+      if (!game.rows.length) {
+        app.append(article);
+        return;
+      }
     }
     const table = document.createElement("table");
     const head = document.createElement("tr");
@@ -281,6 +345,7 @@ async function showPlayer() {
   const people = state.season.players.slice().sort((left, right) => left.name.localeCompare(right.name));
   tools.append(labeled("Player", select(people.map((player) => [player.id, `${player.team} ${player.name}`]), state.playerId, (value) => {
     state.playerId = value;
+    remember();
     paintPlayer();
   })));
   paintPlayer();
@@ -599,7 +664,7 @@ function teamSelect() {
 
 function openPlayer(playerId) {
   state.playerId = playerId;
-  setView("player");
+  visit("player");
 }
 
 function sampleSize(player, code) {
@@ -763,8 +828,547 @@ function svgEl(name) {
   return document.createElementNS("http://www.w3.org/2000/svg", name);
 }
 
-async function fetchJson(path) {
-  const response = await fetch(path);
+async function fetchJson(path, fresh) {
+  const href = fresh ? `${path}${path.includes("?") ? "&" : "?"}t=${Date.now()}` : path;
+  const response = await fetch(href, fresh ? { cache: "no-store" } : undefined);
   if (!response.ok) throw new Error(`${path} returned ${response.status}`);
   return response.json();
+}
+
+const OU_CODES = {
+  "Total Points": "pts",
+  "Total Rebounds": "reb",
+  "Total Assists": "ast",
+  "Total 3-Point Field Goals": "fg3m",
+  "Total Steals": "stl",
+  "Total Blocks": "blk",
+  "Total Turnovers": "tov",
+  "Total Points and Rebounds": "pr",
+  "Total Points and Assists": "pa",
+  "Total Assists and Rebounds": "ra",
+  "Total Points, Rebounds, and Assists": "pra",
+  "Total Steals and Blocks": "sb",
+};
+
+const MILESTONE_CODES = {
+  "Points Milestones": "pts_ms",
+  "Rebounds Milestones": "reb_ms",
+  "Assists Milestones": "ast_ms",
+  "3-Point Field Goals Milestones": "fg3m_ms",
+  "Steals Milestones": "stl_ms",
+  "Blocks Milestones": "blk_ms",
+  "Turnovers Milestones": "tov_ms",
+  "Points + Rebounds Milestones": "pr_ms",
+  "Points + Assists Milestones": "pa_ms",
+  "Rebounds + Assists Milestones": "ra_ms",
+  "Points + Assists + Rebounds Milestones": "pra_ms",
+  "Steals + Blocks Milestones": "sb_ms",
+};
+
+const YES_CODES = {
+  "First Basket": "first",
+  "1st Team FG Scorer": "teamfg",
+  "1st Team FG Scorer Exact": "teamfg",
+  "1st 3PT FG Scorer": "first3",
+  "To Record a Double Double": "dd",
+  "To Record a Triple Double": "td",
+};
+
+const QUARTER_WORDS = { "1st": 1, "2nd": 2, "3rd": 3, "4th": 4 };
+const QUARTER_TOTAL_WORD = { First: 1, Second: 2, Third: 3, Fourth: 4 };
+const QUARTER_STAT = {
+  Points: "pts",
+  Rebounds: "reb",
+  Assists: "ast",
+  Steals: "stl",
+  Blocks: "blk",
+  "3-Point Field Goals": "fg3m",
+  Turnovers: "tov",
+};
+const FIELD_CODES = {
+  pts: "pts",
+  reb: "reb",
+  ast: "ast",
+  fg3m: "fg3m",
+  stl: "stl",
+  blk: "blk",
+  tov: "tov",
+  "pts,reb": "pr",
+  "pts,ast": "pa",
+  "ast,reb": "ra",
+  "reb,ast": "ra",
+  "pts,reb,ast": "pra",
+  "stl,blk": "sb",
+};
+const QUARTER_RE = /^(Points|Rebounds|Assists|Steals|Blocks|3-Point Field Goals|Turnovers)(?: \+ (Rebounds|Assists|Blocks))?(?: \+ (Rebounds|Assists))? Milestones - (1st|2nd|3rd|4th) Quarter$/;
+const QUARTER_TOTAL_RE = /^Total (First|Second|Third|Fourth) Quarter (Points|Rebounds|Assists|Steals|Blocks|3-Point Field Goals|Turnovers)$/;
+const STAR_EDGE = { pts: 3, reb: 1.5, ast: 1.2, fg3m: 0.7, stl: 0.4, blk: 0.4, pra: 4 };
+
+function easternToday() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const bag = {};
+  parts.forEach((part) => {
+    bag[part.type] = part.value;
+  });
+  return `${bag.year}-${bag.month}-${bag.day}`;
+}
+
+function addDays(iso, days) {
+  const [year, month, day] = iso.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
+function slateIsOpen(date) {
+  const today = easternToday();
+  return date >= today && date <= addDays(today, 2);
+}
+
+function gameHasLines(game) {
+  return (game.rows || []).some((row) => (row.props || []).length);
+}
+
+function dayNeedsLines(day) {
+  return ((day && day.games) || []).some((game) => game.status !== "final" && !gameHasLines(game));
+}
+
+function lineStatus(game) {
+  if (state.checking && slateIsOpen(state.date)) return "Checking whether lines are posted.";
+  if (game && game.note === "lines could not be checked") return "Lines could not be checked. Reload to try again.";
+  return "Lines are not posted yet.";
+}
+
+function datesToRefresh() {
+  const today = easternToday();
+  const wanted = new Set();
+  for (let offset = 0; offset < 3; offset += 1) wanted.add(addDays(today, offset));
+  if (state.date) wanted.add(state.date);
+  return [...wanted].filter((date) => knownDate(date)).sort();
+}
+
+// Recheck today and the next two days after first paint. Use a fresh copy of the published slate, and fill from ESPN when that file still has no lines.
+async function refreshOpenSlates() {
+  state.checking = true;
+  try {
+    const dates = datesToRefresh();
+    const first = dates.includes(state.date) ? state.date : dates[0];
+    const rest = dates.filter((date) => date !== first);
+    if (first) await refreshSlate(first);
+    await Promise.all(rest.map(async (date) => {
+      try {
+        await refreshSlate(date);
+      } catch (error) {
+        return error;
+      }
+    }));
+  } finally {
+    const wasChecking = state.checking;
+    state.checking = false;
+    if (wasChecking && state.view === "board" && state.day && dayNeedsLines(state.day)) paintBoard();
+  }
+}
+
+async function refreshSlate(date) {
+  const remote = await fetchJson(`data/days/${date}.json`, true);
+  if (!dayNeedsLines(remote)) {
+    adoptDay(date, remote);
+    return;
+  }
+  const filled = await populateDay(remote);
+  if (filled) adoptDay(date, remote);
+}
+
+function adoptDay(date, day) {
+  state.liveDays[date] = day;
+  if (state.view === "board" && state.date === date) {
+    state.day = day;
+    paintBoard();
+  }
+}
+
+async function populateDay(day) {
+  const pending = (day.games || []).filter((game) => game.status !== "final" && !gameHasLines(game));
+  if (!pending.length) return false;
+  await ensureLookups();
+  const filled = await mapPool(pending, 4, (game) => loadGameLines(game));
+  return filled.some(Boolean);
+}
+
+async function mapPool(items, limit, worker) {
+  const results = new Array(items.length);
+  let cursor = 0;
+  async function run() {
+    while (cursor < items.length) {
+      const index = cursor;
+      cursor += 1;
+      results[index] = await worker(items[index]);
+    }
+  }
+  const workers = Math.min(limit, items.length);
+  await Promise.all(Array.from({ length: workers }, () => run()));
+  return results;
+}
+
+async function loadGameLines(game) {
+  try {
+    const items = await fetchPropBets(game.id);
+    if (!items || !items.length) return false;
+    let odds = null;
+    try {
+      odds = await fetchOdds(game.id);
+    } catch (error) {
+      odds = null;
+    }
+    mergeGame(game, items, odds);
+    return true;
+  } catch (error) {
+    game.note = "lines could not be checked";
+    return false;
+  }
+}
+
+async function fetchPropBets(eventId) {
+  const rows = [];
+  let page = 1;
+  let pageCount = 1;
+  while (page <= pageCount) {
+    const payload = await fetchExternal(propUrl(eventId, page));
+    if (!payload) return page === 1 ? null : rows;
+    if (page === 1) pageCount = Math.min(Number(payload.pageCount || 1), 6);
+    rows.push(...(payload.items || []));
+    page += 1;
+  }
+  return rows;
+}
+
+function propUrl(eventId, page) {
+  return `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/events/${eventId}/competitions/${eventId}/odds/100/propBets?limit=500&page=${page}`;
+}
+
+async function fetchOdds(eventId) {
+  const payload = await fetchExternal(
+    `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/events/${eventId}/competitions/${eventId}/odds/100`,
+  );
+  if (!payload) return null;
+  const body = payload.items ? payload.items[0] : payload;
+  if (!body) return null;
+  const total = Number(body.overUnder);
+  return {
+    spread: body.details || "",
+    total: Number.isFinite(total) ? total : null,
+  };
+}
+
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchExternal(url) {
+  let lastError = null;
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    let response;
+    try {
+      response = await fetch(url, { cache: "no-store" });
+    } catch (error) {
+      lastError = error;
+      if (attempt === 2) throw error;
+      await wait(350 * (attempt + 1));
+      continue;
+    }
+    if (response.ok) return response.json();
+    lastError = new Error(`${url} returned ${response.status}`);
+    if (response.status === 404 && attempt === 2) return null;
+    if (response.status !== 404 && response.status !== 429 && response.status < 500) throw lastError;
+    await wait(350 * (attempt + 1));
+  }
+  throw lastError;
+}
+
+async function ensureLookups() {
+  if (!state.lookups) {
+    state.lookups = (async () => {
+      const jobs = [];
+      if (!state.season) {
+        jobs.push(fetchJson("data/season.json").then((data) => {
+          state.season = data;
+        }));
+      }
+      if (!state.logs) {
+        jobs.push(fetchJson("data/logs.json").then((data) => {
+          state.logs = data;
+        }));
+      }
+      await Promise.all(jobs);
+      state.playerIndex = new Map((state.season.players || []).map((player) => [String(player.id), player]));
+    })();
+  }
+  try {
+    await state.lookups;
+  } catch (error) {
+    state.lookups = null;
+  }
+}
+
+function mergeGame(game, items, odds) {
+  const grouped = new Map();
+  collapseProps(items).forEach((prop) => {
+    const list = grouped.get(prop.player_id) || [];
+    list.push(prop);
+    grouped.set(prop.player_id, list);
+  });
+  const rows = (game.rows || []).map((row) => {
+    const props = grouped.get(String(row.id));
+    if (!props) return row;
+    return { ...row, props: packProps(props, row) };
+  });
+  const seen = new Set(rows.map((row) => String(row.id)));
+  grouped.forEach((props, playerId) => {
+    if (seen.has(playerId)) return;
+    rows.push(newRow(playerId, props));
+  });
+  rows.sort((left, right) => orderKey(left, game) - orderKey(right, game) || left.name.localeCompare(right.name));
+  game.rows = rows;
+  game.note = "";
+  if (odds && odds.spread) game.spread = odds.spread;
+  if (odds && odds.total != null) game.total = odds.total;
+}
+
+function packProps(props, row) {
+  const packed = props.map(compactProp);
+  if (!row || row.avail === "out") {
+    return sortProps(packed);
+  }
+  const choice = chooseStar(props);
+  if (choice) {
+    packed.forEach((prop) => {
+      if (prop.c === choice.code && Number(prop.line) === choice.line) prop.why = choice.why;
+    });
+  }
+  return sortProps(packed);
+}
+
+function sortProps(props) {
+  return props.sort((left, right) => {
+    if (left.k !== right.k) return left.k < right.k ? -1 : 1;
+    if (left.m !== right.m) return left.m < right.m ? -1 : 1;
+    return (left.line || "").localeCompare(right.line || "");
+  });
+}
+
+function newRow(playerId, props) {
+  const person = (state.playerIndex && state.playerIndex.get(String(playerId))) || {};
+  const row = {
+    id: String(playerId),
+    name: person.name || `Player ${playerId}`,
+    team: person.team || "",
+    pos: person.pos || "",
+    min: "",
+    starter: false,
+    role: "",
+    rank: 90,
+    avail: "",
+    avail_label: "",
+    avail_note: "",
+    stat: null,
+    props: [],
+  };
+  row.props = packProps(props, row);
+  return row;
+}
+
+function compactProp(prop) {
+  const packed = {
+    m: prop.market,
+    c: prop.code,
+    k: prop.kind,
+    line: prop.line || "",
+    r: "pending",
+  };
+  if (prop.line_open && prop.line_open !== prop.line) packed.open = prop.line_open;
+  if (prop.price_a) packed.a = prop.price_a;
+  if (prop.price_b) packed.b = prop.price_b;
+  return packed;
+}
+
+function collapseProps(rows) {
+  const grouped = new Map();
+  rows.forEach((row) => {
+    const playerId = athleteId(row);
+    if (!playerId) return;
+    const market = (row.type && row.type.name) || "Unknown";
+    const kind = kindFor(market);
+    const current = (row.current && row.current.target) || {};
+    const opened = (row.open && row.open.target) || {};
+    const odds = row.odds || {};
+    const line = current.displayValue || (odds.total && odds.total.value) || "";
+    const lineOpen = opened.displayValue || (odds.total && odds.total.open) || "";
+    const american = odds.american || {};
+    const lineKey = kind === "milestone" ? line : "";
+    const key = `${playerId}|${market}|${lineKey}`;
+    let entry = grouped.get(key);
+    if (!entry) {
+      entry = {
+        player_id: playerId,
+        market,
+        kind,
+        code: codeFor(market),
+        line: line || "",
+        line_open: lineOpen || "",
+        prices: [],
+      };
+      grouped.set(key, entry);
+    }
+    if (line) entry.line = line;
+    if (lineOpen && !entry.line_open) entry.line_open = lineOpen;
+    entry.prices.push([american.value, american.open]);
+  });
+  const collapsed = [];
+  grouped.forEach((entry) => {
+    const prices = entry.prices.slice().sort((left, right) => americanValue(left[0]) - americanValue(right[0]));
+    const first = prices[0] || [null, null];
+    const second = prices[1] || [null, null];
+    collapsed.push({
+      player_id: entry.player_id,
+      market: entry.market,
+      code: entry.code,
+      kind: entry.kind,
+      line: entry.line || "",
+      line_num: parseLine(entry.line),
+      line_open: entry.line_open || "",
+      price_a: first[0],
+      price_b: second[0],
+    });
+  });
+  return collapsed;
+}
+
+function athleteId(row) {
+  const athlete = row.athlete || {};
+  if (athlete.id) return String(athlete.id);
+  const ref = athlete.$ref || "";
+  const marker = "/athletes/";
+  const at = ref.indexOf(marker);
+  if (at < 0) return "";
+  return ref.slice(at + marker.length).split("?")[0];
+}
+
+function kindFor(market) {
+  if (OU_CODES[market] || quarterTotalSpec(market)) return "ou";
+  if (MILESTONE_CODES[market] || market.includes("Milestones")) return "milestone";
+  if (YES_CODES[market]) return "yesno";
+  return "other";
+}
+
+function codeFor(market) {
+  if (OU_CODES[market]) return OU_CODES[market];
+  if (MILESTONE_CODES[market]) return MILESTONE_CODES[market];
+  if (YES_CODES[market]) return YES_CODES[market];
+  const quarter = quarterSpec(market) || quarterTotalSpec(market);
+  if (quarter) return `${quarter.stat}_q${quarter.period}`;
+  const slug = market.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+  return (slug || "other").slice(0, 40);
+}
+
+function quarterTotalSpec(market) {
+  const match = QUARTER_TOTAL_RE.exec(market);
+  if (!match) return null;
+  return { stat: QUARTER_STAT[match[2]], period: QUARTER_TOTAL_WORD[match[1]] };
+}
+
+function quarterSpec(market) {
+  const match = QUARTER_RE.exec(market);
+  if (!match) return null;
+  const names = [match[1], match[2], match[3]].filter(Boolean);
+  return { stat: codeForFields(names), period: QUARTER_WORDS[match[4]] };
+}
+
+function codeForFields(names) {
+  const key = names.map((name) => QUARTER_STAT[name]).join(",");
+  return FIELD_CODES[key] || key.replace(/,/g, "_");
+}
+
+function parseLine(display) {
+  if (!display) return null;
+  const value = Number(String(display).replace("+", "").trim());
+  return Number.isFinite(value) ? value : null;
+}
+
+function americanValue(price) {
+  if (!price) return 0;
+  const value = Number(String(price).replace("+", ""));
+  return Number.isFinite(value) ? value : 0;
+}
+
+function chooseStar(props) {
+  if (!state.logs) return null;
+  const scored = [];
+  props.forEach((prop) => {
+    if (prop.kind !== "ou" || prop.line_num == null || !(prop.code in STAR_EDGE)) return;
+    const recent = recentActuals(prop.player_id, prop.code, 5);
+    const season = recentActuals(prop.player_id, prop.code, 30);
+    if (recent.length < 4 || season.length < 4) return;
+    const recentAvg = recent.reduce((sum, value) => sum + value, 0) / recent.length;
+    const margin = recentAvg - prop.line_num;
+    if (margin <= 0) return;
+    const clears = season.filter((value) => value > prop.line_num).length;
+    const rate = clears / season.length;
+    if (rate < 0.5) return;
+    scored.push({
+      code: prop.code,
+      line: prop.line_num,
+      avg: recentAvg,
+      margin,
+      clears,
+      played: season.length,
+      rate,
+    });
+  });
+  if (!scored.length) return null;
+  const marginOrder = scored.map((item, index) => index).sort((left, right) => scored[right].margin - scored[left].margin);
+  const rateOrder = scored.map((item, index) => index).sort((left, right) => {
+    return scored[right].rate - scored[left].rate
+      || scored[right].clears - scored[left].clears
+      || scored[right].margin - scored[left].margin;
+  });
+  const marginRank = new Map(marginOrder.map((index, rank) => [index, rank]));
+  const rateRank = new Map(rateOrder.map((index, rank) => [index, rank]));
+  let winnerIndex = 0;
+  scored.forEach((item, index) => {
+    const better = marginRank.get(index) + rateRank.get(index) < marginRank.get(winnerIndex) + rateRank.get(winnerIndex)
+      || (marginRank.get(index) + rateRank.get(index) === marginRank.get(winnerIndex) + rateRank.get(winnerIndex)
+        && (item.margin > scored[winnerIndex].margin
+          || (item.margin === scored[winnerIndex].margin && item.rate > scored[winnerIndex].rate)));
+    if (better) winnerIndex = index;
+  });
+  const winner = scored[winnerIndex];
+  const lineText = formatNumber(winner.line);
+  return {
+    code: winner.code,
+    line: winner.line,
+    why: [
+      `Last 5 average ${formatNumber(winner.avg)} clears ${lineText} by ${formatNumber(winner.margin)}. Cleared ${lineText} in ${winner.clears} of ${winner.played} games.`,
+    ],
+  };
+}
+
+function recentActuals(playerId, code, count) {
+  const series = ((state.logs || {})[playerId] || {})[code] || [];
+  const values = [];
+  for (let index = series.length - 1; index >= 0 && values.length < count; index -= 1) {
+    const actual = Number(series[index][3]);
+    if (!Number.isFinite(actual)) continue;
+    values.push(actual);
+  }
+  return values;
+}
+
+function formatNumber(value) {
+  const text = Number(value).toFixed(1);
+  return text.endsWith(".0") ? text.slice(0, -2) : text;
 }

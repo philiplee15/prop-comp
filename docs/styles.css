@@ -79,9 +79,9 @@ main { margin-top: 16px; }
   margin-bottom: 14px;
 }
 
-.table-wrap { overflow-x: auto; }
+.table-wrap { overflow: visible; }
 
-table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+table { border-collapse: separate; border-spacing: 0; width: 100%; font-variant-numeric: tabular-nums; }
 
 th, td {
   border-bottom: 1px solid #2a3626;
@@ -94,13 +94,24 @@ th, td {
 
 th { color: #9eae94; font-weight: 600; font-size: 11px; letter-spacing: 0.06em; }
 
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #171d14;
+  box-shadow: inset 0 -1px 0 #2a3626;
+}
+
 td.name, th.sticky {
   text-align: left;
   position: sticky;
   left: 0;
   background: #171d14;
   min-width: 180px;
+  z-index: 1;
 }
+
+thead th.sticky { z-index: 4; }
 
 .name button {
   background: transparent;
