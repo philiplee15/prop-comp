@@ -328,7 +328,7 @@ function paintBoard() {
     if (game.status !== "final" && game.status !== "live") {
       const legend = document.createElement("p");
       legend.className = "legend";
-      legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. A star clears every gate: five games, an 80% hit rate, the median over the number, a cushion under 3.5, and a number that has not risen by a point. An arrow is a minute ramp, a lean rather than a star.";
+      legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. A star clears every gate. A filled O or U is a strong over or under. A ring is a lean. An arrow is a minute ramp. Hover a mark for the path behind it.";
       body.append(legend);
     }
     if (!gameHasLines(game)) {
@@ -788,6 +788,8 @@ function fillCell(cell, prop, reason, lean) {
     em.textContent = "";
   }
   cell.append(strong, em);
+  const call = callMark(prop);
+  if (call) strong.append(call);
   if (lean) cell.append(makeMark("lean", "↑", lean));
   if (reason) cell.append(makeMark("star", "★", reason));
   if (prop.open) {
@@ -1040,6 +1042,14 @@ function rowStarCount(row) {
   return count;
 }
 
+function callMark(prop) {
+  const call = prop && prop.call;
+  if (!call || !call.s) return null;
+  const side = call.s === "U" ? "under" : "over";
+  const strength = call.k === "strong" ? "strong" : "lean";
+  return makeMark(`call ${side} ${strength}`, call.s, call.why || "");
+}
+
 function starReason(row, prop) {
   if (!row || row.avail === "out" || !prop || prop.k === "milestone") return "";
   const why = prop.why;
@@ -1056,7 +1066,7 @@ function formulaCard(card) {
   section.append(summary);
   const note = document.createElement("p");
   note.className = "card-note";
-  note.textContent = "A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. Blocks are not starred. A spike of 12 or more, or a night where the shots disappeared, pauses the next points star. The arrow is a minute ramp. It is a lean, not a star. The ceiling is the pregame role score and does not star the over.";
+  note.textContent = "A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O or U is a strong path. A ring is a lean. The path comes from minute cuts, missing shots, spikes, and where the number sits against the player's own line. Hover the mark for that player's reason. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over.";
   section.append(note);
   section.append(cardTable(
     "Clear stars",
@@ -1074,6 +1084,21 @@ function formulaCard(card) {
       item.note || "",
     ],
   ));
+  if ((card.calls || []).length) {
+    section.append(cardTable(
+      "Path calls",
+      card.calls,
+      ["Player", "Game", "Market", "Line", "Call", "Why"],
+      (item) => [
+        `${item.team} ${item.name}`,
+        item.game,
+        item.label,
+        item.line,
+        item.side === "U" ? "Under" : "Over",
+        item.why,
+      ],
+    ));
+  }
   if ((card.pauses || []).length) {
     section.append(cardTable(
       "Points paused",

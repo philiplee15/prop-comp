@@ -266,6 +266,24 @@ tr.risk .name button { color: var(--warn); }
   font-size: 12px;
   line-height: 1;
 }
+.call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  margin-left: 4px;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 750;
+  line-height: 1;
+  cursor: pointer;
+  vertical-align: 1px;
+}
+.call.under.lean { color: var(--bad); box-shadow: inset 0 0 0 1.5px var(--bad); }
+.call.over.lean { color: var(--good); box-shadow: inset 0 0 0 1.5px var(--good); }
+.call.under.strong { background: var(--bad); color: #fff; }
+.call.over.strong { background: var(--good); color: #07140e; }
 .card-block summary { cursor: pointer; font-weight: 650; margin-bottom: 8px; }
 .card-block h3 { margin: 14px 0 6px; font-size: 15px; }
 .card-block h3:first-child { margin-top: 0; }

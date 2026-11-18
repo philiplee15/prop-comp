@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 
 from propcomp.db import DOCS
 from propcomp.grade import CORE_MARKETS, parse_line
-from propcomp.signals import points_pause, qualifying_stars, ramp_text, slate_card
+from propcomp.signals import points_pause, project_call, qualifying_stars, ramp_text, slate_card
 
 EASTERN = ZoneInfo("America/New_York")
 CORE_OU = ["pts", "reb", "ast", "fg3m", "pra", "stl", "blk"]
@@ -239,7 +239,7 @@ def pack_game(game, props, stats, teams, players, avail_rows=None, history=None)
                     team=team,
                 )
             }
-            for packed, line, _open_num in star_candidates:
+            for packed, line, open_num in star_candidates:
                 why = choices.get((packed["c"], line))
                 if why:
                     packed["why"] = why
@@ -247,6 +247,17 @@ def pack_game(game, props, stats, teams, players, avail_rows=None, history=None)
                     lean = ramp_text(prior, line)
                     if lean:
                         packed["lean"] = lean
+                call = project_call(
+                    packed["c"],
+                    line,
+                    open_num,
+                    prior,
+                    starter=starter,
+                    spread=game.get("spread"),
+                    team=team,
+                )
+                if call:
+                    packed["call"] = call
         seen_ids.add(player_id)
         rows.append(
             {
@@ -632,7 +643,16 @@ def static_cell(prop: dict | None) -> str:
     star = f'<span class="star" title="{escape(why)}">★</span>' if why else ""
     lean_text = prop.get("lean") or ""
     lean = f'<span class="lean" title="{escape(lean_text)}">↑</span>' if lean_text else ""
-    return f'<span class="cell {css}">{lean}{star}{actual_text} <b>{word} {line}</b>{open_line}{price_bit}</span>'
+    call = _static_call(prop.get("call"))
+    return f'<span class="cell {css}">{lean}{star}{actual_text} <b>{word} {line}</b>{call}{open_line}{price_bit}</span>'
+
+
+def _static_call(call: dict | None) -> str:
+    if not call or not call.get("s"):
+        return ""
+    side = "under" if call.get("s") == "U" else "over"
+    strength = "strong" if call.get("k") == "strong" else "lean"
+    return f'<span class="call {side} {strength}" title="{escape(call.get("why") or "")}">{escape(call["s"])}</span>'
 
 
 def status_tag(row: dict) -> str:
@@ -659,6 +679,19 @@ def row_star(row: dict) -> str:
 
 def static_card(card: dict) -> str:
     parts = [f'<div class="card-block"><h3>{escape(card.get("summary") or "Formula card")}</h3><h3>Clear stars</h3>']
+    if card.get("calls"):
+        parts.append("<h3>Path calls</h3>")
+        parts.append(_card_table(
+            card["calls"],
+            ["Player", "Market", "Line", "Call", "Why"],
+            lambda item: [
+                f"{item['team']} {item['name']}",
+                item.get("label") or "",
+                str(item.get("line") or ""),
+                "Under" if item.get("side") == "U" else "Over",
+                item.get("why") or "",
+            ],
+        ))
     parts.append(
         "<p class=\"card-note\">A star needs five prior games, an 80% clear rate, "
         "the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. "

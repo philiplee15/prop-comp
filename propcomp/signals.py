@@ -206,6 +206,181 @@ def market_cap(
     }
 
 
+DIP_FLOOR = {"pts": 8, "pra": 10, "reb": 3.5, "ast": 3, "fg3m": 2, "stl": 1.5, "blk": 1.5}
+
+
+def project_call(
+    code: str,
+    line: float | None,
+    open_line: float | None,
+    history: list[dict],
+    *,
+    starter: bool = False,
+    spread: str | None = None,
+    team: str | None = None,
+) -> dict | None:
+    """Project over or under from the pregame paths that actually preceded misses."""
+    if line is None or code not in FIELDS:
+        return None
+    rows = played_rows(history)
+    if len(rows) < PRIOR_GAMES:
+        return None
+    values = [stat_value(game, code) for game in rows]
+    if any(value is None for value in values[-PRIOR_GAMES:]):
+        return None
+    recent = [float(value) for value in values[-PRIOR_GAMES:]]
+    season = [float(value) for value in values if value is not None]
+    if len(season) < PRIOR_GAMES:
+        return None
+    average = mean(recent) or 0
+    middle = median(recent) or 0
+    clears = sum(1 for value in season if value > line)
+    rate = clears / len(season)
+    bits: list[tuple[int, str]] = []
+    cut = _minute_cut(rows)
+    if cut:
+        last_min, base_min = cut
+        bits.append((
+            3,
+            f"Minutes fell to {_number(last_min)} from a {_number(base_min)} last-five base. "
+            "A cut like that has finished under 59% of the time.",
+        ))
+    if code in {"pts", "pra", "fg3m"} and _attempt_void(rows):
+        last = rows[-1]
+        prior_shots = [game.get("fga") for game in rows[-6:-1] if game.get("fga") is not None]
+        base_shots = mean([float(value) for value in prior_shots]) or 0
+        bits.append((
+            2,
+            f"Last game was {int(last.get('fga') or 0)} shots after a {_number(base_shots)} attempt base. "
+            "The volume vanished while he was on the floor, and those next lines have finished under 58% of the time.",
+        ))
+    slide = _minute_slide(rows)
+    if slide and not cut:
+        bits.append((
+            1,
+            f"Minutes have stepped down three games in a row, to {_number(slide)}. "
+            "A slide like that has finished under 57% of the time.",
+        ))
+    spiked = code in {"pts", "pra"} and _last_is_spike(rows, code)
+    if spiked:
+        bits.append((
+            2,
+            f"Last game was {_number(float(values[-1]))} {MARKET_LABEL.get(code, code).lower()}, "
+            "12 or more above the previous last five. The next over after a spike has been the side that misses.",
+        ))
+    if average - line >= CUSHION_MAX:
+        bits.append((
+            2,
+            f"The last five average of {_number(average)} sits {_number(average - line)} above {_number(line)}. "
+            "A gap that wide is usually one wild game, and those overs have finished under 56% of the time.",
+        ))
+    elif line > average + 0.5:
+        bits.append((
+            1,
+            f"{_number(line)} is {_number(line - average)} above the last five average of {_number(average)}.",
+        ))
+    if rate < 0.40:
+        bits.append((
+            1,
+            f"He has cleared {_number(line)} in {clears} of {len(season)} games ({round(rate * 100)}%).",
+        ))
+    if _moved(line, open_line) >= MOVE_MAX:
+        bits.append((
+            1,
+            f"The number rose from {_number(open_line or 0)} to {_number(line)}. A move up of a point has been a fade.",
+        ))
+    if script_blocks(code, starter, spread, team):
+        number = team_spread(spread, team)
+        bits.append((
+            1,
+            f"Starter points with the team favored by {_number(abs(number or 0))}. "
+            "The minutes come off when the game gets away.",
+        ))
+    role_damage = bool(cut or spiked or (code in {"pts", "pra", "fg3m"} and _attempt_void(rows)))
+    cushion = average - line
+    if (
+        not role_damage
+        and middle > line
+        and 0 < cushion < CUSHION_MAX
+        and rate >= 0.65
+    ):
+        weight = -3 if rate >= CLEAR_RATE else -2
+        bits.append((
+            weight,
+            f"{_number(line)} is under the last five median of {_number(middle)} "
+            f"and the average of {_number(average)}, cleared in {clears} of {len(season)} games "
+            f"({round(rate * 100)}%). The cushion is {_number(cushion)}, inside the band that has cashed.",
+        ))
+    if not bits:
+        return None
+    score = sum(weight for weight, _text in bits)
+    if score >= 3:
+        side, strength = "U", "strong"
+    elif score >= 2:
+        side, strength = "U", "lean"
+    elif score <= -3:
+        side, strength = "O", "strong"
+    elif score <= -2:
+        side, strength = "O", "lean"
+    else:
+        return None
+    word = "Under" if side == "U" else "Over"
+    tone = "strong" if strength == "strong" else "a lean"
+    ordered = sorted(bits, key=lambda item: -abs(item[0]))
+    dips = _recent_dips(rows, code)
+    dip_text = ""
+    if dips and side == "U":
+        shown = "; ".join(
+            f"{dip['date'][5:]} finished {_number(dip['actual'])} against a {_number(dip['average'])} average"
+            for dip in dips[:2]
+        )
+        dip_text = f" Recent deep dips on this stat: {shown}."
+    why = f"{word}, {tone}. " + " ".join(text for _weight, text in ordered) + dip_text
+    return {"s": side, "k": strength, "why": why}
+
+
+def _minute_cut(rows: list[dict]) -> tuple[float, float] | None:
+    minutes = _all_minutes(rows)
+    if len(minutes) < PRIOR_GAMES:
+        return None
+    last = minutes[-1]
+    base = sum(minutes[-PRIOR_GAMES:]) / PRIOR_GAMES
+    if last <= base - 8 and last < 26:
+        return last, base
+    return None
+
+
+def _minute_slide(rows: list[dict]) -> float | None:
+    minutes = _all_minutes(rows)
+    if len(minutes) < 3:
+        return None
+    older, middle, last = minutes[-3:]
+    if older > middle > last and last < 28:
+        return last
+    return None
+
+
+def _recent_dips(rows: list[dict], code: str) -> list[dict]:
+    floor = DIP_FLOOR.get(code, 4)
+    found = []
+    values = []
+    for game in rows:
+        value = stat_value(game, code)
+        if value is None:
+            continue
+        if len(values) >= PRIOR_GAMES:
+            base = mean(values[-PRIOR_GAMES:]) or 0
+            if value <= base - floor:
+                found.append({
+                    "date": game.get("slate_date") or "",
+                    "actual": float(value),
+                    "average": base,
+                })
+        values.append(float(value))
+    recent_dates = {(game.get("slate_date") or "") for game in rows[-8:]}
+    return [dip for dip in found if dip["date"] in recent_dates]
+
+
 def points_pause(history: list[dict]) -> str:
     rows = played_rows(history)
     if not rows:
@@ -397,14 +572,44 @@ def slate_card(games: list[dict], history: dict[str, list[dict]]) -> dict:
     ceilings.sort(key=lambda item: (-item["score"], item["name"]))
     held.sort(key=lambda item: item["name"])
     ready = sum(1 for item in stars if item.get("ready"))
+    calls = _strong_calls(games)
     return {
         "summary": f"{ready} posted number{'s' if ready != 1 else ''} clear every gate.",
         "stars": stars,
+        "calls": calls,
         "pauses": pauses,
         "ramps": ramps,
         "ceilings": ceilings[:12],
         "held": held,
     }
+
+
+def _strong_calls(games: list[dict]) -> list[dict]:
+    found = []
+    for game in games:
+        matchup = f"{game.get('away')} at {game.get('home')}"
+        for row in game.get("rows") or []:
+            if row.get("avail") == "out":
+                continue
+            seen = set()
+            for prop in row.get("props") or []:
+                code = prop.get("c")
+                call = prop.get("call") or {}
+                if prop.get("k") == "milestone" or code not in MARKET_LABEL or code in seen or call.get("k") != "strong":
+                    continue
+                seen.add(code)
+                found.append({
+                    "id": row.get("id"),
+                    "name": row.get("name"),
+                    "team": row.get("team"),
+                    "game": matchup,
+                    "label": MARKET_LABEL.get(code, code),
+                    "side": call.get("s"),
+                    "line": prop.get("line") or "",
+                    "why": call.get("why") or "",
+                })
+    found.sort(key=lambda item: (item.get("side") != "U", item.get("name") or "", item.get("label") or ""))
+    return found[:40]
 
 
 def _show_on_card(item: dict) -> bool:
@@ -824,3 +1029,42 @@ def check() -> None:
         raise SystemExit(f"ramp missing: {text}")
     if vacancy_mass(40, 25) < 0.55 or vacancy_mass(40, 25) > 0.57:
         raise SystemExit("vacancy mass should be 0.56 for 40 points and 25 rebounds")
+    cut_games = []
+    for index, minutes in enumerate((32, 33, 31, 34, 30, 14)):
+        cut_games.append({
+            "game_id": f"c{index}",
+            "slate_date": f"2026-11-{index + 1:02d}",
+            "seconds": int(minutes * 60),
+            "pts": 22 if minutes > 20 else 6,
+            "reb": 4,
+            "ast": 3,
+            "fg3m": 2,
+            "stl": 1,
+            "blk": 0,
+            "fga": 16 if minutes > 20 else 4,
+            "fgm": 8 if minutes > 20 else 2,
+        })
+    under_call = project_call("pts", 18.5, None, cut_games)
+    if not under_call or under_call["s"] != "U" or under_call["k"] != "strong":
+        raise SystemExit(f"a minute cut should be a strong under, got {under_call}")
+    steady = []
+    for index in range(8):
+        steady.append({
+            "game_id": f"s{index}",
+            "slate_date": f"2026-10-{20 + index:02d}",
+            "seconds": 34 * 60,
+            "pts": 20,
+            "reb": 5,
+            "ast": 4,
+            "fg3m": 2,
+            "stl": 1,
+            "blk": 0,
+            "fga": 14,
+            "fgm": 8,
+        })
+    over_call = project_call("pts", 17.5, None, steady)
+    if not over_call or over_call["s"] != "O":
+        raise SystemExit(f"a number under a steady average should be an over, got {over_call}")
+    tossup = project_call("pts", 20.5, None, steady)
+    if tossup:
+        raise SystemExit("a number a half point over a flat average should stay unmarked")
