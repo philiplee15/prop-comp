@@ -295,6 +295,7 @@ function paintBoard() {
   );
   bar.append(heading, count, actions);
   app.append(bar);
+  if (state.day && state.day.card) app.append(formulaCard(state.day.card));
   let visible = 0;
   games.forEach((game) => {
     const rows = game.rows.filter((row) => matches(row));
@@ -327,7 +328,7 @@ function paintBoard() {
     if (game.status !== "final" && game.status !== "live") {
       const legend = document.createElement("p");
       legend.className = "legend";
-      legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. A star on a stat means the line is under the last five average and the player has cleared that number more than 70% of the time.";
+      legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. A star clears every gate: five games, an 80% hit rate, the median over the number, a cushion under 3.5, and a number that has not risen by a point. An arrow is a minute ramp, a lean rather than a star.";
       body.append(legend);
     }
     if (!gameHasLines(game)) {
@@ -367,7 +368,7 @@ function paintBoard() {
       const indexed = indexMain(row.props);
       core.forEach((market) => {
         const prop = indexed.get(market.code);
-        fillCell(addCell(tr, "td", ""), prop, starReason(row, prop));
+        fillCell(addCell(tr, "td", ""), prop, starReason(row, prop), prop && prop.lean);
       });
       const extras = row.props.filter((prop) => prop.k === "milestone" || !coreCodes.has(prop.c));
       const key = `${game.id}:${row.id}`;
@@ -768,7 +769,7 @@ function extraGrid(props) {
   return grid;
 }
 
-function fillCell(cell, prop, reason) {
+function fillCell(cell, prop, reason, lean) {
   if (!prop) return cell;
   cell.classList.add("stat", tone(prop.r));
   const strong = document.createElement("strong");
@@ -787,7 +788,8 @@ function fillCell(cell, prop, reason) {
     em.textContent = "";
   }
   cell.append(strong, em);
-  if (reason) cell.append(makeStar("★", reason));
+  if (lean) cell.append(makeMark("lean", "↑", lean));
+  if (reason) cell.append(makeMark("star", "★", reason));
   if (prop.open) {
     const small = document.createElement("small");
     small.textContent = `opened at ${prop.open}`;
@@ -816,9 +818,9 @@ function orderKey(row, game) {
   return side * 1000 + roleRank * 100 + rank;
 }
 
-function makeStar(text, reason) {
+function makeMark(className, text, reason) {
   const star = document.createElement("span");
-  star.className = "star";
+  star.className = className;
   star.textContent = text;
   star.addEventListener("pointerenter", () => showTip(star, reason));
   star.addEventListener("pointerleave", hideTip);
@@ -1039,20 +1041,107 @@ function rowStarCount(row) {
 }
 
 function starReason(row, prop) {
-  if (!row || row.avail === "out" || !prop || !state.logs) return "";
-  if (prop.k === "milestone" || !STAR_CODES.has(prop.c)) return "";
-  const line = Number(prop.line);
-  if (!Number.isFinite(line)) return "";
-  const recent = recentActuals(row.id, prop.c, 5);
-  const season = recentActuals(row.id, prop.c, 30);
-  if (recent.length < 5 || season.length < 5) return "";
-  const average = recent.reduce((sum, value) => sum + value, 0) / recent.length;
-  if (!(line < average)) return "";
-  const clears = season.filter((value) => value > line).length;
-  const rate = clears / season.length;
-  if (!(rate > 0.7)) return "";
-  const lineText = formatNumber(line);
-  return `Last 5 average ${formatNumber(average)} is above ${lineText}. Cleared ${lineText} in ${clears} of ${season.length} games.`;
+  if (!row || row.avail === "out" || !prop || prop.k === "milestone") return "";
+  const why = prop.why;
+  if (!why || !why.length) return "";
+  return Array.isArray(why) ? why.join(" ") : String(why);
+}
+
+function formulaCard(card) {
+  const section = document.createElement("details");
+  section.className = "panel card-block";
+  section.open = (state.day.games || []).some((game) => game.status !== "final");
+  const summary = document.createElement("summary");
+  summary.textContent = card.summary || "Formula card";
+  section.append(summary);
+  const note = document.createElement("p");
+  note.className = "card-note";
+  note.textContent = "A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. Blocks are not starred. A spike of 12 or more, or a night where the shots disappeared, pauses the next points star. The arrow is a minute ramp. It is a lean, not a star. The ceiling is the pregame role score and does not star the over.";
+  section.append(note);
+  section.append(cardTable(
+    "Clear stars",
+    card.stars || [],
+    ["Player", "Game", "Market", "Cap", "Last 5", "Median", "Clear", "Posted", "Status"],
+    (item) => [
+      `${item.team} ${item.name}`,
+      item.game,
+      item.label,
+      formatNumber(item.cap),
+      formatNumber(item.avg),
+      formatNumber(item.median),
+      `${Math.round(item.rate * 100)}%`,
+      item.posted == null ? "waiting" : formatNumber(item.posted),
+      item.note || "",
+    ],
+  ));
+  if ((card.pauses || []).length) {
+    section.append(cardTable(
+      "Points paused",
+      card.pauses,
+      ["Player", "Game", "Why"],
+      (item) => [`${item.team} ${item.name}`, item.game, item.detail],
+    ));
+  }
+  if ((card.ramps || []).length) {
+    section.append(cardTable(
+      "Minute ramps",
+      card.ramps,
+      ["Player", "Game", "Lean"],
+      (item) => [`${item.team} ${item.name}`, item.game, item.detail],
+    ));
+  }
+  if ((card.ceilings || []).length) {
+    section.append(cardTable(
+      "Pregame ceiling",
+      card.ceilings,
+      ["Player", "Game", "Score", "Inputs"],
+      (item) => [`${item.team} ${item.name}`, item.game, formatNumber(item.score), item.detail],
+    ));
+  }
+  if ((card.held || []).length) {
+    section.append(cardTable(
+      "Held for the spread",
+      card.held,
+      ["Player", "Game", "Why"],
+      (item) => [`${item.team} ${item.name}`, item.game, item.detail],
+    ));
+  }
+  return section;
+}
+
+function cardTable(heading, rows, headers, cells, titleFor) {
+  const block = document.createElement("div");
+  const title = document.createElement("h3");
+  title.textContent = heading;
+  block.append(title);
+  if (!rows.length) {
+    const empty = document.createElement("p");
+    empty.className = "card-note";
+    empty.textContent = "None on this slate.";
+    block.append(empty);
+    return block;
+  }
+  const wrap = document.createElement("div");
+  wrap.className = "table-wrap";
+  const table = document.createElement("table");
+  const head = document.createElement("tr");
+  headers.forEach((header) => addCell(head, "th", header));
+  const thead = document.createElement("thead");
+  thead.append(head);
+  const tbody = document.createElement("tbody");
+  rows.forEach((item) => {
+    const tr = document.createElement("tr");
+    if (item.ready) tr.classList.add("ready-row");
+    cells(item).forEach((value, index) => {
+      const cell = addCell(tr, "td", value == null ? "" : String(value));
+      if (titleFor && index === cells(item).length - 1) cell.title = titleFor(item);
+    });
+    tbody.append(tr);
+  });
+  table.append(thead, tbody);
+  wrap.append(table);
+  block.append(wrap);
+  return block;
 }
 
 function shortDate(iso) {

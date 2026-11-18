@@ -1,4 +1,5 @@
 from propcomp.grade import grade_number, grade_prop, minutes_to_seconds, parse_line
+from propcomp.signals import check as check_signals
 
 
 def check(condition: bool, message: str) -> None:
@@ -67,6 +68,7 @@ def main() -> None:
         context,
     )
     check(result == "void", "did not play")
+    check_signals()
     print("grade checks passed")
 
 

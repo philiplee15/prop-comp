@@ -281,6 +281,33 @@ def parse_box_stats(labels: list[str], values: list[str]) -> dict:
         except ValueError:
             return 0
 
+    def pair(label: str) -> tuple[int | None, int | None]:
+        raw = indexed.get(label)
+        if raw is None:
+            return None, None
+        parts = str(raw).split("-")
+        if len(parts) < 2:
+            return None, None
+        try:
+            return int(parts[0]), int(parts[1])
+        except ValueError:
+            return None, None
+
+    def plus_minus(label: str) -> int | None:
+        raw = indexed.get(label)
+        if raw is None:
+            return None
+        text = str(raw).strip().replace("+", "")
+        if not any(character.isdigit() for character in text):
+            return None
+        try:
+            return int(text)
+        except ValueError:
+            return None
+
+    fgm, fga = pair("FG")
+    fg3m, fg3a = pair("3PT")
+    ftm, fta = pair("FT")
     minutes = str(indexed.get("MIN") or "")
     return {
         "minutes": minutes,
@@ -288,7 +315,14 @@ def parse_box_stats(labels: list[str], values: list[str]) -> dict:
         "pts": whole("PTS"),
         "reb": whole("REB"),
         "ast": whole("AST"),
-        "fg3m": made("3PT"),
+        "fg3m": fg3m if fg3m is not None else made("3PT"),
+        "fg3a": fg3a,
+        "fgm": fgm,
+        "fga": fga,
+        "ftm": ftm,
+        "fta": fta,
+        "oreb": whole("OREB") if "OREB" in indexed else None,
+        "plus_minus": plus_minus("+/-"),
         "stl": whole("STL"),
         "blk": whole("BLK"),
         "tov": whole("TO"),

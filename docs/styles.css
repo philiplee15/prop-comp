@@ -257,6 +257,20 @@ tr.risk .name button { color: var(--warn); }
   font-size: 8px;
   line-height: 1;
 }
+.lean {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  color: var(--warn);
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+}
+.card-block summary { cursor: pointer; font-weight: 650; margin-bottom: 8px; }
+.card-block h3 { margin: 14px 0 6px; font-size: 15px; }
+.card-block h3:first-child { margin-top: 0; }
+.card-note { margin: 0 0 8px; color: var(--muted); font-size: 13px; }
+tr.ready-row td { box-shadow: inset 3px 0 0 var(--accent); }
 .tip {
   position: fixed;
   z-index: 30;

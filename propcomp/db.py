@@ -112,4 +112,22 @@ def connect() -> sqlite3.Connection:
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA synchronous=NORMAL")
     conn.executescript(SCHEMA)
+    migrate(conn)
     return conn
+
+
+def migrate(conn: sqlite3.Connection) -> None:
+    columns = {row[1] for row in conn.execute("PRAGMA table_info(player_games)")}
+    additions = {
+        "fgm": "INTEGER",
+        "fga": "INTEGER",
+        "ftm": "INTEGER",
+        "fta": "INTEGER",
+        "fg3a": "INTEGER",
+        "oreb": "INTEGER",
+        "plus_minus": "INTEGER",
+    }
+    for name, kind in additions.items():
+        if name not in columns:
+            conn.execute(f"ALTER TABLE player_games ADD COLUMN {name} {kind}")
+    conn.commit()

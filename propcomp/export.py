@@ -7,8 +7,8 @@ from html import escape
 from zoneinfo import ZoneInfo
 
 from propcomp.db import DOCS
-from propcomp.grade import CORE_MARKETS
-from propcomp.signals import qualifying_stars
+from propcomp.grade import CORE_MARKETS, parse_line
+from propcomp.signals import points_pause, qualifying_stars, ramp_text, slate_card
 
 EASTERN = ZoneInfo("America/New_York")
 CORE_OU = ["pts", "reb", "ast", "fg3m", "pra", "stl", "blk"]
@@ -36,7 +36,7 @@ def build(conn) -> None:
     history = defaultdict(list)
     for row in conn.execute(
         """
-        SELECT pg.*, g.slate_date
+        SELECT pg.*, g.slate_date, g.tip_utc
         FROM player_games pg
         JOIN games g ON g.id = pg.game_id
         WHERE g.status='final' AND pg.seconds > 0
@@ -115,7 +115,10 @@ def build(conn) -> None:
                 "scheduled": sum(1 for game in slate_games if game["status"] != "final"),
             }
         )
-        write_json(day_dir / f"{slate}.json", {"date": slate, "games": payload_games})
+        write_json(
+            day_dir / f"{slate}.json",
+            {"date": slate, "games": payload_games, "card": slate_card(payload_games, history)},
+        )
 
     season_rows = []
     for player_id, markets in season_players.items():
@@ -210,23 +213,40 @@ def pack_game(game, props, stats, teams, players, avail_rows=None, history=None)
         team_id = avail.get("team_id") or stat.get("team_id") or person.get("team_id")
         packed_props = []
         star_candidates = []
+        prior = [
+            item
+            for item in (history.get(player_id) or [])
+            if item.get("game_id") != game["id"]
+        ]
+        team = abbr(teams, team_id)
         for prop in player_props:
             packed = compact_prop(prop)
             packed_props.append(packed)
-            if upcoming and packed["k"] == "ou" and avail.get("status") != "out":
-                star_candidates.append((packed, prop.get("line_num")))
-        if star_candidates:
+            if packed["k"] != "ou" or avail.get("status") == "out":
+                continue
+            opened = prop.get("line_open") or ""
+            open_num = parse_line(opened) if opened and opened != prop.get("line") else None
+            star_candidates.append((packed, prop.get("line_num"), open_num))
+        if star_candidates and avail.get("status") != "out":
+            starter = avail.get("role") == "starter" or bool(stat.get("starter"))
             choices = {
                 (item["code"], item["line"]): item["why"]
                 for item in qualifying_stars(
-                    [(packed["c"], line) for packed, line in star_candidates],
-                    history.get(player_id) or [],
+                    [(packed["c"], line, open_num) for packed, line, open_num in star_candidates],
+                    prior,
+                    starter=starter,
+                    spread=game.get("spread"),
+                    team=team,
                 )
             }
-            for packed, line in star_candidates:
+            for packed, line, _open_num in star_candidates:
                 why = choices.get((packed["c"], line))
                 if why:
                     packed["why"] = why
+                if packed["c"] == "pts":
+                    lean = ramp_text(prior, line)
+                    if lean:
+                        packed["lean"] = lean
         seen_ids.add(player_id)
         rows.append(
             {
@@ -263,7 +283,13 @@ def pack_game(game, props, stats, teams, players, avail_rows=None, history=None)
             if player_id in seen_ids:
                 continue
             if avail.get("status") not in {"out", "risk"} and avail.get("role") != "starter":
-                continue
+                prior = [
+                    item
+                    for item in (history.get(player_id) or [])
+                    if item.get("game_id") != game["id"]
+                ]
+                if not points_pause(prior):
+                    continue
             person = players.get(player_id) or {}
             rows.append(blank_row(player_id, person, avail, teams))
     rows.sort(key=lambda row: display_sort_key(row, upcoming, away, home))
@@ -476,6 +502,7 @@ def write_snapshot(
     parts.append("</div></section>")
     for slate in focus_dates:
         parts.append(f'<section class="panel"><h2>{escape(slate)} lines</h2>')
+        packed_games = []
         for game in by_date.get(slate, []):
             packed = pack_game(
                 game,
@@ -486,8 +513,11 @@ def write_snapshot(
                 avail_by_game.get(game["id"], []),
                 history,
             )
+            packed_games.append(packed)
             parts.append(static_game(packed))
-        if not by_date.get(slate):
+        if packed_games:
+            parts.append(static_card(slate_card(packed_games, history)))
+        else:
             parts.append("<p>No games on this slate.</p>")
         parts.append("</section>")
     parts.append(
@@ -600,7 +630,9 @@ def static_cell(prop: dict | None) -> str:
     price_bit = f"<small>{prices}</small>" if prices else ""
     why = " ".join(prop.get("why") or [])
     star = f'<span class="star" title="{escape(why)}">★</span>' if why else ""
-    return f'<span class="cell {css}">{star}{actual_text} <b>{word} {line}</b>{open_line}{price_bit}</span>'
+    lean_text = prop.get("lean") or ""
+    lean = f'<span class="lean" title="{escape(lean_text)}">↑</span>' if lean_text else ""
+    return f'<span class="cell {css}">{lean}{star}{actual_text} <b>{word} {line}</b>{open_line}{price_bit}</span>'
 
 
 def status_tag(row: dict) -> str:
@@ -623,6 +655,87 @@ def row_star(row: dict) -> str:
     if not reasons:
         return ""
     return f'<span class="star" title="{escape(" ".join(reasons))}">★</span>'
+
+
+def static_card(card: dict) -> str:
+    parts = [f'<div class="card-block"><h3>{escape(card.get("summary") or "Formula card")}</h3><h3>Clear stars</h3>']
+    parts.append(
+        "<p class=\"card-note\">A star needs five prior games, an 80% clear rate, "
+        "the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. "
+        "Blocks are not starred. A 12-point spike or a shot-volume void pauses the next points star. "
+        "An arrow is a minute ramp, which is a lean, not a star.</p>"
+    )
+    parts.append(_card_table(
+        card.get("stars") or [],
+        ["Player", "Market", "Cap", "Last 5", "Median", "Clear", "Posted", "Note"],
+        lambda item: [
+            f"{item['team']} {item['name']}",
+            item.get("label") or "",
+            _card_num(item.get("cap")),
+            _card_num(item.get("avg")),
+            _card_num(item.get("median")),
+            f"{round((item.get('rate') or 0) * 100)}%",
+            _card_num(item.get("posted")) if item.get("posted") is not None else "waiting",
+            item.get("note") or "",
+        ],
+    ))
+    if card.get("pauses"):
+        parts.append("<h3>Points paused</h3>")
+        parts.append(_card_table(
+            card["pauses"],
+            ["Player", "Game", "Why"],
+            lambda item: [f"{item['team']} {item['name']}", item.get("game") or "", item.get("detail") or ""],
+        ))
+    if card.get("ramps"):
+        parts.append("<h3>Minute ramps</h3>")
+        parts.append(_card_table(
+            card["ramps"],
+            ["Player", "Game", "Lean"],
+            lambda item: [f"{item['team']} {item['name']}", item.get("game") or "", item.get("detail") or ""],
+        ))
+    if card.get("ceilings"):
+        parts.append("<h3>Pregame ceiling</h3>")
+        parts.append(
+            "<p class=\"card-note\">Partial ceiling from minutes, attempts, vacancy, the three-point coil, "
+            "and a bench role. It explains a Sensabaugh path. It does not star the over.</p>"
+        )
+        parts.append(_card_table(
+            card["ceilings"],
+            ["Player", "Score", "Inputs"],
+            lambda item: [
+                f"{item['team']} {item['name']}",
+                _card_num(item.get("score")),
+                item.get("detail") or "",
+            ],
+        ))
+    if card.get("held"):
+        parts.append("<h3>Held for the spread</h3>")
+        parts.append(_card_table(
+            card["held"],
+            ["Player", "Game", "Why"],
+            lambda item: [f"{item['team']} {item['name']}", item.get("game") or "", item.get("detail") or ""],
+        ))
+    parts.append("</div>")
+    return "".join(parts)
+
+
+def _card_table(rows: list[dict], headers: list[str], cells) -> str:
+    if not rows:
+        return "<p class=\"card-note\">None on this slate.</p>"
+    head = "".join(f"<th>{escape(header)}</th>" for header in headers)
+    body = []
+    for item in rows:
+        body.append("<tr>" + "".join(f"<td>{escape(str(value))}</td>" for value in cells(item)) + "</tr>")
+    return f"<div class=\"table-wrap\"><table><thead><tr>{head}</tr></thead><tbody>{''.join(body)}</tbody></table></div>"
+
+
+def _card_num(value) -> str:
+    if value is None:
+        return ""
+    text = f"{float(value):.1f}"
+    if text.endswith(".0"):
+        return text[:-2]
+    return text
 
 
 def result_word(result: str) -> str:

@@ -369,8 +369,9 @@ def store_game(conn, game: dict, fetched: dict) -> None:
         """
         INSERT INTO player_games (
             game_id, player_id, team_id, minutes, seconds, starter,
-            pts, reb, ast, fg3m, stl, blk, tov
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            pts, reb, ast, fg3m, stl, blk, tov,
+            fgm, fga, ftm, fta, fg3a, oreb, plus_minus
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         [
             (
@@ -387,6 +388,13 @@ def store_game(conn, game: dict, fetched: dict) -> None:
                 player["stl"],
                 player["blk"],
                 player["tov"],
+                player.get("fgm"),
+                player.get("fga"),
+                player.get("ftm"),
+                player.get("fta"),
+                player.get("fg3a"),
+                player.get("oreb"),
+                player.get("plus_minus"),
             )
             for player in players.values()
         ],
@@ -576,6 +584,64 @@ def write_snapshots(conn, game_id: str, props: list[dict]) -> None:
         )
 
 
+def backfill_shooting(conn) -> None:
+    """Final games were stored before field-goal attempts were kept."""
+    game_ids = [
+        row[0]
+        for row in conn.execute(
+            """
+            SELECT DISTINCT g.id
+            FROM games g
+            JOIN player_games pg ON pg.game_id = g.id
+            WHERE g.status='final' AND pg.seconds > 0 AND pg.fga IS NULL
+            """
+        )
+    ]
+    if not game_ids:
+        print("Shooting totals already stored")
+        return
+    workers = int(os.environ.get("PROPCOMP_WORKERS") or "5")
+    print(f"Backfilling shooting totals for {len(game_ids)} games")
+    done = 0
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        future_map = {pool.submit(espn.summary, game_id): game_id for game_id in game_ids}
+        for future in as_completed(future_map):
+            game_id = future_map[future]
+            done += 1
+            try:
+                payload = future.result()
+            except Exception as error:
+                print(f"[{done}/{len(game_ids)}] {game_id} shooting error {error}", flush=True)
+                continue
+            if not payload:
+                print(f"[{done}/{len(game_ids)}] {game_id} shooting missing", flush=True)
+                continue
+            players, _context = parse_summary(payload)
+            conn.executemany(
+                """
+                UPDATE player_games
+                SET fgm=?, fga=?, ftm=?, fta=?, fg3a=?, oreb=?, plus_minus=?
+                WHERE game_id=? AND player_id=?
+                """,
+                [
+                    (
+                        player.get("fgm"),
+                        player.get("fga"),
+                        player.get("ftm"),
+                        player.get("fta"),
+                        player.get("fg3a"),
+                        player.get("oreb"),
+                        player.get("plus_minus"),
+                        game_id,
+                        player["player_id"],
+                    )
+                    for player in players.values()
+                ],
+            )
+            conn.commit()
+            print(f"[{done}/{len(game_ids)}] {game_id} shooting stored", flush=True)
+
+
 def main() -> None:
     today = slate_today()
     end = today + timedelta(days=2)
@@ -618,6 +684,7 @@ def main() -> None:
                 flush=True,
             )
     regrade_incomplete(conn)
+    backfill_shooting(conn)
     availability.refresh(conn)
     print("Writing the site")
     export.build(conn)
