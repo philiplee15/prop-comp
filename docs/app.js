@@ -251,7 +251,7 @@ async function showBoard() {
       state.stars = Number(value);
       remember();
       paintBoard();
-    })),
+    }), "wide"),
     toggle("Show every line", state.showAll, (checked) => {
       state.showAll = checked;
       paintBoard();
@@ -294,7 +294,10 @@ function paintBoard() {
     textButton("Expand all", () => foldGames(games, false)),
   );
   bar.append(heading, count, actions);
-  app.append(bar);
+  const key = document.createElement("p");
+  key.className = "keyline";
+  key.textContent = "Starters first. Red is out, amber is at risk. A star clears every gate. A filled O or U is strong, a ring is a lean, and an arrow is a minute ramp. Hover a mark for the reason.";
+  app.append(bar, key);
   if (state.day && state.day.card) app.append(formulaCard(state.day.card));
   let visible = 0;
   games.forEach((game) => {
@@ -314,6 +317,7 @@ function paintBoard() {
     meta.className = "meta";
     meta.textContent = gameMeta(game);
     const titles = document.createElement("span");
+    titles.className = "game-titles";
     titles.append(title, meta);
     toggleRow.append(titles);
     toggleRow.addEventListener("click", () => {
@@ -325,12 +329,6 @@ function paintBoard() {
     body.className = "game-body";
     body.hidden = !open;
     article.append(toggleRow, body);
-    if (game.status !== "final" && game.status !== "live") {
-      const legend = document.createElement("p");
-      legend.className = "legend";
-      legend.textContent = "Starters are listed first, then the rest of the active roster. Red is out. Amber is at risk. A star clears every gate. A filled O or U is a strong over or under. A ring is a lean. An arrow is a minute ramp. Hover a mark for the path behind it.";
-      body.append(legend);
-    }
     if (!gameHasLines(game)) {
       const empty = document.createElement("p");
       empty.textContent = lineStatus(game);
@@ -513,7 +511,9 @@ function paintPlayer() {
   const log = state.logs[state.playerId] || {};
   const title = document.createElement("h2");
   title.textContent = person ? `${person.team} ${person.name}` : "Player";
-  app.append(title);
+  const charts = document.createElement("div");
+  charts.className = "charts";
+  app.append(title, charts);
   state.manifest.core.forEach((market) => {
     const series = log[market.code] || [];
     const upcoming = openLine(state.playerId, market.code, series);
@@ -552,9 +552,9 @@ function paintPlayer() {
       card.append(lineChart(series, trend ? trend.avg : null, readout, upcoming));
     }
     card.append(readout, resultStrip(series, market.code, upcoming));
-    app.append(card);
+    charts.append(card);
   });
-  if (!app.querySelector(".panel")) {
+  if (!charts.querySelector(".panel")) {
     const empty = document.createElement("p");
     empty.textContent = "No graded main lines yet.";
     app.append(empty);
@@ -787,9 +787,14 @@ function fillCell(cell, prop, reason, lean) {
     strong.textContent = prop.line || "";
     em.textContent = "";
   }
-  cell.append(strong, em);
+  const value = document.createElement("span");
+  value.className = "num";
+  value.textContent = strong.textContent;
+  strong.textContent = "";
+  strong.append(value);
   const call = callMark(prop);
   if (call) strong.append(call);
+  cell.append(strong, em);
   if (lean) cell.append(makeMark("lean", "↑", lean));
   if (reason) cell.append(makeMark("star", "★", reason));
   if (prop.open) {
@@ -1157,8 +1162,10 @@ function cardTable(heading, rows, headers, cells, titleFor) {
   rows.forEach((item) => {
     const tr = document.createElement("tr");
     if (item.ready) tr.classList.add("ready-row");
+    const prose = new Set(["Why", "Lean", "Inputs", "Status"]);
     cells(item).forEach((value, index) => {
       const cell = addCell(tr, "td", value == null ? "" : String(value));
+      if (prose.has(headers[index])) cell.classList.add("wrap");
       if (titleFor && index === cells(item).length - 1) cell.title = titleFor(item);
     });
     tbody.append(tr);
@@ -1180,9 +1187,12 @@ function stamp(iso) {
   return iso.replace("T", " ").replace(/[+-]\d\d:\d\d$/, "") + (eastern ? " ET" : "");
 }
 
-function labeled(text, control) {
+function labeled(text, control, extra) {
   const wrap = document.createElement("label");
-  wrap.append(document.createTextNode(`${text} `), control);
+  wrap.className = extra ? `field ${extra}` : "field";
+  const caption = document.createElement("span");
+  caption.textContent = text;
+  wrap.append(caption, control);
   return wrap;
 }
 
@@ -1209,6 +1219,7 @@ function select(options, value, onChange) {
 
 function toggle(text, checked, onChange) {
   const wrap = document.createElement("label");
+  wrap.className = "check";
   const field = document.createElement("input");
   field.type = "checkbox";
   field.checked = checked;
