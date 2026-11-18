@@ -696,6 +696,7 @@ def static_card(card: dict) -> str:
         "<p class=\"card-note\">A star needs five prior games, an 80% clear rate, "
         "the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. "
         "Blocks are not starred. A 12-point spike or a shot-volume void pauses the next points star. "
+        "A filled O is that strict profile. A U requires the role to shrink while the number stays up. "
         "An arrow is a minute ramp, which is a lean, not a star.</p>"
     )
     parts.append(_card_table(

@@ -296,7 +296,7 @@ function paintBoard() {
   bar.append(heading, count, actions);
   const key = document.createElement("p");
   key.className = "keyline";
-  key.textContent = "Starters first. Red is out, amber is at risk. A star clears every gate. A filled O or U is strong, a ring is a lean, and an arrow is a minute ramp. Hover a mark for the reason.";
+  key.textContent = "Starters first. Red is out, amber is at risk. A star clears every gate. A filled U is a minute cut with the number still up. A ring U is a minute slide or a missing shot diet, with the number still up. A filled O has cleared 80% with the median over the number. Hover a mark for the reason.";
   app.append(bar, key);
   if (state.day && state.day.card) app.append(formulaCard(state.day.card));
   let visible = 0;
@@ -1071,7 +1071,7 @@ function formulaCard(card) {
   section.append(summary);
   const note = document.createElement("p");
   note.className = "card-note";
-  note.textContent = "A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O or U is a strong path. A ring is a lean. The path comes from minute cuts, missing shots, spikes, and where the number sits against the player's own line. Hover the mark for that player's reason. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over.";
+  note.textContent = "A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A U appears only after the role shrinks, a minute cut, a three-game slide, or a night the shots disappeared, and the number has not come down with it. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over.";
   section.append(note);
   section.append(cardTable(
     "Clear stars",
