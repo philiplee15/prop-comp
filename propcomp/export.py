@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 
 from propcomp.db import DOCS
 from propcomp.grade import CORE_MARKETS, parse_line
-from propcomp.signals import points_pause, project_call, qualifying_stars, ramp_text, slate_card
+from propcomp.signals import earlier_history, points_pause, project_call, qualifying_stars, ramp_text, slate_card
 
 EASTERN = ZoneInfo("America/New_York")
 CORE_OU = ["pts", "reb", "ast", "fg3m", "pra", "stl", "blk"]
@@ -213,11 +213,7 @@ def pack_game(game, props, stats, teams, players, avail_rows=None, history=None)
         team_id = avail.get("team_id") or stat.get("team_id") or person.get("team_id")
         packed_props = []
         star_candidates = []
-        prior = [
-            item
-            for item in (history.get(player_id) or [])
-            if item.get("game_id") != game["id"]
-        ]
+        prior = earlier_history(history.get(player_id) or [], game)
         team = abbr(teams, team_id)
         for prop in player_props:
             packed = compact_prop(prop)
@@ -294,11 +290,7 @@ def pack_game(game, props, stats, teams, players, avail_rows=None, history=None)
             if player_id in seen_ids:
                 continue
             if avail.get("status") not in {"out", "risk"} and avail.get("role") != "starter":
-                prior = [
-                    item
-                    for item in (history.get(player_id) or [])
-                    if item.get("game_id") != game["id"]
-                ]
+                prior = earlier_history(history.get(player_id) or [], game)
                 if not points_pause(prior):
                     continue
             person = players.get(player_id) or {}
@@ -678,7 +670,7 @@ def row_star(row: dict) -> str:
 
 
 def static_card(card: dict) -> str:
-    parts = [f'<div class="card-block"><h3>{escape(card.get("summary") or "Formula card")}</h3><h3>Clear stars</h3>']
+    parts = [f'<div class="card-block"><h3>{escape(card.get("summary") or "Formula card")}</h3>']
     if card.get("calls"):
         parts.append("<h3>Path calls</h3>")
         parts.append(_card_table(
@@ -692,11 +684,14 @@ def static_card(card: dict) -> str:
                 item.get("why") or "",
             ],
         ))
+    parts.append("<h3>Clear stars</h3>")
     parts.append(
         "<p class=\"card-note\">A star needs five prior games, an 80% clear rate, "
         "the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. "
         "Blocks are not starred. A 12-point spike or a shot-volume void pauses the next points star. "
-        "A filled O is that strict profile. A U requires the role to shrink while the number stays up. "
+        "A filled O is that strict profile. A U needs the minutes short on more than one recent game, "
+        "or a rebound or steal number at least a point above the recent average. "
+        "One short night does not mark points, PRA, threes, or assists. "
         "An arrow is a minute ramp, which is a lean, not a star.</p>"
     )
     parts.append(_card_table(

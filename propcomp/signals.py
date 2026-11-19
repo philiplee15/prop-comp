@@ -100,6 +100,26 @@ def played_rows(history: list[dict]) -> list[dict]:
     return rows
 
 
+def earlier_history(history: list[dict], game: dict) -> list[dict]:
+    """Games already played before this slate. Later games must not leak into the call."""
+    game_id = game.get("id") or game.get("game_id")
+    slate = game.get("slate_date") or ""
+    tip = game.get("tip_utc") or game.get("tip") or ""
+    kept = []
+    for item in history or []:
+        if game_id and item.get("game_id") == game_id:
+            continue
+        item_slate = item.get("slate_date") or ""
+        item_tip = item.get("tip_utc") or ""
+        if slate and item_slate:
+            if item_slate < slate:
+                kept.append(item)
+            continue
+        if tip and item_tip and item_tip < tip:
+            kept.append(item)
+    return kept
+
+
 def qualifying_stars(
     lines: list[tuple],
     history: list[dict],
@@ -241,16 +261,44 @@ def project_call(
     # not come down with the role. Stacking a low clear rate, a half-point gap, a
     # one-point move, or a 12-point spike on their own stays at the 52 percent base.
     # Opponent, rest, and home-road splits were measured and did not beat the line.
+    # A single short night is not that cut. Points, PRA, threes, and assists came
+    # back when the minutes came back, so those markets wait for a second short night.
+    # Rebounds and steals can still be under when the number is at least a point
+    # above the recent average, because that read does not need the minutes to stay short.
     role: list[tuple[int, str]] = []
     cut = _minute_cut(rows)
-    if cut:
+    durable = bool(cut) and _cut_is_durable(rows)
+    gap = line - average
+    # One short night does not tell you the next night's minutes. Points, PRA,
+    # threes, and assists stay unmarked on both sides until a second short night.
+    if cut and not durable and code in {"pts", "pra", "fg3m", "ast"}:
+        return None
+    board_night = (
+        bool(cut)
+        and not durable
+        and code in {"reb", "stl"}
+        and gap >= 1
+        and rate < 0.50
+    )
+    if cut and durable:
         last_min, base_min = cut
         role.append((
             3,
-            f"Minutes fell to {_number(last_min)} from a {_number(base_min)} last-five base. "
-            "Role cuts have finished under 59% of the time when the number stays up.",
+            f"Minutes fell to {_number(last_min)} from a {_number(base_min)} last-five base, "
+            "and more than one of the last three nights was short. "
+            "A cut that lasts more than one game has finished under 59% of the time when the number stays up.",
         ))
-    void = code in {"pts", "pra", "fg3m"} and _attempt_void(rows)
+    elif board_night:
+        last_min, base_min = cut
+        role.append((
+            4,
+            f"{_number(line)} is {_number(gap)} above the last five average of {_number(average)}. "
+            f"He has cleared {_number(line)} in {clears} of {len(season)} games ({round(rate * 100)}%). "
+            f"Last game was {_number(last_min)} minutes against a {_number(base_min)} base. "
+            "That was one night, not a new minute base, so this is the board level and not a minute projection.",
+        ))
+    # A shot void on the same night as a minute cut is the short night counted twice.
+    void = code in {"pts", "pra", "fg3m"} and _attempt_void(rows) and not cut
     if void:
         last = rows[-1]
         prior_shots = [game.get("fga") for game in rows[-6:-1] if game.get("fga") is not None]
@@ -267,15 +315,15 @@ def project_call(
             f"Minutes have stepped down three games in a row, to {_number(slide)}.",
         ))
     price: list[str] = []
-    if average - line >= CUSHION_MAX:
+    if not board_night and average - line >= CUSHION_MAX:
         price.append(
             f"The last five average of {_number(average)} still sits {_number(average - line)} above {_number(line)}."
         )
-    elif line > average + 0.5:
+    elif not board_night and line > average + 0.5:
         price.append(
             f"{_number(line)} is still {_number(line - average)} above the last five average of {_number(average)}."
         )
-    if rate < 0.45:
+    if not board_night and rate < 0.45:
         price.append(
             f"He has cleared {_number(line)} in {clears} of {len(season)} games ({round(rate * 100)}%)."
         )
@@ -295,15 +343,24 @@ def project_call(
             f"({round(rate * 100)}%). The cushion is {_number(cushion)}. "
             "This strict over has cashed 59% of the time.",
         )]
-        return _call("O", "strong", bits, rows, code)
-    if not role or not price:
+        return _call("O", "strong", bits, rows, code, _rank("O", "strong", rate, cushion, False))
+    if not role or not (price or board_night):
         return None
     strength = "strong" if any(weight >= 3 for weight, _text in role) or len(role) >= 2 else "lean"
     bits = list(role) + [(1, text) for text in price]
-    return _call("U", strength, bits, rows, code)
+    return _call("U", strength, bits, rows, code, _rank("U", strength, rate, gap, durable))
 
 
-def _call(side: str, strength: str, bits: list[tuple[int, str]], rows: list[dict], code: str) -> dict:
+def _rank(side: str, strength: str, rate: float, separation: float, durable: bool) -> float:
+    """Higher is the call the card should show first."""
+    base = 200 if strength == "strong" else 80
+    if side == "O":
+        return round(base + 40 + rate * 100 + max(separation, 0) * 8, 1)
+    durability = 35 if durable else 0
+    return round(base + durability + max(separation, 0) * 12 + (0.5 - rate) * 40, 1)
+
+
+def _call(side: str, strength: str, bits: list[tuple[int, str]], rows: list[dict], code: str, score: float) -> dict:
     word = "Under" if side == "U" else "Over"
     tone = "strong" if strength == "strong" else "a lean"
     ordered = sorted(bits, key=lambda item: -abs(item[0]))
@@ -316,7 +373,7 @@ def _call(side: str, strength: str, bits: list[tuple[int, str]], rows: list[dict
         )
         dip_text = f" Recent deep dips on this stat: {shown}."
     why = f"{word}, {tone}. " + " ".join(text for _weight, text in ordered) + dip_text
-    return {"s": side, "k": strength, "why": why}
+    return {"s": side, "k": strength, "why": why, "score": score}
 
 
 def _minute_cut(rows: list[dict]) -> tuple[float, float] | None:
@@ -328,6 +385,24 @@ def _minute_cut(rows: list[dict]) -> tuple[float, float] | None:
     if last <= base - 8 and last < 26:
         return last, base
     return None
+
+
+def _cut_is_durable(rows: list[dict]) -> bool:
+    """True when at least two of the last three nights were short, not just the last one."""
+    minutes = _all_minutes(rows)
+    if len(minutes) < PRIOR_GAMES:
+        return False
+    shorts = 0
+    start = max(PRIOR_GAMES, len(minutes) - 2)
+    for end in range(start, len(minutes) + 1):
+        window = minutes[end - PRIOR_GAMES:end]
+        if len(window) < PRIOR_GAMES:
+            continue
+        last = window[-1]
+        base = sum(window) / PRIOR_GAMES
+        if last <= base - 8 and last < 26:
+            shorts += 1
+    return shorts >= 2
 
 
 def _minute_slide(rows: list[dict]) -> float | None:
@@ -484,7 +559,7 @@ def slate_card(games: list[dict], history: dict[str, list[dict]]) -> dict:
             if row.get("avail") == "out":
                 continue
             player_id = row.get("id")
-            prior = [item for item in (history.get(player_id) or []) if item.get("game_id") != game.get("id")]
+            prior = earlier_history(history.get(player_id) or [], game)
             starter = bool(row.get("starter") or row.get("role") == "starter")
             team = row.get("team") or ""
             context = {"starter": starter, "spread": spread, "team": team}
@@ -587,8 +662,9 @@ def _strong_calls(games: list[dict]) -> list[dict]:
                     "side": call.get("s"),
                     "line": prop.get("line") or "",
                     "why": call.get("why") or "",
+                    "score": call.get("score") or 0,
                 })
-    found.sort(key=lambda item: (item.get("side") != "U", item.get("name") or "", item.get("label") or ""))
+    found.sort(key=lambda item: (-float(item.get("score") or 0), item.get("name") or "", item.get("label") or ""))
     return found[:40]
 
 
@@ -1024,12 +1100,38 @@ def check() -> None:
             "fga": 16 if minutes > 20 else 4,
             "fgm": 8 if minutes > 20 else 2,
         })
-    under_call = project_call("pts", 22.5, None, cut_games)
-    if not under_call or under_call["s"] != "U" or under_call["k"] != "strong":
-        raise SystemExit(f"a minute cut with the number still up should be a strong under, got {under_call}")
+    one_night_points = project_call("pts", 22.5, None, cut_games)
+    if one_night_points:
+        raise SystemExit(f"one short night should not mark points, got {one_night_points}")
+    one_night_threes = project_call("fg3m", 2.5, None, cut_games)
+    if one_night_threes:
+        raise SystemExit(f"one short night should not mark threes, got {one_night_threes}")
+    board_call = project_call("reb", 5.5, None, cut_games)
+    if not board_call or board_call["s"] != "U" or board_call["k"] != "strong":
+        raise SystemExit(f"a board number still above the recent average should stay a strong under, got {board_call}")
+    if "one night" not in board_call["why"] or "59%" in board_call["why"]:
+        raise SystemExit(f"the board under should not read as a minute projection, got {board_call['why']}")
     priced_in = project_call("pts", 16.5, None, cut_games)
     if priced_in:
         raise SystemExit("a minute cut whose number is already under the average should stay unmarked")
+    durable_games = []
+    for index, minutes in enumerate((32, 33, 31, 34, 18, 15)):
+        durable_games.append({
+            "game_id": f"d{index}",
+            "slate_date": f"2026-11-{index + 10:02d}",
+            "seconds": int(minutes * 60),
+            "pts": 22 if minutes > 20 else 8,
+            "reb": 4,
+            "ast": 3,
+            "fg3m": 2,
+            "stl": 1,
+            "blk": 0,
+            "fga": 16 if minutes > 20 else 4,
+            "fgm": 8 if minutes > 20 else 2,
+        })
+    durable_call = project_call("pts", 22.5, None, durable_games)
+    if not durable_call or durable_call["s"] != "U" or durable_call["k"] != "strong" or "59%" not in durable_call["why"]:
+        raise SystemExit(f"a cut across more than one game should stay a strong points under, got {durable_call}")
     steady = []
     for index in range(8):
         steady.append({

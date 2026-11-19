@@ -296,7 +296,7 @@ function paintBoard() {
   bar.append(heading, count, actions);
   const key = document.createElement("p");
   key.className = "keyline";
-  key.textContent = "Starters first. Red is out, amber is at risk. A star clears every gate. A filled U is a minute cut with the number still up. A ring U is a minute slide or a missing shot diet, with the number still up. A filled O has cleared 80% with the median over the number. Hover a mark for the reason.";
+  key.textContent = "Starters first. Red is out, amber is at risk. A star clears every gate. A filled U is a strong under: minutes have been short for more than one game and the number is still up, or a rebound or steal number is at least a point above the recent average after a single short night. One short night does not mark points, PRA, threes, or assists. A ring U is a lean. A filled O has cleared 80% with the median over the number. Hover a mark for the reason.";
   app.append(bar, key);
   if (state.day && state.day.card) app.append(formulaCard(state.day.card));
   let visible = 0;
@@ -1071,8 +1071,23 @@ function formulaCard(card) {
   section.append(summary);
   const note = document.createElement("p");
   note.className = "card-note";
-  note.textContent = "A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A U appears only after the role shrinks, a minute cut, a three-game slide, or a night the shots disappeared, and the number has not come down with it. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over.";
+  note.textContent = "Calls are sorted strongest first. A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A filled U needs the minutes short on more than one of the last three games, with the number still up. A rebound or steal can still be a strong under after one short night when the number is at least a point above the recent average. One short night does not mark points, PRA, threes, or assists. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over.";
   section.append(note);
+  if ((card.calls || []).length) {
+    section.append(cardTable(
+      "Path calls",
+      card.calls,
+      ["Player", "Game", "Market", "Line", "Call", "Why"],
+      (item) => [
+        `${item.team} ${item.name}`,
+        item.game,
+        item.label,
+        item.line,
+        item.side === "U" ? "Under" : "Over",
+        item.why,
+      ],
+    ));
+  }
   section.append(cardTable(
     "Clear stars",
     card.stars || [],
@@ -1089,21 +1104,6 @@ function formulaCard(card) {
       item.note || "",
     ],
   ));
-  if ((card.calls || []).length) {
-    section.append(cardTable(
-      "Path calls",
-      card.calls,
-      ["Player", "Game", "Market", "Line", "Call", "Why"],
-      (item) => [
-        `${item.team} ${item.name}`,
-        item.game,
-        item.label,
-        item.line,
-        item.side === "U" ? "Under" : "Over",
-        item.why,
-      ],
-    ));
-  }
   if ((card.pauses || []).length) {
     section.append(cardTable(
       "Points paused",
