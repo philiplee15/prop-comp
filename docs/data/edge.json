@@ -1,12 +1,12 @@
 {
-  "pulled_at": "Fri Nov 20, 4:43 PM ET",
+  "pulled_at": "Fri Nov 20, 5:32 PM ET",
   "slate": "2026-11-20",
   "book": "FanDuel published prices",
   "counts": {
     "games": 9,
-    "book": 557,
-    "prizepicks": 756,
-    "matched": 245,
+    "book": 554,
+    "prizepicks": 765,
+    "matched": 234,
     "playable": 6
   },
   "slips": [
@@ -97,7 +97,7 @@
       "label": "6-pick Flex",
       "payout": "25x",
       "bar": 0.5421,
-      "ev": 1.136,
+      "ev": 1.23,
       "same_game": true,
       "legs": [
         {
@@ -106,8 +106,17 @@
           "stat_label": "Points",
           "line": 4.5,
           "side": "under",
-          "fair": 0.5752,
+          "fair": 0.5905,
           "game": "Sacramento Kings @ Los Angeles Lakers"
+        },
+        {
+          "player": "Herbert Jones",
+          "team": "NOP",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "under",
+          "fair": 0.5717,
+          "game": "New Orleans Pelicans @ Oklahoma City Thunder"
         },
         {
           "player": "Jalen Suggs",
@@ -115,26 +124,26 @@
           "stat_label": "Points",
           "line": 2.5,
           "side": "over",
-          "fair": 0.567,
+          "fair": 0.5717,
           "game": "Orlando Magic @ Brooklyn Nets"
         },
         {
-          "player": "Kyshawn George",
-          "team": "WAS",
-          "stat_label": "Points",
-          "line": 3.5,
-          "side": "over",
-          "fair": 0.5548,
-          "game": "Washington Wizards @ Chicago Bulls"
+          "player": "Jalen Johnson",
+          "team": "ATL",
+          "stat_label": "Assists",
+          "line": 8.5,
+          "side": "under",
+          "fair": 0.5595,
+          "game": "Charlotte Hornets @ Atlanta Hawks"
         },
         {
-          "player": "Herbert Jones",
-          "team": "NOP",
-          "stat_label": "Rebounds",
+          "player": "Tristan da Silva",
+          "team": "ORL",
+          "stat_label": "Points",
           "line": 2.5,
           "side": "over",
-          "fair": 0.5506,
-          "game": "New Orleans Pelicans @ Oklahoma City Thunder"
+          "fair": 0.5511,
+          "game": "Orlando Magic @ Brooklyn Nets"
         },
         {
           "player": "Ajay Mitchell",
@@ -144,15 +153,6 @@
           "side": "under",
           "fair": 0.5467,
           "game": "New Orleans Pelicans @ Oklahoma City Thunder"
-        },
-        {
-          "player": "Tristan da Silva",
-          "team": "ORL",
-          "stat_label": "Points",
-          "line": 12.5,
-          "side": "under",
-          "fair": 0.5428,
-          "game": "Orlando Magic @ Brooklyn Nets"
         }
       ]
     },
@@ -161,7 +161,7 @@
       "label": "5-pick Flex",
       "payout": "10x",
       "bar": 0.5425,
-      "ev": 1.111,
+      "ev": 1.184,
       "same_game": true,
       "legs": [
         {
@@ -170,8 +170,17 @@
           "stat_label": "Points",
           "line": 4.5,
           "side": "under",
-          "fair": 0.5752,
+          "fair": 0.5905,
           "game": "Sacramento Kings @ Los Angeles Lakers"
+        },
+        {
+          "player": "Herbert Jones",
+          "team": "NOP",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "under",
+          "fair": 0.5717,
+          "game": "New Orleans Pelicans @ Oklahoma City Thunder"
         },
         {
           "player": "Jalen Suggs",
@@ -179,26 +188,81 @@
           "stat_label": "Points",
           "line": 2.5,
           "side": "over",
-          "fair": 0.567,
+          "fair": 0.5717,
           "game": "Orlando Magic @ Brooklyn Nets"
         },
         {
-          "player": "Kyshawn George",
-          "team": "WAS",
+          "player": "Jalen Johnson",
+          "team": "ATL",
+          "stat_label": "Assists",
+          "line": 8.5,
+          "side": "under",
+          "fair": 0.5595,
+          "game": "Charlotte Hornets @ Atlanta Hawks"
+        },
+        {
+          "player": "Tristan da Silva",
+          "team": "ORL",
           "stat_label": "Points",
-          "line": 3.5,
+          "line": 2.5,
           "side": "over",
-          "fair": 0.5548,
-          "game": "Washington Wizards @ Chicago Bulls"
+          "fair": 0.5511,
+          "game": "Orlando Magic @ Brooklyn Nets"
+        }
+      ]
+    },
+    {
+      "id": "6-power",
+      "label": "6-pick Power",
+      "payout": "37.5x",
+      "bar": 0.5466,
+      "ev": 1.22,
+      "same_game": true,
+      "legs": [
+        {
+          "player": "Domantas Sabonis",
+          "team": "SAC",
+          "stat_label": "Points",
+          "line": 4.5,
+          "side": "under",
+          "fair": 0.5905,
+          "game": "Sacramento Kings @ Los Angeles Lakers"
         },
         {
           "player": "Herbert Jones",
           "team": "NOP",
-          "stat_label": "Rebounds",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "under",
+          "fair": 0.5717,
+          "game": "New Orleans Pelicans @ Oklahoma City Thunder"
+        },
+        {
+          "player": "Jalen Suggs",
+          "team": "ORL",
+          "stat_label": "Points",
           "line": 2.5,
           "side": "over",
-          "fair": 0.5506,
-          "game": "New Orleans Pelicans @ Oklahoma City Thunder"
+          "fair": 0.5717,
+          "game": "Orlando Magic @ Brooklyn Nets"
+        },
+        {
+          "player": "Jalen Johnson",
+          "team": "ATL",
+          "stat_label": "Assists",
+          "line": 8.5,
+          "side": "under",
+          "fair": 0.5595,
+          "game": "Charlotte Hornets @ Atlanta Hawks"
+        },
+        {
+          "player": "Tristan da Silva",
+          "team": "ORL",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5511,
+          "game": "Orlando Magic @ Brooklyn Nets"
         },
         {
           "player": "Ajay Mitchell",
@@ -212,11 +276,66 @@
       ]
     },
     {
+      "id": "5-power",
+      "label": "5-pick Power",
+      "payout": "20x",
+      "bar": 0.5493,
+      "ev": 1.19,
+      "same_game": true,
+      "legs": [
+        {
+          "player": "Domantas Sabonis",
+          "team": "SAC",
+          "stat_label": "Points",
+          "line": 4.5,
+          "side": "under",
+          "fair": 0.5905,
+          "game": "Sacramento Kings @ Los Angeles Lakers"
+        },
+        {
+          "player": "Herbert Jones",
+          "team": "NOP",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "under",
+          "fair": 0.5717,
+          "game": "New Orleans Pelicans @ Oklahoma City Thunder"
+        },
+        {
+          "player": "Jalen Suggs",
+          "team": "ORL",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5717,
+          "game": "Orlando Magic @ Brooklyn Nets"
+        },
+        {
+          "player": "Jalen Johnson",
+          "team": "ATL",
+          "stat_label": "Assists",
+          "line": 8.5,
+          "side": "under",
+          "fair": 0.5595,
+          "game": "Charlotte Hornets @ Atlanta Hawks"
+        },
+        {
+          "player": "Tristan da Silva",
+          "team": "ORL",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5511,
+          "game": "Orlando Magic @ Brooklyn Nets"
+        }
+      ]
+    },
+    {
       "id": "3-power",
       "label": "3-pick Power",
       "payout": "6x",
       "bar": 0.5503,
-      "ev": 1.086,
+      "ev": 1.158,
       "same_game": false,
       "legs": [
         {
@@ -225,8 +344,17 @@
           "stat_label": "Points",
           "line": 4.5,
           "side": "under",
-          "fair": 0.5752,
+          "fair": 0.5905,
           "game": "Sacramento Kings @ Los Angeles Lakers"
+        },
+        {
+          "player": "Herbert Jones",
+          "team": "NOP",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "under",
+          "fair": 0.5717,
+          "game": "New Orleans Pelicans @ Oklahoma City Thunder"
         },
         {
           "player": "Jalen Suggs",
@@ -234,17 +362,8 @@
           "stat_label": "Points",
           "line": 2.5,
           "side": "over",
-          "fair": 0.567,
+          "fair": 0.5717,
           "game": "Orlando Magic @ Brooklyn Nets"
-        },
-        {
-          "player": "Kyshawn George",
-          "team": "WAS",
-          "stat_label": "Points",
-          "line": 3.5,
-          "side": "over",
-          "fair": 0.5548,
-          "game": "Washington Wizards @ Chicago Bulls"
         }
       ]
     }
@@ -257,12 +376,38 @@
       "stat_label": "Points",
       "line": 4.5,
       "side": "under",
-      "fair": 0.5752,
-      "over": 120,
-      "under": -160,
+      "fair": 0.5905,
+      "over": 128,
+      "under": -172,
       "game": "Sacramento Kings @ Los Angeles Lakers",
       "event_id": "36334577",
       "tip": "Fri 10:10 PM ET",
+      "clears": [
+        "6-flex",
+        "5-flex",
+        "6-power",
+        "5-power",
+        "3-power",
+        "4-power",
+        "2-power",
+        "3-flex",
+        "4-flex"
+      ],
+      "playable": true
+    },
+    {
+      "player": "Herbert Jones",
+      "team": "NOP",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 2.5,
+      "side": "under",
+      "fair": 0.5717,
+      "over": 118,
+      "under": -158,
+      "game": "New Orleans Pelicans @ Oklahoma City Thunder",
+      "event_id": "36334579",
+      "tip": "Fri 8:10 PM ET",
       "clears": [
         "6-flex",
         "5-flex",
@@ -281,9 +426,9 @@
       "stat_label": "Points",
       "line": 2.5,
       "side": "over",
-      "fair": 0.567,
-      "over": -154,
-      "under": 116,
+      "fair": 0.5717,
+      "over": -158,
+      "under": 118,
       "game": "Orlando Magic @ Brooklyn Nets",
       "event_id": "36334576",
       "tip": "Fri 7:40 PM ET",
@@ -299,18 +444,18 @@
       "playable": true
     },
     {
-      "player": "Kyshawn George",
-      "team": "WAS",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 3.5,
-      "side": "over",
-      "fair": 0.5548,
-      "over": -146,
-      "under": 110,
-      "game": "Washington Wizards @ Chicago Bulls",
-      "event_id": "36334582",
-      "tip": "Fri 8:10 PM ET",
+      "player": "Jalen Johnson",
+      "team": "ATL",
+      "stat": "ast",
+      "stat_label": "Assists",
+      "line": 8.5,
+      "side": "under",
+      "fair": 0.5595,
+      "over": 114,
+      "under": -146,
+      "game": "Charlotte Hornets @ Atlanta Hawks",
+      "event_id": "36334575",
+      "tip": "Fri 7:10 PM ET",
       "clears": [
         "6-flex",
         "5-flex",
@@ -322,18 +467,18 @@
       "playable": true
     },
     {
-      "player": "Herbert Jones",
-      "team": "NOP",
-      "stat": "reb",
-      "stat_label": "Rebounds",
+      "player": "Tristan da Silva",
+      "team": "ORL",
+      "stat": "pts",
+      "stat_label": "Points",
       "line": 2.5,
       "side": "over",
-      "fair": 0.5506,
-      "over": -140,
-      "under": 110,
-      "game": "New Orleans Pelicans @ Oklahoma City Thunder",
-      "event_id": "36334579",
-      "tip": "Fri 8:10 PM ET",
+      "fair": 0.5511,
+      "over": -144,
+      "under": 108,
+      "game": "Orlando Magic @ Brooklyn Nets",
+      "event_id": "36334576",
+      "tip": "Fri 7:40 PM ET",
       "clears": [
         "6-flex",
         "5-flex",
@@ -365,25 +510,6 @@
       "playable": true
     },
     {
-      "player": "Tristan da Silva",
-      "team": "ORL",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 12.5,
-      "side": "under",
-      "fair": 0.5428,
-      "over": 106,
-      "under": -136,
-      "game": "Orlando Magic @ Brooklyn Nets",
-      "event_id": "36334576",
-      "tip": "Fri 7:40 PM ET",
-      "clears": [
-        "6-flex",
-        "5-flex"
-      ],
-      "playable": true
-    },
-    {
       "player": "Keegan Murray",
       "team": "SAC",
       "stat": "fg3m",
@@ -400,49 +526,33 @@
       "playable": false
     },
     {
-      "player": "Matas Buzelis",
-      "team": "CHI",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 3.5,
-      "side": "over",
-      "fair": 0.5419,
-      "over": -138,
-      "under": 104,
-      "game": "Washington Wizards @ Chicago Bulls",
-      "event_id": "36334582",
-      "tip": "Fri 8:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Michael Porter Jr.",
-      "team": "BKN",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 5.5,
-      "side": "over",
-      "fair": 0.5419,
-      "over": -138,
-      "under": 104,
-      "game": "Orlando Magic @ Brooklyn Nets",
-      "event_id": "36334576",
-      "tip": "Fri 7:40 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Aaron Gordon",
-      "team": "DEN",
+      "player": "Ziaire Williams",
+      "team": "LAL",
       "stat": "reb",
       "stat_label": "Rebounds",
-      "line": 4.5,
-      "side": "over",
+      "line": 2.5,
+      "side": "under",
+      "fair": 0.5419,
+      "over": 104,
+      "under": -138,
+      "game": "Sacramento Kings @ Los Angeles Lakers",
+      "event_id": "36334577",
+      "tip": "Fri 10:10 PM ET",
+      "clears": [],
+      "playable": false
+    },
+    {
+      "player": "Darius Acuff Jr.",
+      "team": "SAC",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 24.5,
+      "side": "under",
       "fair": 0.5379,
-      "over": -136,
-      "under": 102,
-      "game": "Houston Rockets @ Denver Nuggets",
-      "event_id": "36334581",
+      "over": 102,
+      "under": -136,
+      "game": "Sacramento Kings @ Los Angeles Lakers",
+      "event_id": "36334577",
       "tip": "Fri 10:10 PM ET",
       "clears": [],
       "playable": false
@@ -464,18 +574,34 @@
       "playable": false
     },
     {
-      "player": "Malik Monk",
-      "team": "SAC",
+      "player": "Miles Bridges",
+      "team": "PHX",
       "stat": "pts",
       "stat_label": "Points",
-      "line": 11.5,
+      "line": 14.5,
       "side": "under",
       "fair": 0.5379,
       "over": 102,
       "under": -136,
-      "game": "Sacramento Kings @ Los Angeles Lakers",
-      "event_id": "36334577",
-      "tip": "Fri 10:10 PM ET",
+      "game": "Phoenix Suns @ Utah Jazz",
+      "event_id": "36334578",
+      "tip": "Fri 9:40 PM ET",
+      "clears": [],
+      "playable": false
+    },
+    {
+      "player": "Aday Mara",
+      "team": "OKC",
+      "stat": "reb",
+      "stat_label": "Rebounds",
+      "line": 7.5,
+      "side": "under",
+      "fair": 0.5372,
+      "over": 104,
+      "under": -132,
+      "game": "New Orleans Pelicans @ Oklahoma City Thunder",
+      "event_id": "36334579",
+      "tip": "Fri 8:10 PM ET",
       "clears": [],
       "playable": false
     }
