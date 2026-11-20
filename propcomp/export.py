@@ -96,6 +96,13 @@ def build(conn) -> None:
                     elif prop["c"] in YES_CODES and prop["r"] in {"yes", "no"}:
                         logs[row["id"]][prop["c"]].append([slate, prop["r"][0]])
             if game["status"] == "final":
+                for player_id, stat in (stats_by_game.get(game["id"]) or {}).items():
+                    played = played_minutes(stat)
+                    if played is None:
+                        continue
+                    logs[player_id]["min"].append(
+                        [slate, expected_minutes(stat), None, played, None]
+                    )
                 blotter.append(
                     {
                         "date": slate,
@@ -383,6 +390,25 @@ def abbr(teams: dict, team_id: str | None) -> str:
         return ""
     team = teams.get(str(team_id))
     return team["abbr"] if team else str(team_id)
+
+
+def played_minutes(stat: dict) -> float | None:
+    seconds = stat.get("seconds") or 0
+    if seconds <= 0:
+        return None
+    return round(seconds / 60, 1)
+
+
+def expected_minutes(stat: dict) -> float | None:
+    # The box score has minutes played and no expected-minutes field.
+    # The chart uses this slot when a later feed stores the number.
+    raw = stat.get("expected_minutes")
+    if raw in (None, ""):
+        return None
+    try:
+        return round(float(raw), 1)
+    except (TypeError, ValueError):
+        return None
 
 
 def write_json(path, payload) -> None:

@@ -26,7 +26,7 @@ const state = {
   lookups: null,
 };
 
-const CHART_CODES = new Set(["pts", "reb", "ast", "fg3m", "pra", "stl", "blk", "dd", "first"]);
+const CHART_CODES = new Set(["pts", "reb", "ast", "fg3m", "pra", "stl", "blk", "dd", "first", "min"]);
 const STAR_CODES = new Set(["pts", "reb", "ast", "fg3m", "pra", "stl", "blk"]);
 
 const app = document.querySelector("#app");
@@ -520,6 +520,7 @@ function paintPlayer() {
   const charts = document.createElement("div");
   charts.className = "charts";
   app.append(title, charts);
+  appendMinutesChart(charts, log.min || []);
   state.manifest.core.forEach((market) => {
     const series = log[market.code] || [];
     const upcoming = openLine(state.playerId, market.code, series);
@@ -555,7 +556,7 @@ function paintPlayer() {
       ? `${shortDate(upcoming.date)} line ${formatNumber(upcoming.line)} is the open point on the right.`
       : "Hover a point to see the value.";
     if (market.code !== "dd" && market.code !== "first" && (series.length || upcoming)) {
-      card.append(lineChart(series, trend ? trend.avg : null, readout, upcoming));
+      card.append(lineChart(series, trend ? trend.avg : null, readout, upcoming, {line: "line", actual: "actual"}));
     }
     card.append(readout, resultStrip(series, market.code, upcoming));
     charts.append(card);
@@ -574,13 +575,47 @@ function paintPlayer() {
   }
 }
 
-function lineChart(series, average, readout, upcoming) {
+function appendMinutesChart(charts, series) {
+  if (!series.length) return;
+  const card = document.createElement("section");
+  card.className = "panel chart-card";
+  card.id = "chart-min";
+  if (state.chart === "min") card.classList.add("on");
+  const heading = document.createElement("h3");
+  const link = document.createElement("a");
+  link.href = `#/player/${state.playerId}/min`;
+  link.textContent = "Minutes";
+  heading.append(link);
+  card.append(heading);
+  const trend = trailingAverage(series, "min");
+  const hasExpected = series.some((row) => row[1] !== null && row[1] !== "" && Number.isFinite(Number(row[1])));
+  const note = document.createElement("p");
+  note.className = "trend";
+  const parts = [];
+  if (trend) parts.push(`Last ${trend.n} average ${trend.avg.toFixed(1)}`);
+  parts.push(hasExpected ? "Colored line is expected minutes" : "Each point is minutes played");
+  note.textContent = parts.join(" · ");
+  card.append(note);
+  const readout = document.createElement("p");
+  readout.className = "hover-readout";
+  readout.textContent = "Hover a point to see the minutes.";
+  card.append(
+    lineChart(series, trend ? trend.avg : null, readout, null, {line: "expected", actual: "played"}),
+    readout,
+    resultStrip(series, "min", null),
+  );
+  charts.append(card);
+}
+
+function lineChart(series, average, readout, upcoming, names) {
+  const lineName = (names && names.line) || "line";
+  const actualName = (names && names.actual) || "actual";
   const values = [];
   series.forEach((row) => {
-    const line = Number(row[1]);
-    const actual = Number(row[3]);
-    if (Number.isFinite(line)) values.push(line);
-    if (Number.isFinite(actual)) values.push(actual);
+    if (row[1] !== null && row[1] !== "" && Number.isFinite(Number(row[1]))) values.push(Number(row[1]));
+    if (row[3] !== null && row[3] !== undefined && row[3] !== "" && Number.isFinite(Number(row[3]))) {
+      values.push(Number(row[3]));
+    }
   });
   if (Number.isFinite(average)) values.push(average);
   if (upcoming) values.push(upcoming.line);
@@ -606,12 +641,15 @@ function lineChart(series, average, readout, upcoming) {
     if (row[1] !== null && row[1] !== "") {
       const y = yFor(Number(row[1]));
       line.push(`${x},${y}`);
-      dots.push(dot(x, y, paintColor("--accent"), `${shortDate(row[0])} line ${row[1]}`, readout));
+      dots.push(dot(x, y, paintColor("--accent"), `${shortDate(row[0])} ${lineName} ${formatNumber(row[1])}`, readout));
     }
-    if (row[3] !== null && row[3] !== undefined) {
+    if (row[3] !== null && row[3] !== undefined && row[3] !== "") {
       const y = yFor(Number(row[3]));
       actual.push(`${x},${y}`);
-      dots.push(dot(x, y, paintColor("--ink"), `${shortDate(row[0])} actual ${row[3]}, line ${row[1]}`, readout));
+      const detail = row[1] !== null && row[1] !== ""
+        ? `${shortDate(row[0])} ${actualName} ${formatNumber(row[3])}, ${lineName} ${formatNumber(row[1])}`
+        : `${shortDate(row[0])} ${actualName} ${formatNumber(row[3])}`;
+      dots.push(dot(x, y, paintColor("--ink"), detail, readout));
     }
   });
   if (upcoming) {
@@ -629,7 +667,8 @@ function lineChart(series, average, readout, upcoming) {
     dots.push(ring);
     dots.push(dot(x, y, paintColor("--accent"), label, readout));
   }
-  svg.append(poly(line.join(" "), paintColor("--accent"), "4 4"), poly(actual.join(" "), paintColor("--ink"), ""));
+  if (line.length) svg.append(poly(line.join(" "), paintColor("--accent"), "4 4"));
+  if (actual.length) svg.append(poly(actual.join(" "), paintColor("--ink"), ""));
   if (Number.isFinite(average)) {
     const guide = svgEl("line");
     const y = yFor(average);
@@ -664,10 +703,15 @@ function resultStrip(series, code, upcoming) {
   series.forEach((row) => {
     const button = document.createElement("button");
     button.type = "button";
-    const mark = code === "dd" || code === "first" ? row[1] : row[4];
+    const mark = code === "min" ? null : (code === "dd" || code === "first" ? row[1] : row[4]);
     button.textContent = shortDate(row[0]).split(" ")[1];
-    button.classList.add(mark === "o" || mark === "y" ? "hit" : "miss");
-    button.title = code === "dd" || code === "first" ? `${row[0]} ${mark}` : `${row[0]} line ${row[1]} actual ${row[3]}`;
+    if (code === "min") {
+      button.classList.add("min");
+      button.title = `${row[0]} played ${formatNumber(row[3])}`;
+    } else {
+      button.classList.add(mark === "o" || mark === "y" ? "hit" : "miss");
+      button.title = code === "dd" || code === "first" ? `${row[0]} ${mark}` : `${row[0]} line ${row[1]} actual ${row[3]}`;
+    }
     button.addEventListener("click", () => selectDate(row[0]));
     strip.append(button);
   });
