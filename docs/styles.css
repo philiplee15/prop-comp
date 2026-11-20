@@ -558,3 +558,24 @@ ul { margin: 8px 0 0; padding-left: 18px; }
   .game { padding: 12px; }
   td.name, th.sticky { min-width: 148px; }
 }
+
+.edge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.edge-grid .panel { margin-bottom: 0; }
+
+.edge-grid ol { margin: 8px 0 0; padding-left: 18px; }
+
+.edge-grid li { margin: 4px 0; white-space: normal; }
+
+td.edge-text, th.edge-text {
+  text-align: left;
+  white-space: normal;
+}
+
+.edge-play { color: var(--good); font-weight: 650; }
+
+.edge-short { color: var(--warn); }

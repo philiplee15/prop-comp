@@ -689,6 +689,12 @@ def main() -> None:
     print("Writing the site")
     export.build(conn)
     conn.close()
+    try:
+        from propcomp.edge import publish
+
+        publish()
+    except Exception as error:
+        print(f"Edge board skipped: {error}", flush=True)
     print("Sync finished")
 
 

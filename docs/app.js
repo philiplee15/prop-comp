@@ -20,6 +20,8 @@ const state = {
   folded: {},
   liveDays: {},
   checking: false,
+  edge: null,
+  edgeStat: "all",
   playerIndex: null,
   lookups: null,
 };
@@ -118,7 +120,7 @@ function readPlace() {
   const requested = params.get("d");
   if (knownDate(requested)) state.date = requested;
   const view = params.get("v");
-  state.view = view === "season" || view === "player" ? view : "board";
+  state.view = view === "season" || view === "player" || view === "edge" ? view : "board";
   state.playerId = params.get("p") || "";
   state.chart = CHART_CODES.has(params.get("c")) ? params.get("c") : "";
   readFilters(params);
@@ -133,6 +135,8 @@ function readPath(raw) {
   state.chart = "";
   if (head === "season") {
     state.view = "season";
+  } else if (head === "edge") {
+    state.view = "edge";
   } else if (head === "player") {
     state.view = "player";
     state.playerId = parts[1] || "";
@@ -167,6 +171,7 @@ function place() {
   }
   let path = "/board";
   if (state.view === "season") path = "/season";
+  else if (state.view === "edge") path = "/edge";
   else if (state.view === "player") {
     path = state.playerId ? `/player/${state.playerId}` : "/player";
     if (state.playerId && state.chart) path += `/${state.chart}`;
@@ -204,10 +209,11 @@ async function setView(view) {
   document.querySelectorAll("#tabs button").forEach((button) => {
     button.classList.toggle("on", button.dataset.view === view);
   });
-  dates.hidden = view === "season" || view === "player";
+  dates.hidden = view === "season" || view === "player" || view === "edge";
   if (view === "board") await showBoard();
   if (view === "season") await showSeason();
   if (view === "player") await showPlayer();
+  if (view === "edge") await showEdge();
 }
 
 function paintChrome() {
@@ -1262,6 +1268,169 @@ function poly(points, color, dash) {
 
 function svgEl(name) {
   return document.createElementNS("http://www.w3.org/2000/svg", name);
+}
+
+const EDGE_SLIPS = ["6-flex", "5-flex", "6-power", "5-power", "3-power", "4-power", "2-power"];
+
+async function showEdge() {
+  tools.replaceChildren();
+  app.textContent = "Loading the line comparison.";
+  try {
+    state.edge = await fetchJson("data/edge.json", true);
+  } catch (error) {
+    app.replaceChildren();
+    const note = document.createElement("p");
+    note.className = "keyline";
+    note.textContent = "No comparison file yet. From the project folder, run python -m propcomp.edge.";
+    app.append(note);
+    return;
+  }
+  tools.append(labeled("Stat", select(
+    [["all", "All"], ["pts", "Points"], ["reb", "Rebounds"], ["ast", "Assists"], ["pra", "PRA"], ["fg3m", "Threes"]],
+    state.edgeStat,
+    (value) => {
+      state.edgeStat = value;
+      paintEdge();
+    },
+  )));
+  paintEdge();
+}
+
+function paintEdge() {
+  const board = state.edge;
+  const slips = new Map((board.slips || []).map((slip) => [slip.id, slip]));
+  const easiest = slips.get("6-flex");
+  const legs = (board.legs || []).filter((leg) => state.edgeStat === "all" || leg.stat === state.edgeStat);
+  app.replaceChildren();
+
+  const intro = document.createElement("section");
+  intro.className = "panel";
+  intro.append(edgeHeading("Same number, vig removed"));
+  const note = document.createElement("p");
+  note.className = "card-note";
+  const counts = board.counts || {};
+  const barText = easiest ? percent(easiest.bar) : "the slip break-even";
+  note.textContent = `${board.pulled_at || "Just now"}. ${counts.matched || 0} PrizePicks lines match a FanDuel number for the same player and stat. ${counts.playable || 0} of them clear ${barText}, the 6-pick Flex break-even, which is the lowest bar on the current payout chart. The fair chance is FanDuel's two prices with the vig divided out. It is the book's price, not a promise a leg hits.`;
+  intro.append(note);
+  const how = document.createElement("p");
+  how.className = "card-note";
+  how.textContent = "Run python -m propcomp.edge close to tip, when lineups are set. The hourly sync refreshes this file when the feeds answer. A 3-pick Power pays 6x on the current chart, so its break-even is about 55%. That is a usable slip on today's payouts.";
+  intro.append(how);
+  app.append(intro);
+
+  const bars = document.createElement("section");
+  bars.className = "panel";
+  bars.append(edgeHeading("Break-even chance per leg"));
+  const barTable = document.createElement("table");
+  const barHead = document.createElement("tr");
+  ["Slip", "All-hit payout", "Break-even"].forEach((label) => addCell(barHead, "th", label).classList.add("edge-text"));
+  const barBody = document.createElement("tbody");
+  EDGE_SLIPS.forEach((id) => {
+    const slip = slips.get(id);
+    if (!slip) return;
+    const row = document.createElement("tr");
+    addCell(row, "td", slip.label).classList.add("edge-text");
+    addCell(row, "td", slip.payout).classList.add("edge-text");
+    addCell(row, "td", percent(slip.bar)).classList.add("edge-text");
+    barBody.append(row);
+  });
+  const barHeadWrap = document.createElement("thead");
+  barHeadWrap.append(barHead);
+  barTable.append(barHeadWrap, barBody);
+  bars.append(barTable);
+  app.append(bars);
+
+  const cards = board.cards || [];
+  const cardSection = document.createElement("section");
+  cardSection.append(edgeHeading(cards.length ? "Slips from the lines that clear" : "No slip clears tonight"));
+  if (!cards.length) {
+    const empty = document.createElement("p");
+    empty.className = "card-note";
+    empty.textContent = "Every matched side is still short of a break-even. The table is the closest same-number sides, so you can see where the book is shaded. It is not a ticket.";
+    cardSection.append(empty);
+  } else {
+    const grid = document.createElement("div");
+    grid.className = "edge-grid";
+    cards.forEach((card) => grid.append(edgeCard(card)));
+    cardSection.append(grid);
+  }
+  app.append(cardSection);
+
+  const tableWrap = document.createElement("div");
+  tableWrap.className = "table-wrap panel";
+  tableWrap.append(edgeHeading(counts.playable ? "Sides that clear a slip" : "Closest sides, still short"));
+  const table = document.createElement("table");
+  const head = document.createElement("tr");
+  ["Player", "Prop", "Side", "Fair", "FanDuel", "Clears", "Game", "Tip"].forEach((label, index) => {
+    const cell = addCell(head, "th", label);
+    if (index === 0 || index >= 4) cell.classList.add("edge-text");
+  });
+  const thead = document.createElement("thead");
+  thead.append(head);
+  const tbody = document.createElement("tbody");
+  legs.forEach((leg) => tbody.append(edgeRow(leg, slips)));
+  if (!legs.length) {
+    const row = document.createElement("tr");
+    const cell = addCell(row, "td", "No matched lines for this stat.");
+    cell.colSpan = 8;
+    cell.classList.add("edge-text");
+    tbody.append(row);
+  }
+  table.append(thead, tbody);
+  tableWrap.append(table);
+  app.append(tableWrap);
+}
+
+function edgeHeading(text) {
+  const heading = document.createElement("h2");
+  heading.textContent = text;
+  return heading;
+}
+
+function edgeCard(card) {
+  const panel = document.createElement("section");
+  panel.className = "panel";
+  const title = document.createElement("h3");
+  title.textContent = `${card.label}, ${card.payout} if every leg hits`;
+  const meta = document.createElement("p");
+  meta.className = "card-note";
+  const same = card.same_game ? " Two legs share a game, so the expected return treats them as independent and the app may cut the payout." : "";
+  meta.textContent = `Needs ${percent(card.bar)} a leg. Expected return ${Number(card.ev).toFixed(2)}x per $1 if the fair chances hold and the legs are independent.${same}`;
+  const list = document.createElement("ol");
+  (card.legs || []).forEach((leg) => {
+    const item = document.createElement("li");
+    item.textContent = `${leg.team ? `${leg.team} ` : ""}${leg.player} ${leg.side} ${Number(leg.line).toFixed(1)} ${leg.stat_label} (${percent(leg.fair)})`;
+    list.append(item);
+  });
+  panel.append(title, meta, list);
+  return panel;
+}
+
+function edgeRow(leg, slips) {
+  const row = document.createElement("tr");
+  const name = addCell(row, "td", `${leg.team ? `${leg.team} ` : ""}${leg.player}`);
+  name.classList.add("name");
+  addCell(row, "td", `${leg.stat_label} ${Number(leg.line).toFixed(1)}`);
+  const side = addCell(row, "td", leg.side === "under" ? "Under" : "Over");
+  side.classList.add(leg.playable ? "edge-play" : "edge-short");
+  const fair = addCell(row, "td", percent(leg.fair));
+  fair.classList.add(leg.playable ? "edge-play" : "edge-short");
+  addCell(row, "td", `O ${american(leg.over)} / U ${american(leg.under)}`).classList.add("edge-text");
+  const clears = (leg.clears || []).map((id) => (slips.get(id) || {}).label || id);
+  addCell(row, "td", clears.length ? clears.join(", ") : "Short").classList.add("edge-text");
+  addCell(row, "td", leg.game || "").classList.add("edge-text");
+  addCell(row, "td", leg.tip || "").classList.add("edge-text");
+  return row;
+}
+
+function percent(value) {
+  return `${(Number(value) * 100).toFixed(1)}%`;
+}
+
+function american(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return "";
+  return number > 0 ? `+${number}` : String(number);
 }
 
 async function fetchJson(path, fresh) {
