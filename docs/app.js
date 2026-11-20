@@ -1274,14 +1274,14 @@ const EDGE_SLIPS = ["6-flex", "5-flex", "6-power", "5-power", "3-power", "4-powe
 
 async function showEdge() {
   tools.replaceChildren();
-  app.textContent = "Loading the line comparison.";
+  app.textContent = "Loading the latest line comparison.";
   try {
     state.edge = await fetchJson("data/edge.json", true);
   } catch (error) {
     app.replaceChildren();
     const note = document.createElement("p");
     note.className = "keyline";
-    note.textContent = "No comparison file yet. From the project folder, run python -m propcomp.edge.";
+    note.textContent = "No comparison is published yet. The next scheduled refresh will add one.";
     app.append(note);
     return;
   }
@@ -1310,11 +1310,11 @@ function paintEdge() {
   note.className = "card-note";
   const counts = board.counts || {};
   const barText = easiest ? percent(easiest.bar) : "the slip break-even";
-  note.textContent = `${board.pulled_at || "Just now"}. ${counts.matched || 0} PrizePicks lines match a FanDuel number for the same player and stat. ${counts.playable || 0} of them clear ${barText}, the 6-pick Flex break-even, which is the lowest bar on the current payout chart. The fair chance is FanDuel's two prices with the vig divided out. It is the book's price, not a promise a leg hits.`;
+  note.textContent = `Loaded when you opened this page. Prices were pulled ${board.pulled_at || "earlier"}. ${counts.matched || 0} PrizePicks lines match a FanDuel number for the same player and stat. ${counts.playable || 0} of them clear ${barText}, the 6-pick Flex break-even, which is the lowest bar on the current payout chart. The fair chance is FanDuel's two prices with the vig divided out. It is the book's price, not a promise a leg hits.`;
   intro.append(note);
   const how = document.createElement("p");
   how.className = "card-note";
-  how.textContent = "Run python -m propcomp.edge close to tip, when lineups are set. The hourly sync refreshes this file when the feeds answer. A 3-pick Power pays 6x on the current chart, so its break-even is about 55%. That is a usable slip on today's payouts.";
+  how.textContent = "A new pull publishes about every 15 minutes from morning through late night Eastern, and opening this page always reads the newest one. Open it close to tip, when lineups are set. A 3-pick Power pays 6x on the current chart, so its break-even is about 55%. That is a usable slip on today's payouts.";
   intro.append(how);
   app.append(intro);
 

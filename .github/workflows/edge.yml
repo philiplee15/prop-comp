@@ -1,0 +1,36 @@
+name: Refresh edge
+
+on:
+  schedule:
+    # Every 15 minutes across the same window as the board sync.
+    # GitHub schedules in UTC. In summer these land one hour later on the Eastern clock.
+    - cron: "*/15 14-23,0-6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: propcomp-edge
+  cancel-in-progress: true
+
+jobs:
+  edge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compare PrizePicks with the published book
+        run: python -m propcomp.edge
+      - name: Commit the comparison
+        run: |
+          git add docs/data/edge.json
+          git diff --cached --quiet && exit 0
+          git -c user.name="prop-comp" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Refresh the PrizePicks comparison."
+          git pull --rebase origin main
+          git push origin HEAD:main
