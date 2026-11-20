@@ -105,8 +105,8 @@ def _guide() -> list[list]:
         ],
         [
             "Same-game pairs",
-            "The correlation is how two teammates' points moved across shared games. Positive means they rose and fell together. Negative means one rose while the other fell. Assists are checked the same way.",
-            "Eight to fourteen shared games is a short sample. Use the pair as a stacking check. It is not a star.",
+            "The board only shows a positive link from one player's assists to a teammate's points. An inverse link on the same stat, such as two scorers moving in opposite directions, stays off that section.",
+            "Eight to fourteen shared games is a short sample. Use the pair as a stacking check at the bottom of the card. It is not a star. The number columns here keep the raw correlations.",
         ],
         [
             "Path calls and stars",
@@ -251,7 +251,7 @@ def _pair_rows(history: dict[str, list[dict]], names: dict[str, str]) -> list[li
             _round(points),
             _round(a_ast),
             _round(b_ast),
-            _pair_read(points, a_ast, b_ast, count),
+            _pair_read(names.get(key[0]) or key[0], names.get(key[1]) or key[1], points, a_ast, b_ast, count),
         ])
     rows[1:] = sorted(rows[1:], key=lambda item: (-abs(item[4] or 0), item[0], item[1], item[2]))
     return rows
@@ -297,52 +297,50 @@ def _marked_pairs(days: list[dict], pair_rows: list[list]) -> dict:
                 continue
             seen.add(key)
             notes.append(best["note"])
-        notes.sort(key=lambda item: -abs(item["points"] or 0))
+        notes.sort(key=lambda item: -(item.get("link") or 0))
         if notes:
             marked[day["date"]] = notes[:8]
     return marked
 
 
 def _strongest_link(name: str, other: str, row: list) -> dict | None:
-    candidates = []
-    points = row[4] if isinstance(row[4], (int, float)) else None
-    a_ast = row[5] if isinstance(row[5], (int, float)) else None
-    b_ast = row[6] if isinstance(row[6], (int, float)) else None
+    # Same-stat movement, including an inverse points link, stays off this card.
+    # The story that belongs here is one player's assists feeding a teammate's points.
     games = row[3]
-    if points is not None and abs(points) >= 0.5:
-        direction = "rose and fell together" if points > 0 else "moved in opposite directions"
-        candidates.append((abs(points), (
-            f"{name} and {other} points {direction} across {games} shared games (r {points}). "
-            "Pairing check, not a star."
-        ), points))
-    # Row order is player id, not the focus name. Map each assist column back to names.
-    left_name, right_name = row[1], row[2]
-    if a_ast is not None and abs(a_ast) >= 0.5:
-        direction = "together" if a_ast > 0 else "apart"
-        candidates.append((abs(a_ast), (
-            f"{left_name} points and {right_name} assists moved {direction} across {games} shared games (r {a_ast}). "
-            "Pairing check, not a star."
-        ), points))
-    if b_ast is not None and abs(b_ast) >= 0.5:
-        direction = "together" if b_ast > 0 else "apart"
-        candidates.append((abs(b_ast), (
-            f"{right_name} points and {left_name} assists moved {direction} across {games} shared games (r {b_ast}). "
-            "Pairing check, not a star."
-        ), points))
-    if not candidates:
+    feed = _feed_link(row[1], row[2], row[5], row[6], games)
+    if feed is None or feed["passer"] not in {name, other}:
         return None
-    strength, detail, points_value = max(candidates, key=lambda item: item[0])
     return {
-        "strength": strength,
+        "strength": feed["link"],
         "other": other,
         "note": {
             "team": row[0],
-            "a": name,
-            "b": other,
+            "a": feed["passer"],
+            "b": feed["scorer"],
             "games": games,
-            "points": points_value if isinstance(points_value, (int, float)) else None,
-            "detail": detail,
+            "link": feed["link"],
+            "detail": feed["detail"],
         },
+    }
+
+
+def _feed_link(left_name: str, right_name: str, left_points_right_assists, right_points_left_assists, games: int):
+    candidates = []
+    if isinstance(left_points_right_assists, (int, float)) and left_points_right_assists >= 0.5:
+        candidates.append((left_points_right_assists, right_name, left_name))
+    if isinstance(right_points_left_assists, (int, float)) and right_points_left_assists >= 0.5:
+        candidates.append((right_points_left_assists, left_name, right_name))
+    if not candidates:
+        return None
+    link, passer, scorer = max(candidates, key=lambda item: item[0])
+    return {
+        "link": link,
+        "passer": passer,
+        "scorer": scorer,
+        "detail": (
+            f"{passer}'s assists have lined up with {scorer}'s points across {games} shared games (r {_round(link)}). "
+            "Pairing check, not a star."
+        ),
     }
 
 
@@ -403,21 +401,11 @@ def _corr(left: list[float], right: list[float]) -> float | None:
     return num / (spread_left * spread_right)
 
 
-def _pair_read(points, a_ast, b_ast, count: int) -> str:
-    bits = []
-    if points is not None and points >= 0.45:
-        bits.append(f"Points moved together (r {_round(points)})")
-    elif points is not None and points <= -0.45:
-        bits.append(f"Points moved apart (r {_round(points)})")
-    if a_ast is not None and abs(a_ast) >= 0.45:
-        direction = "together" if a_ast > 0 else "apart"
-        bits.append(f"A's points and B's assists moved {direction} (r {_round(a_ast)})")
-    if b_ast is not None and abs(b_ast) >= 0.45:
-        direction = "together" if b_ast > 0 else "apart"
-        bits.append(f"B's points and A's assists moved {direction} (r {_round(b_ast)})")
-    if not bits:
-        return f"Quiet across {count} shared games"
-    return f"{'. '.join(bits)}. {count} shared games, so this is a pairing check and not a star."
+def _pair_read(left_name: str, right_name: str, points, a_ast, b_ast, count: int) -> str:
+    feed = _feed_link(left_name, right_name, a_ast, b_ast, count)
+    if feed:
+        return feed["detail"]
+    return f"No assist-to-points link across {count} shared games. The correlation columns still show the raw numbers."
 
 
 def _code(label: str | None) -> str | None:
