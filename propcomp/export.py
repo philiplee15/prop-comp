@@ -186,6 +186,9 @@ def build(conn) -> None:
         f"Exported {manifest['counts']['games']} games, "
         f"{manifest['counts']['props']} props, {len(dates)} slates"
     )
+    from propcomp.sheet import publish
+
+    publish(conn)
 
 
 def tally(bucket: dict, result: str) -> None:

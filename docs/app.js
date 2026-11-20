@@ -266,10 +266,13 @@ async function showBoard() {
   app.textContent = "Loading this slate.";
   const date = state.date;
   const logsPromise = state.logs ? Promise.resolve(state.logs) : fetchJson("data/logs.json");
+  const pairsPromise = state.pairs ? Promise.resolve(state.pairs) : fetchJson("data/pairs.json").catch(() => ({}));
   const loaded = state.liveDays[date] || await fetchJson(`data/days/${date}.json`);
   const logs = await logsPromise;
+  const pairs = await pairsPromise;
   if (state.date !== date || state.view !== "board") return;
   state.logs = logs;
+  state.pairs = pairs;
   if (!state.liveDays[date]) state.liveDays[date] = loaded;
   state.day = state.liveDays[date];
   paintBoard();
@@ -1121,7 +1124,7 @@ function formulaCard(card) {
   section.append(summary);
   const note = document.createElement("p");
   note.className = "card-note";
-  note.textContent = "Calls are sorted strongest first. A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A filled U needs the minutes short on more than one of the last three games, with the number still up. A rebound or steal can still be a strong under after one short night when the number is at least a point above the recent average. One short night does not mark points, PRA, threes, or assists. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over.";
+  note.textContent = "Calls are sorted strongest first. A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A filled U needs the minutes short on more than one of the last three games, with the number still up. A rebound or steal can still be a strong under after one short night when the number is at least a point above the recent average. One short night does not mark points, PRA, threes, or assists. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over. A same-game pair is two marked players on one team whose points or assists have moved together. It checks the stack. It does not star a line.";
   section.append(note);
   if ((card.calls || []).length) {
     section.append(cardTable(
@@ -1184,6 +1187,15 @@ function formulaCard(card) {
       card.held,
       ["Player", "Game", "Why"],
       (item) => [`${item.team} ${item.name}`, item.game, item.detail],
+    ));
+  }
+  const pairs = ((state.pairs || {})[state.date] || []);
+  if (pairs.length) {
+    section.append(cardTable(
+      "Same-game pairs",
+      pairs,
+      ["Players", "Team", "Shared", "Check"],
+      (item) => [`${item.a} and ${item.b}`, item.team, String(item.games), item.detail],
     ));
   }
   return section;
