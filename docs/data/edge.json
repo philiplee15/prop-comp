@@ -1,13 +1,13 @@
 {
-  "pulled_at": "Sat Nov 21, 5:53 AM ET",
+  "pulled_at": "Sat Nov 21, 6:49 AM ET",
   "slate": "2026-11-21",
   "book": "FanDuel published prices",
   "counts": {
     "games": 6,
-    "book": 346,
-    "prizepicks": 384,
-    "matched": 158,
-    "playable": 1
+    "book": 322,
+    "prizepicks": 389,
+    "matched": 157,
+    "playable": 2
   },
   "slips": [
     {
@@ -117,20 +117,27 @@
       "playable": true
     },
     {
-      "player": "Keegan Murray",
-      "team": "SAC",
+      "player": "Karl-Anthony Towns",
+      "team": "NYK",
       "stat": "pts",
       "stat_label": "Points",
-      "line": 11.5,
+      "line": 5.5,
       "side": "under",
-      "fair": 0.5419,
-      "over": 104,
-      "under": -138,
-      "game": "Boston Celtics @ Sacramento Kings",
-      "event_id": "36337805",
-      "tip": "Sat 10:10 PM ET",
-      "clears": [],
-      "playable": false
+      "fair": 0.5548,
+      "over": 110,
+      "under": -146,
+      "game": "Portland Trail Blazers @ New York Knicks",
+      "event_id": "36337806",
+      "tip": "Sat 7:40 PM ET",
+      "clears": [
+        "6-flex",
+        "5-flex",
+        "6-power",
+        "5-power",
+        "3-power",
+        "4-flex"
+      ],
+      "playable": true
     },
     {
       "player": "Myles Turner",
@@ -145,22 +152,6 @@
       "game": "Milwaukee Bucks @ Philadelphia 76ers",
       "event_id": "36337802",
       "tip": "Sat 1:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Ayo Dosunmu",
-      "team": "MIN",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 17.5,
-      "side": "over",
-      "fair": 0.5379,
-      "over": -136,
-      "under": 102,
-      "game": "Memphis Grizzlies @ Minnesota Timberwolves",
-      "event_id": "36337803",
-      "tip": "Sat 8:10 PM ET",
       "clears": [],
       "playable": false
     },
@@ -197,38 +188,6 @@
       "playable": false
     },
     {
-      "player": "Domantas Sabonis",
-      "team": "SAC",
-      "stat": "reb",
-      "stat_label": "Rebounds",
-      "line": 11.5,
-      "side": "over",
-      "fair": 0.5379,
-      "over": -136,
-      "under": 102,
-      "game": "Boston Celtics @ Sacramento Kings",
-      "event_id": "36337805",
-      "tip": "Sat 10:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Joel Embiid",
-      "team": "PHI",
-      "stat": "reb",
-      "stat_label": "Rebounds",
-      "line": 8.5,
-      "side": "under",
-      "fair": 0.5379,
-      "over": 102,
-      "under": -136,
-      "game": "Milwaukee Bucks @ Philadelphia 76ers",
-      "event_id": "36337802",
-      "tip": "Sat 1:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
       "player": "Jrue Holiday",
       "team": "POR",
       "stat": "pts",
@@ -261,6 +220,22 @@
       "playable": false
     },
     {
+      "player": "Keegan Murray",
+      "team": "SAC",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 11.5,
+      "side": "under",
+      "fair": 0.5379,
+      "over": 102,
+      "under": -136,
+      "game": "Boston Celtics @ Sacramento Kings",
+      "event_id": "36337805",
+      "tip": "Sat 10:10 PM ET",
+      "clears": [],
+      "playable": false
+    },
+    {
       "player": "Toumani Camara",
       "team": "POR",
       "stat": "pts",
@@ -277,18 +252,50 @@
       "playable": false
     },
     {
-      "player": "Zach LaVine",
+      "player": "Ayo Dosunmu",
+      "team": "MIN",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 17.5,
+      "side": "over",
+      "fair": 0.5323,
+      "over": -132,
+      "under": 100,
+      "game": "Memphis Grizzlies @ Minnesota Timberwolves",
+      "event_id": "36337803",
+      "tip": "Sat 8:10 PM ET",
+      "clears": [],
+      "playable": false
+    },
+    {
+      "player": "Darius Acuff Jr.",
       "team": "SAC",
       "stat": "pts",
       "stat_label": "Points",
-      "line": 18.5,
+      "line": 5.5,
       "side": "under",
-      "fair": 0.5379,
-      "over": 102,
-      "under": -136,
+      "fair": 0.5323,
+      "over": 100,
+      "under": -132,
       "game": "Boston Celtics @ Sacramento Kings",
       "event_id": "36337805",
       "tip": "Sat 10:10 PM ET",
+      "clears": [],
+      "playable": false
+    },
+    {
+      "player": "Joel Embiid",
+      "team": "PHI",
+      "stat": "reb",
+      "stat_label": "Rebounds",
+      "line": 8.5,
+      "side": "under",
+      "fair": 0.5323,
+      "over": 100,
+      "under": -132,
+      "game": "Milwaukee Bucks @ Philadelphia 76ers",
+      "event_id": "36337802",
+      "tip": "Sat 1:10 PM ET",
       "clears": [],
       "playable": false
     }
