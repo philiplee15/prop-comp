@@ -369,6 +369,8 @@ function paintBoard() {
       button.textContent = `${row.team} ${row.name}`;
       button.addEventListener("click", () => openPlayer(row.id));
       if (game.status !== "final" && row.role === "starter") addTag(button, "START", "start");
+      const lastTen = lastTenMinutes(row.id, state.date);
+      if (lastTen != null) addTag(button, `L10 ${lastTen}`, "mins", "Average minutes over the last 10 games");
       if (row.avail === "out") addTag(button, "OUT", "out", row.avail_note);
       if (row.avail === "risk") addTag(button, row.avail_label || "RISK", "risk", row.avail_note);
       name.append(button);
@@ -591,11 +593,13 @@ function appendMinutesChart(charts, series) {
   heading.append(link);
   card.append(heading);
   const trend = trailingAverage(series, "min");
+  const lastTen = trailingWindow(series, 10);
   const hasExpected = series.some((row) => row[1] !== null && row[1] !== "" && Number.isFinite(Number(row[1])));
   const note = document.createElement("p");
   note.className = "trend";
   const parts = [];
-  if (trend) parts.push(`Last ${trend.n} average ${trend.avg.toFixed(1)}`);
+  if (lastTen) parts.push(`Last 10 average ${lastTen.avg.toFixed(1)}, long dash`);
+  if (trend) parts.push(`Last ${trend.n} average ${trend.avg.toFixed(1)}, short dash`);
   parts.push(hasExpected ? "Colored line is expected minutes" : "Each point is minutes played");
   note.textContent = parts.join(" · ");
   card.append(note);
@@ -603,14 +607,14 @@ function appendMinutesChart(charts, series) {
   readout.className = "hover-readout";
   readout.textContent = "Hover a point to see the minutes.";
   card.append(
-    lineChart(series, trend ? trend.avg : null, readout, null, {line: "expected", actual: "played"}),
+    lineChart(series, trend ? trend.avg : null, readout, null, {line: "expected", actual: "played"}, lastTen ? lastTen.avg : null),
     readout,
     resultStrip(series, "min", null),
   );
   charts.append(card);
 }
 
-function lineChart(series, average, readout, upcoming, names) {
+function lineChart(series, average, readout, upcoming, names, extra) {
   const lineName = (names && names.line) || "line";
   const actualName = (names && names.actual) || "actual";
   const values = [];
@@ -621,6 +625,7 @@ function lineChart(series, average, readout, upcoming, names) {
     }
   });
   if (Number.isFinite(average)) values.push(average);
+  if (Number.isFinite(extra)) values.push(extra);
   if (upcoming) values.push(upcoming.line);
   const svg = svgEl("svg");
   svg.classList.add("chart");
@@ -672,6 +677,17 @@ function lineChart(series, average, readout, upcoming, names) {
   }
   if (line.length) svg.append(poly(line.join(" "), paintColor("--accent"), "4 4"));
   if (actual.length) svg.append(poly(actual.join(" "), paintColor("--ink"), ""));
+  if (Number.isFinite(extra)) {
+    const guide = svgEl("line");
+    const y = yFor(extra);
+    guide.setAttribute("x1", "8");
+    guide.setAttribute("x2", String(width - 8));
+    guide.setAttribute("y1", y);
+    guide.setAttribute("y2", y);
+    guide.setAttribute("stroke", paintColor("--accent"));
+    guide.setAttribute("stroke-dasharray", "8 4");
+    svg.append(guide);
+  }
   if (Number.isFinite(average)) {
     const guide = svgEl("line");
     const y = yFor(average);
@@ -685,6 +701,28 @@ function lineChart(series, average, readout, upcoming, names) {
   }
   dots.forEach((node) => svg.append(node));
   return svg;
+}
+
+function trailingWindow(series, count) {
+  const sample = [];
+  for (let index = series.length - 1; index >= 0 && sample.length < count; index -= 1) {
+    const row = series[index];
+    if (row[3] !== null && row[3] !== undefined && row[3] !== "" && Number.isFinite(Number(row[3]))) {
+      sample.push(Number(row[3]));
+    }
+  }
+  if (sample.length < count) return null;
+  const total = sample.reduce((sum, value) => sum + value, 0);
+  return { avg: total / sample.length, n: sample.length };
+}
+
+function lastTenMinutes(playerId, slate) {
+  const series = ((state.logs && state.logs[playerId] && state.logs[playerId].min) || []);
+  const prior = series.filter((row) => row[0] < slate && Number.isFinite(Number(row[3])));
+  if (prior.length < 10) return null;
+  const sample = prior.slice(-10);
+  const total = sample.reduce((sum, row) => sum + Number(row[3]), 0);
+  return (Math.round((total / sample.length) * 10) / 10).toFixed(1);
 }
 
 function trailingAverage(series, code) {
@@ -1144,7 +1182,7 @@ function formulaCard(card) {
   section.append(cardTable(
     "Clear stars",
     card.stars || [],
-    ["Player", "Game", "Market", "Cap", "Last 5", "Median", "Clear", "Posted", "Status"],
+    ["Player", "Game", "Market", "Cap", "Last 5", "Median", "Clear", "Last 10 min", "Posted", "Status"],
     (item) => [
       `${item.team} ${item.name}`,
       item.game,
@@ -1153,6 +1191,7 @@ function formulaCard(card) {
       formatNumber(item.avg),
       formatNumber(item.median),
       `${Math.round(item.rate * 100)}%`,
+      lastTenMinutes(item.id, state.date) || "",
       item.posted == null ? "waiting" : formatNumber(item.posted),
       item.note || "",
     ],

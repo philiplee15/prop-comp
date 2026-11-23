@@ -360,6 +360,7 @@ tr.risk .name button { color: var(--warn); }
   vertical-align: 1px;
 }
 .tag.start { background: var(--surface-2); color: var(--accent); }
+.tag.mins { background: var(--surface-2); color: var(--muted); letter-spacing: 0; }
 .tag.out { background: var(--bad); color: #fff; }
 .tag.risk { background: var(--warn); color: #1c1406; }
 .star {

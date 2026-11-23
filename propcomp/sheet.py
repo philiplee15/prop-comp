@@ -104,6 +104,11 @@ def _guide() -> list[list]:
             "Read it next to the cushion. A one-point cushion inside a wide spread is a thin edge.",
         ],
         [
+            "Last 10 min",
+            "Average minutes over the ten games before that slate. It is blank until a player has ten played games.",
+            "Use it as the minute base. It does not move a star or a path call.",
+        ],
+        [
             "Same-game pairs",
             "The board only shows a positive link from one player's assists to a teammate's points. An inverse link on the same stat, such as two scorers moving in opposite directions, stays off that section.",
             "Eight to fourteen shared games is a short sample. Use the pair as a stacking check at the bottom of the card. It is not a star. The number columns here keep the raw correlations.",
@@ -125,6 +130,7 @@ def _board_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
     header = [
         "Date", "Section", "Game", "Team", "Player", "Market", "Line", "Call",
         "Last 5 average", "Last 5 median", "Season skew", "Last 5 spread", "Clear", "Detail",
+        "Last 10 min",
     ]
     rows = [header]
     for day in days:
@@ -138,6 +144,7 @@ def _board_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
                 "Under" if item.get("side") == "U" else "Over",
                 shape["mean"], shape["median"], shape["skew"], shape["spread"], "",
                 item.get("why") or "",
+                _last_minutes(history.get(item.get("id")) or [], slate),
             ])
         for item in card.get("stars") or []:
             shape = _shape(history.get(item.get("id")) or [], slate, item.get("code"))
@@ -147,6 +154,7 @@ def _board_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
                 "Star" if item.get("ready") else "Cap",
                 shape["mean"], shape["median"], shape["skew"], shape["spread"],
                 _percent(item.get("rate")), item.get("note") or "",
+                _last_minutes(history.get(item.get("id")) or [], slate),
             ])
         for section, key in (
             ("Points paused", "pauses"),
@@ -159,6 +167,7 @@ def _board_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
                     slate, section, item.get("game") or "", item.get("team") or "", item.get("name") or "",
                     item.get("label") or "", item.get("cap") if item.get("cap") is not None else "",
                     "", "", "", "", "", "", item.get("detail") or "",
+                    _last_minutes(history.get(item.get("id")) or [], slate),
                 ])
     return rows
 
@@ -167,6 +176,7 @@ def _line_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
     header = [
         "Date", "Game", "Team", "Opponent", "Player", "Pos", "Market", "Line",
         "Result", "Actual", "Last 5 average", "Last 5 median", "Season skew", "Last 5 spread", "Season clear",
+        "Last 10 min",
     ]
     rows = [header]
     for day in days:
@@ -185,6 +195,7 @@ def _line_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
                         row.get("pos") or "", LABELS.get(prop.get("c"), prop.get("c")),
                         prop.get("line") or "", prop.get("r") or "", prop.get("act") if prop.get("act") is not None else "",
                         shape["mean"], shape["median"], shape["skew"], shape["spread"], shape["clear"],
+                        _last_minutes(history.get(row.get("id")) or [], slate),
                     ])
     return rows
 
@@ -419,6 +430,14 @@ def _percent(rate) -> str:
     if rate is None:
         return ""
     return f"{round(float(rate) * 100)}%"
+
+
+def _last_minutes(games: list[dict], slate: str, count: int = 10) -> float | str:
+    prior = [game for game in games if game["slate_date"] < slate and (game.get("seconds") or 0) > 0]
+    recent = prior[-count:]
+    if len(recent) < count:
+        return ""
+    return round(sum((game.get("seconds") or 0) / 60 for game in recent) / count, 1)
 
 
 def _minutes(game: dict) -> float | str:
