@@ -17,6 +17,7 @@ FIELDS = {
 }
 
 # Clear rate of the gated sample this season. Blocks stayed under a coin flip.
+# Remeasured through Nov 22, 2026: the same strict-over shape on blocks cashed 10 of 21.
 MARKET_WEIGHT = {
     "reb": 1.0,
     "stl": 0.95,
@@ -261,6 +262,12 @@ def project_call(
     # not come down with the role. Stacking a low clear rate, a half-point gap, a
     # one-point move, or a 12-point spike on their own stays at the 52 percent base.
     # Opponent, rest, and home-road splits were measured and did not beat the line.
+    # A tight last-five spread, a line sitting a full season standard deviation
+    # under the mean, a 90 percent clear rate, and a cold last-game z-score were
+    # walk-forward tested on the same overs through Nov 22, 2026. Each cohort
+    # cashed worse than the ungated 272 of 474. Those reads stay off the gate.
+    # Shot volume already enters through the attempt void. A cold field-goal
+    # night was measured earlier and did not beat the line either.
     # A single short night is not that cut. Points, PRA, threes, and assists came
     # back when the minutes came back, so those markets wait for a second short night.
     # Rebounds and steals can still be under when the number is at least a point
