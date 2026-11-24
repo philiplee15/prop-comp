@@ -39,6 +39,7 @@ def publish(conn) -> None:
     _write(SHEET / "logs.csv", _log_rows(history, names))
     pair_rows = _pair_rows(history, names)
     _write(SHEET / "pairs.csv", pair_rows)
+    _write(SHEET / "grades.csv", _grade_rows(days))
     marked = _marked_pairs(days, pair_rows)
     _write_json(DOCS / "data" / "pairs.json", marked)
     print(
@@ -109,6 +110,16 @@ def _guide() -> list[list]:
             "Use it as the minute base. It does not move a star or a path call.",
         ],
         [
+            "Threes",
+            "A 0.5 three is one make. The clear rate means he made at least one, and the 3.5 cushion does not bind. Through Nov 22 that group cashed 19 of 29. Threes at 1.5 and up cashed 36 of 72.",
+            "A 0.5 can stay a star and still miss about one night in three. Do not parlay a three at 1.5 or higher. The higher number does not star.",
+        ],
+        [
+            "Grades",
+            "Each ready star is graded after the game. Cleared means the posted over won.",
+            "Read this tab before adding a rule. A rule has to beat the current strict over on slates it did not see.",
+        ],
+        [
             "Same-game pairs",
             "The board only shows a positive link from one player's assists to a teammate's points. An inverse link on the same stat, such as two scorers moving in opposite directions, stays off that section.",
             "Eight to fourteen shared games is a short sample. Use the pair as a stacking check at the bottom of the card. It is not a star. The number columns here keep the raw correlations.",
@@ -124,6 +135,37 @@ def _guide() -> list[list]:
             "If a tab looks old, reload the sheet. A new board sync publishes the next file.",
         ],
     ]
+
+
+def _grade_rows(days: list[dict]) -> list[list]:
+    header = ["Date", "Player", "Team", "Market", "Line", "Result", "Actual", "Cleared"]
+    rows = [header]
+    for day in days:
+        played = {}
+        for game in day.get("games") or []:
+            for row in game.get("rows") or []:
+                for prop in row.get("props") or []:
+                    if prop.get("k") == "milestone":
+                        continue
+                    played[(row.get("id"), prop.get("c"))] = prop
+        for item in (day.get("card") or {}).get("stars") or []:
+            if not item.get("ready"):
+                continue
+            prop = played.get((item.get("id"), item.get("code"))) or {}
+            result = prop.get("r") or ""
+            if result not in {"over", "under", "push"}:
+                continue
+            rows.append([
+                day["date"],
+                item.get("name") or "",
+                item.get("team") or "",
+                item.get("label") or "",
+                item.get("posted") if item.get("posted") is not None else "",
+                result,
+                prop.get("act") if prop.get("act") is not None else "",
+                "yes" if result == "over" else "no",
+            ])
+    return rows
 
 
 def _board_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:

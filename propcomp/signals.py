@@ -176,6 +176,11 @@ def evaluate_line(
         return None
     if _moved(line, open_line) >= MOVE_MAX:
         return None
+    # Through Nov 22, 2026 a strict over on threes cashed 19 of 29 at 0.5 and 36 of 72
+    # at 1.5 and higher. The higher number is a coin flip, so it does not star.
+    # A 0.5 is one make. The 3.5 cushion does not bind on it.
+    if code == "fg3m" and line >= 1.5:
+        return None
     if not _line_passes(profile, line):
         return None
     margin = profile["avg"] - line
@@ -212,6 +217,8 @@ def market_cap(
     if script_blocks(code, starter, spread, team):
         return None
     cap = _highest_half(profile)
+    if code == "fg3m" and cap is not None and cap >= 1.5:
+        cap = 0.5 if _line_passes(profile, 0.5) else None
     if cap is None:
         return None
     return {
@@ -732,6 +739,12 @@ def _card_note(code, cap, posted, opened, ready, history) -> str:
         notes.append(f"Posted {_number(posted)} does not clear every gate.")
     if code == "pts" and cap["avg"] - cap["cap"] < 1:
         notes.append("The cap sits inside a point of the average. Do not stack it. The make is the whole bet.")
+    if code == "fg3m" and posted is not None and posted <= 0.5 and ready:
+        notes.append(
+            "This is one make. The clear rate means he made at least one three. "
+            "The 3.5 cushion does not bind on 0.5. This group cashed 19 of 29, so about one in three still miss. "
+            "Do not stack it like a rebound."
+        )
     if code in {"pts", "pra"}:
         notes.append("One points or PRA leg per team. Do not pair a player's points with his own PRA.")
     return " ".join(notes)
@@ -1194,3 +1207,28 @@ def check() -> None:
         })
     if project_call("pts", 16.5, None, spiked):
         raise SystemExit("a spike by itself should not mark an under")
+    made = []
+    for index in range(8):
+        made.append({
+            "game_id": f"t{index}",
+            "slate_date": f"2026-10-{20 + index:02d}",
+            "seconds": 30 * 60,
+            "pts": 12,
+            "reb": 3,
+            "ast": 2,
+            "fg3m": 2,
+            "fg3a": 6,
+            "stl": 1,
+            "blk": 0,
+            "fga": 10,
+            "fgm": 5,
+            "ftm": 1,
+            "fta": 1,
+        })
+    three_cap = market_cap(made, "fg3m")
+    if not three_cap or three_cap["cap"] != 0.5:
+        raise SystemExit(f"a three cap above 0.5 should come down to one make, got {three_cap}")
+    if evaluate_line("fg3m", 1.5, 1.5, made):
+        raise SystemExit("a 1.5 three should not star")
+    if not evaluate_line("fg3m", 0.5, 0.5, made):
+        raise SystemExit("a 0.5 three with a steady make should still star")

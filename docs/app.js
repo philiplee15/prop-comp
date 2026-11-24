@@ -893,7 +893,12 @@ function fillCell(cell, prop, reason, lean) {
     small.textContent = `opened at ${prop.open}`;
     cell.append(small);
   }
-  const because = reason || "";
+  const because = [
+    reason || "",
+    prop.c === "fg3m" && lineNumber(prop) === 0.5 && reason
+      ? "One make. The clear rate means he made at least one three. The 3.5 cushion does not bind on 0.5. This group cashed 19 of 29, so about one in three still miss."
+      : "",
+  ].filter(Boolean).join(" ");
   cell.title = `${prop.m} ${prop.line || ""} ${priceText(prop)} ${because}`.trim();
   return cell;
 }
@@ -1146,8 +1151,23 @@ function callMark(prop) {
   return makeMark(`call ${side} ${strength}`, call.s, call.why || "");
 }
 
+function threeNote(item) {
+  if (!item || item.code !== "fg3m" || item.posted == null) return "";
+  if (item.posted >= 1.5) return "Threes at 1.5 and up cashed 36 of 72. Leave this out of a parlay.";
+  if (item.posted <= 0.5 && item.ready) {
+    return "One make. The clear rate means he made at least one three. The 3.5 cushion does not bind on 0.5. This group cashed 19 of 29, so about one in three still miss.";
+  }
+  return "";
+}
+
+function lineNumber(prop) {
+  const value = Number(String((prop && prop.line) || "").replace("+", ""));
+  return Number.isFinite(value) ? value : null;
+}
+
 function starReason(row, prop) {
   if (!row || row.avail === "out" || !prop || prop.k === "milestone") return "";
+  if (prop.c === "fg3m" && lineNumber(prop) >= 1.5) return "";
   const why = prop.why;
   if (!why || !why.length) return "";
   return Array.isArray(why) ? why.join(" ") : String(why);
@@ -1158,11 +1178,17 @@ function formulaCard(card) {
   section.className = "panel card-block";
   section.open = (state.day.games || []).some((game) => game.status !== "final");
   const summary = document.createElement("summary");
+  const heldThrees = (card.stars || []).filter((item) => item.ready && item.code === "fg3m" && item.posted >= 1.5).length;
   summary.textContent = card.summary || "Formula card";
+  if (heldThrees) {
+    summary.textContent += heldThrees === 1
+      ? " 1 three at 1.5 or higher stays off a parlay."
+      : ` ${heldThrees} threes at 1.5 or higher stay off a parlay.`;
+  }
   section.append(summary);
   const note = document.createElement("p");
   note.className = "card-note";
-  note.textContent = "Calls are sorted strongest first. A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A filled U needs the minutes short on more than one of the last three games, with the number still up. A rebound or steal can still be a strong under after one short night when the number is at least a point above the recent average. One short night does not mark points, PRA, threes, or assists. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over. The bottom pair is an assist line that has lined up with a teammate's points. It is a stacking check, not a star.";
+  note.textContent = "Calls are sorted strongest first. A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A filled U needs the minutes short on more than one of the last three games, with the number still up. A rebound or steal can still be a strong under after one short night when the number is at least a point above the recent average. One short night does not mark points, PRA, threes, or assists. Threes at 1.5 and up cashed 36 of 72 and do not star. A 0.5 three is one make: the clear rate means he made at least one, the 3.5 cushion does not bind, and that group cashed 19 of 29. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over. The bottom pair is an assist line that has lined up with a teammate's points. It is a stacking check, not a star.";
   section.append(note);
   if ((card.calls || []).length) {
     section.append(cardTable(
@@ -1193,7 +1219,7 @@ function formulaCard(card) {
       `${Math.round(item.rate * 100)}%`,
       lastTenMinutes(item.id, state.date) || "",
       item.posted == null ? "waiting" : formatNumber(item.posted),
-      item.note || "",
+      threeNote(item) || item.note || "",
     ],
   ));
   if ((card.pauses || []).length) {
