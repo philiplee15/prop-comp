@@ -369,15 +369,6 @@ function paintBoard() {
       button.textContent = `${row.team} ${row.name}`;
       button.addEventListener("click", () => openPlayer(row.id));
       if (game.status !== "final" && row.role === "starter") addTag(button, "START", "start");
-      const minuteSpan = lastTenMinuteSpan(row.id, state.date);
-      if (minuteSpan) {
-        addTag(
-          button,
-          `L10 ${formatNumber(minuteSpan.low)}-${formatNumber(minuteSpan.high)}`,
-          "mins",
-          "Shortest and longest minutes over the last 10 games",
-        );
-      }
       if (row.avail === "out") addTag(button, "OUT", "out", row.avail_note);
       if (row.avail === "risk") addTag(button, row.avail_label || "RISK", "risk", row.avail_note);
       name.append(button);
@@ -723,12 +714,33 @@ function trailingWindow(series, count) {
   return { avg: total / sample.length, n: sample.length };
 }
 
-function lastTenMinuteSpan(playerId, slate) {
-  const series = ((state.logs && state.logs[playerId] && state.logs[playerId].min) || []);
-  const prior = series.filter((row) => row[0] < slate && Number.isFinite(Number(row[3])));
-  if (prior.length < 10) return null;
-  const sample = prior.slice(-10).map((row) => Number(row[3]));
-  return { low: Math.min(...sample), high: Math.max(...sample) };
+const BOX_INDEX = { pts: 1, reb: 2, ast: 3, fg3m: 4, stl: 5, blk: 6 };
+
+function statSpan(playerId, code, slate) {
+  const box = (state.logs && state.logs[playerId] && state.logs[playerId].box) || [];
+  const prior = box.filter((row) => row[0] < slate);
+  let sample = [];
+  if (code === "pra") {
+    sample = prior
+      .filter((row) => [1, 2, 3].every((index) => Number.isFinite(Number(row[index]))))
+      .slice(-10)
+      .map((row) => Number(row[1]) + Number(row[2]) + Number(row[3]));
+  } else if (BOX_INDEX[code] != null) {
+    const index = BOX_INDEX[code];
+    sample = prior
+      .filter((row) => Number.isFinite(Number(row[index])))
+      .slice(-10)
+      .map((row) => Number(row[index]));
+  }
+  if (!sample.length) {
+    const series = (state.logs && state.logs[playerId] && state.logs[playerId][code]) || [];
+    sample = series
+      .filter((row) => row[0] < slate && Number.isFinite(Number(row[3])))
+      .slice(-10)
+      .map((row) => Number(row[3]));
+  }
+  if (!sample.length) return null;
+  return { low: Math.min(...sample), high: Math.max(...sample), n: sample.length };
 }
 
 function trailingAverage(series, code) {
@@ -1194,7 +1206,7 @@ function formulaCard(card) {
   section.append(summary);
   const note = document.createElement("p");
   note.className = "card-note";
-  note.textContent = "Calls are sorted strongest first. A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A filled U needs the minutes short on more than one of the last three games, with the number still up. A rebound or steal can still be a strong under after one short night when the number is at least a point above the recent average. One short night does not mark points, PRA, threes, or assists. Threes at 1.5 and up cashed 36 of 72 and do not star. A 0.5 three is one make: the clear rate means he made at least one, the 3.5 cushion does not bind, and that group cashed 19 of 29. L10 low and L10 high are the shortest and longest night in the last 10 games, and they do not move a star. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over. The bottom pair is an assist line that has lined up with a teammate's points. It is a stacking check, not a star.";
+  note.textContent = "Calls are sorted strongest first. A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A filled U needs the minutes short on more than one of the last three games, with the number still up. A rebound or steal can still be a strong under after one short night when the number is at least a point above the recent average. One short night does not mark points, PRA, threes, or assists. Threes at 1.5 and up cashed 36 of 72 and do not star. A 0.5 three is one make: the clear rate means he made at least one, the 3.5 cushion does not bind, and that group cashed 19 of 29. Low and high are that stat over the last 10 played games, or fewer when that is all he has played. They do not move a star. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over. The bottom pair is an assist line that has lined up with a teammate's points. It is a stacking check, not a star.";
   section.append(note);
   if ((card.calls || []).length) {
     section.append(cardTable(
@@ -1214,9 +1226,9 @@ function formulaCard(card) {
   section.append(cardTable(
     "Clear stars",
     card.stars || [],
-    ["Player", "Game", "Market", "Cap", "Last 5", "Median", "Clear", "L10 low", "L10 high", "Posted", "Status"],
+    ["Player", "Game", "Market", "Cap", "Last 5", "Median", "Clear", "Low", "High", "Posted", "Status"],
     (item) => {
-      const minuteSpan = lastTenMinuteSpan(item.id, state.date);
+      const span = statSpan(item.id, item.code, state.date);
       return [
       `${item.team} ${item.name}`,
       item.game,
@@ -1225,8 +1237,8 @@ function formulaCard(card) {
       formatNumber(item.avg),
       formatNumber(item.median),
       `${Math.round(item.rate * 100)}%`,
-      minuteSpan ? formatNumber(minuteSpan.low) : "",
-      minuteSpan ? formatNumber(minuteSpan.high) : "",
+      span ? formatNumber(span.low) : "",
+      span ? formatNumber(span.high) : "",
       item.posted == null ? "waiting" : formatNumber(item.posted),
       threeNote(item) || item.note || "",
     ];

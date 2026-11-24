@@ -168,6 +168,7 @@ def build(conn) -> None:
         DOCS / "data" / "season.json",
         {"players": season_rows, "league": {code: dict(counts) for code, counts in league.items()}},
     )
+    _attach_box_logs(logs, history)
     write_json(DOCS / "data" / "logs.json", logs)
     write_snapshot(
         manifest,
@@ -412,6 +413,30 @@ def expected_minutes(stat: dict) -> float | None:
         return round(float(raw), 1)
     except (TypeError, ValueError):
         return None
+
+
+def _attach_box_logs(logs, history) -> None:
+    """Every played game, not only nights that had a posted line."""
+    for player_id, rows in history.items():
+        ordered = sorted(
+            rows,
+            key=lambda row: (row["slate_date"] or "", row["tip_utc"] or "", row["game_id"] or ""),
+        )
+        series = []
+        for row in ordered:
+            if (row["seconds"] or 0) <= 0 or row["pts"] is None:
+                continue
+            series.append([
+                row["slate_date"],
+                row["pts"],
+                row["reb"],
+                row["ast"],
+                row["fg3m"],
+                row["stl"],
+                row["blk"],
+            ])
+        if series:
+            logs.setdefault(player_id, {})["box"] = series
 
 
 def write_json(path, payload) -> None:
