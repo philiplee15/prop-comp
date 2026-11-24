@@ -6,7 +6,6 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-10-29,Luguentz Dort,ATL,Points,7.5,under,6,no
 2026-10-29,Luguentz Dort,ATL,PRA,11.5,under,11,no
 2026-10-29,Jock Landale,ATL,PRA,12.5,over,17,yes
-2026-10-29,Aaron Wiggins,ATL,Threes,1.5,over,4,yes
 2026-10-29,Jock Landale,ATL,Assists,1.5,under,1,no
 2026-10-30,Jaden McDaniels,MIN,Rebounds,5.5,over,6,yes
 2026-10-30,Bobby Portis,MIA,Rebounds,6.5,under,3,no
@@ -29,18 +28,9 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-10-30,Trae Young,WSH,PRA,32.5,over,36,yes
 2026-10-30,Tre Jones,CHI,PRA,14.5,over,20,yes
 2026-10-30,Alex Sarr,WSH,Assists,1.5,under,0,no
-2026-10-30,Cade Cunningham,DET,Threes,1.5,under,1,no
-2026-10-30,Duncan Robinson,DET,Threes,2.5,under,2,no
 2026-10-30,Jaden McDaniels,MIN,Assists,2.5,over,7,yes
-2026-10-30,Jalen Smith,CHI,Threes,1.5,under,0,no
-2026-10-30,Jonathan Kuminga,MIN,Threes,1.5,under,1,no
-2026-10-30,Josh Hart,NY,Threes,1.5,over,2,yes
-2026-10-30,Kevin Durant,HOU,Threes,1.5,under,1,no
-2026-10-30,Landry Shamet,NY,Threes,1.5,under,0,no
-2026-10-30,P.J. Washington,DAL,Threes,1.5,under,1,no
 2026-10-30,Pelle Larsson,MIA,Assists,3.5,under,3,no
 2026-10-30,Sion James,CHA,Assists,2.5,over,4,yes
-2026-10-30,Terrence Shannon Jr.,MIN,Threes,1.5,over,2,yes
 2026-10-31,Jaden McDaniels,MIN,Rebounds,5.5,under,3,no
 2026-10-31,Kyle Kuzma,MIL,Rebounds,5.5,under,3,no
 2026-10-31,Kevin Durant,HOU,Rebounds,4.5,under,3,no
@@ -61,17 +51,10 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-10-31,Tyler Herro,MIL,Points,21.5,under,15,no
 2026-10-31,Zion Williamson,NO,Points,20.5,under,15,no
 2026-10-31,Jaime Jaquez Jr.,MIL,PRA,24.5,under,20,no
-2026-10-31,Zach LaVine,SAC,Threes,2.5,under,0,no
 2026-10-31,Jaden McDaniels,MIN,Assists,2.5,over,3,yes
 2026-10-31,Sion James,CHA,Assists,2.5,under,1,no
-2026-10-31,Terrence Shannon Jr.,MIN,Threes,1.5,under,0,no
-2026-10-31,AJ Green,MIL,Threes,1.5,under,0,no
-2026-10-31,De'Andre Hunter,SAC,Threes,1.5,over,2,yes
 2026-10-31,Isaiah Collier,UTAH,Assists,4.5,under,4,no
-2026-10-31,Jaylen Wells,MEM,Threes,1.5,under,0,no
 2026-10-31,Kyle Kuzma,MIL,Assists,2.5,over,3,yes
-2026-10-31,Stephon Castle,SA,Threes,1.5,under,0,no
-2026-10-31,Tyler Herro,MIL,Threes,2.5,over,4,yes
 2026-11-01,Paul George,BOS,Rebounds,4.5,over,6,yes
 2026-11-01,Jarace Walker,IND,Rebounds,5.5,over,6,yes
 2026-11-01,Gui Santos,GS,Rebounds,3.5,under,3,no
@@ -86,11 +69,8 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-01,Wendell Carter Jr.,ORL,Steals,0.5,over,2,yes
 2026-11-01,Scottie Barnes,TOR,Points,21.5,over,29,yes
 2026-11-01,Moritz Wagner,BKN,Threes,0.5,over,1,yes
-2026-11-01,Sam Hauser,BOS,Threes,1.5,under,1,no
-2026-11-01,Derrick Jones Jr.,LAC,Threes,1.5,under,1,no
 2026-11-01,Gui Santos,GS,Threes,0.5,under,0,no
 2026-11-01,Immanuel Quickley,TOR,Assists,5.5,over,7,yes
-2026-11-01,Immanuel Quickley,TOR,Threes,2.5,over,3,yes
 2026-11-01,Ja'Kobe Walter,TOR,Assists,1.5,over,2,yes
 2026-11-01,Jamal Shead,TOR,Assists,4.5,over,6,yes
 2026-11-01,Jayson Tatum,BOS,Assists,6.5,over,7,yes
@@ -132,31 +112,21 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-02,Jaden McDaniels,MIN,Assists,2.5,over,3,yes
 2026-11-02,Bennedict Mathurin,NO,Assists,1.5,under,0,no
 2026-11-02,De'Aaron Fox,SA,Assists,5.5,under,3,no
-2026-11-02,De'Andre Hunter,SAC,Threes,1.5,under,0,no
 2026-11-02,Domantas Sabonis,SAC,Assists,6.5,under,4,no
-2026-11-02,Immanuel Quickley,TOR,Threes,2.5,under,1,no
 2026-11-02,Ja'Kobe Walter,TOR,Assists,1.5,over,5,yes
 2026-11-02,Jaime Jaquez Jr.,MIL,Threes,0.5,over,2,yes
 2026-11-02,Jamal Shead,TOR,Assists,4.5,over,6,yes
 2026-11-02,Jaylen Brown,PHI,Assists,3.5,over,5,yes
 2026-11-02,Jayson Tatum,BOS,Assists,6.5,over,9,yes
-2026-11-02,Josh Hart,NY,Threes,1.5,over,2,yes
 2026-11-02,Kyle Kuzma,MIL,Assists,2.5,over,3,yes
-2026-11-02,Luka Doncic,LAL,Threes,4.5,over,6,yes
 2026-11-02,Pelle Larsson,MIA,Threes,0.5,over,1,yes
 2026-11-02,Ryan Rollins,MIL,Assists,3.5,under,2,no
-2026-11-02,Sam Hauser,BOS,Threes,1.5,under,0,no
 2026-11-02,Sam Merrill,CLE,Assists,1.5,over,2,yes
 2026-11-02,Trey Murphy III,NO,Assists,2.5,over,5,yes
-2026-11-02,Tyler Herro,MIL,Threes,2.5,over,4,yes
 2026-11-02,Alperen Sengun,HOU,Assists,5.5,over,10,yes
 2026-11-02,Alperen Sengun,HOU,Threes,0.5,over,1,yes
 2026-11-02,Brandin Podziemski,GS,Assists,4.5,under,2,no
-2026-11-02,Cedric Coward,MEM,Threes,1.5,over,2,yes
-2026-11-02,Jamal Murray,DEN,Threes,2.5,over,4,yes
-2026-11-02,Jrue Holiday,POR,Threes,1.5,over,3,yes
 2026-11-02,Karlo Matkovic,NO,Threes,0.5,over,5,yes
-2026-11-02,Toumani Camara,POR,Threes,2.5,over,3,yes
 2026-11-04,Cedric Coward,MEM,Rebounds,6.5,over,9,yes
 2026-11-04,Jaden McDaniels,MIN,Rebounds,4.5,over,8,yes
 2026-11-04,Joan Beringer,MIN,Rebounds,4.5,over,7,yes
@@ -191,8 +161,6 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-04,Dillon Brooks,PHX,PRA,21.5,over,23,yes
 2026-11-04,Miles Bridges,PHX,PRA,23.5,over,30,yes
 2026-11-04,Moritz Wagner,BKN,Threes,0.5,under,0,no
-2026-11-04,Toumani Camara,POR,Threes,2.5,under,1,no
-2026-11-04,Aaron Wiggins,ATL,Threes,1.5,over,3,yes
 2026-11-04,Jaden McDaniels,MIN,Assists,2.5,over,4,yes
 2026-11-04,Trey Lyles,MIN,Threes,0.5,over,1,yes
 2026-11-04,Jamal Shead,TOR,Assists,4.5,over,6,yes
@@ -200,24 +168,16 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-04,Jaylen Brown,PHI,Assists,3.5,under,1,no
 2026-11-04,Keaton Wagler,LAC,Assists,2.5,under,1,no
 2026-11-04,Kyle Kuzma,MIL,Assists,2.5,over,4,yes
-2026-11-04,Luka Doncic,LAL,Threes,4.5,over,6,yes
 2026-11-04,Pelle Larsson,MIA,Threes,0.5,under,0,no
-2026-11-04,Tyler Herro,MIL,Threes,2.5,over,4,yes
-2026-11-04,Zach LaVine,SAC,Threes,2.5,over,3,yes
 2026-11-04,Alperen Sengun,HOU,Assists,5.5,over,10,yes
-2026-11-04,Cedric Coward,MEM,Threes,1.5,over,4,yes
 2026-11-04,Cooper Flagg,DAL,Assists,5.5,under,5,no
-2026-11-04,Jamal Murray,DEN,Threes,2.5,under,2,no
-2026-11-04,Jrue Holiday,POR,Threes,1.5,over,5,yes
 2026-11-04,Devin Booker,PHX,Assists,4.5,under,2,no
-2026-11-04,Miles Bridges,PHX,Threes,1.5,over,4,yes
 2026-11-05,Khaman Maluach,PHX,Rebounds,5.5,over,6,yes
 2026-11-05,Collin Gillespie,PHX,Steals,1.5,over,3,yes
 2026-11-05,Wendell Carter Jr.,ORL,Steals,0.5,over,1,yes
 2026-11-05,Miles Bridges,PHX,Steals,0.5,over,2,yes
 2026-11-05,Brandin Podziemski,GS,Points,15.5,under,9,no
 2026-11-05,Draymond Green,GS,Assists,5.5,over,11,yes
-2026-11-05,Miles Bridges,PHX,Threes,1.5,over,3,yes
 2026-11-06,Jaden McDaniels,MIN,Rebounds,5.5,over,6,yes
 2026-11-06,Derik Queen,NO,Rebounds,6.5,under,4,no
 2026-11-06,Domantas Sabonis,SAC,Rebounds,12.5,under,12,no
@@ -233,14 +193,8 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-06,Dejounte Murray,NO,Steals,1.5,under,1,no
 2026-11-06,Kasparas Jakucionis,MIL,PRA,10.5,under,5,no
 2026-11-06,Sidy Cissoko,POR,PRA,9.5,over,12,yes
-2026-11-06,Aaron Wiggins,ATL,Threes,1.5,over,3,yes
 2026-11-06,Kyle Kuzma,MIL,Assists,2.5,over,3,yes
-2026-11-06,Luka Doncic,LAL,Threes,4.5,over,5,yes
-2026-11-06,Tyler Herro,MIL,Threes,2.5,under,1,no
-2026-11-06,Zach LaVine,SAC,Threes,2.5,under,1,no
-2026-11-06,Cedric Coward,MEM,Threes,1.5,over,2,yes
 2026-11-06,Jayson Tatum,BOS,Assists,6.5,over,9,yes
-2026-11-06,Toumani Camara,POR,Threes,2.5,over,4,yes
 2026-11-06,Trey Murphy III,NO,Assists,2.5,over,5,yes
 2026-11-06,Peyton Watson,CLE,Assists,1.5,over,2,yes
 2026-11-06,Alex Caruso,OKC,Assists,2.5,under,2,no
@@ -253,16 +207,10 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-07,Toumani Camara,POR,Points,10.5,under,4,no
 2026-11-07,Luke Kennard,PHX,Points,5.5,over,11,yes
 2026-11-07,Alex Caruso,OKC,PRA,13.5,under,6,no
-2026-11-07,Julian Champagnie,SA,Threes,1.5,over,4,yes
-2026-11-07,Jrue Holiday,POR,Threes,1.5,under,1,no
-2026-11-07,Toumani Camara,POR,Threes,2.5,under,0,no
 2026-11-07,Alperen Sengun,HOU,Assists,6.5,under,5,no
-2026-11-07,Brandin Podziemski,GS,Threes,1.5,over,4,yes
 2026-11-07,Draymond Green,GS,Assists,5.5,over,13,yes
 2026-11-07,Fred VanVleet,HOU,Assists,4.5,under,4,no
 2026-11-07,Kelly Oubre Jr.,IND,Threes,0.5,under,0,no
-2026-11-07,Miles Bridges,PHX,Threes,1.5,under,1,no
-2026-11-07,Meleek Thomas,CLE,Threes,1.5,over,3,yes
 2026-11-08,Jaden McDaniels,MIN,Rebounds,5.5,over,6,yes
 2026-11-08,Zaccharie Risacher,DAL,Rebounds,3.5,over,6,yes
 2026-11-08,Paul George,BOS,Rebounds,4.5,under,3,no
@@ -283,11 +231,7 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-09,Collin Gillespie,PHX,Steals,1.5,under,0,no
 2026-11-09,Amen Thompson,HOU,Steals,0.5,over,1,yes
 2026-11-09,Cameron Johnson,DEN,Steals,0.5,over,2,yes
-2026-11-09,Luka Doncic,LAL,Threes,4.5,under,3,no
-2026-11-09,Cedric Coward,MEM,Threes,1.5,under,1,no
-2026-11-09,Meleek Thomas,CLE,Threes,1.5,over,4,yes
 2026-11-09,Dylan Harper,SA,Threes,0.5,under,0,no
-2026-11-09,P.J. Washington,DAL,Threes,1.5,over,2,yes
 2026-11-10,Zach LaVine,SAC,Rebounds,2.5,over,3,yes
 2026-11-10,LeBron James,PHI,Steals,0.5,under,0,no
 2026-11-10,Jaylen Brown,PHI,Steals,0.5,over,2,yes
@@ -311,24 +255,18 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-11,Ziaire Williams,LAL,PRA,12.5,over,15,yes
 2026-11-11,Kenrich Williams,OKC,Threes,0.5,over,2,yes
 2026-11-11,Moritz Wagner,BKN,Threes,0.5,over,2,yes
-2026-11-11,Meleek Thomas,CLE,Threes,1.5,over,2,yes
-2026-11-11,Josh Hart,NY,Threes,1.5,under,0,no
 2026-11-11,Kyle Kuzma,MIL,Assists,2.5,under,1,no
-2026-11-11,Danny Wolf,BKN,Threes,1.5,under,1,no
 2026-11-11,Jaylon Tyson,CLE,Assists,1.5,under,1,no
 2026-11-11,Jerami Grant,MEM,Assists,1.5,over,2,yes
 2026-11-11,Karl-Anthony Towns,NY,Assists,2.5,over,8,yes
 2026-11-11,Karlo Matkovic,NO,Threes,0.5,under,0,no
-2026-11-11,Luka Doncic,LAL,Threes,4.5,over,5,yes
 2026-11-12,Jaden McDaniels,MIN,Rebounds,5.5,over,9,yes
 2026-11-12,Terrence Shannon Jr.,MIN,Rebounds,2.5,under,2,no
 2026-11-12,Zaccharie Risacher,DAL,Rebounds,2.5,over,6,yes
 2026-11-12,Khaman Maluach,PHX,Rebounds,5.5,under,2,no
 2026-11-12,Collin Gillespie,PHX,Steals,0.5,over,2,yes
-2026-11-12,P.J. Washington,DAL,Threes,1.5,under,1,no
 2026-11-12,Trey Lyles,MIN,Threes,0.5,under,0,no
 2026-11-12,Cooper Flagg,DAL,Assists,5.5,under,3,no
-2026-11-12,Devin Booker,PHX,Threes,1.5,over,4,yes
 2026-11-13,Gui Santos,GS,Rebounds,2.5,over,4,yes
 2026-11-13,Keldon Johnson,SA,Rebounds,4.5,under,4,no
 2026-11-13,Ryan Rollins,MIL,Rebounds,2.5,over,10,yes
@@ -336,9 +274,7 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-13,Meleek Thomas,CLE,Steals,0.5,over,1,yes
 2026-11-13,Obi Toppin,IND,Points,9.5,under,9,no
 2026-11-13,Kobe Sanders,LAC,PRA,12.5,under,6,no
-2026-11-13,Aaron Wiggins,ATL,Threes,1.5,under,1,no
 2026-11-13,Draymond Green,GS,Assists,5.5,under,3,no
-2026-11-13,Meleek Thomas,CLE,Threes,1.5,over,2,yes
 2026-11-13,OG Anunoby,NY,Assists,1.5,under,1,no
 2026-11-13,Alperen Sengun,HOU,Assists,6.5,under,5,no
 2026-11-13,Alperen Sengun,HOU,Threes,0.5,over,1,yes
@@ -349,10 +285,7 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-14,Moritz Wagner,BKN,Threes,0.5,over,2,yes
 2026-11-15,Ace Bailey,UTAH,Rebounds,4.5,over,8,yes
 2026-11-15,Derrick Jones Jr.,LAC,Rebounds,3.5,over,4,yes
-2026-11-15,Aaron Wiggins,ATL,Threes,1.5,under,1,no
 2026-11-15,Alperen Sengun,HOU,Threes,0.5,over,1,yes
-2026-11-15,Devin Booker,PHX,Threes,1.5,under,0,no
-2026-11-15,Luka Doncic,LAL,Threes,4.5,over,5,yes
 2026-11-15,Max Strus,LAC,Assists,2.5,over,4,yes
 2026-11-16,Jaden McDaniels,MIN,Rebounds,5.5,over,6,yes
 2026-11-16,Paul George,BOS,Rebounds,4.5,over,8,yes
@@ -361,18 +294,15 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-16,Jrue Holiday,POR,Steals,0.5,under,0,no
 2026-11-16,Trevon Brazile,DEN,Points,4.5,over,9,yes
 2026-11-16,Tristan da Silva,ORL,PRA,15.5,over,22,yes
-2026-11-16,Meleek Thomas,CLE,Threes,1.5,under,1,no
 2026-11-16,Alperen Sengun,HOU,Threes,0.5,over,1,yes
 2026-11-16,Draymond Green,GS,Assists,5.5,under,5,no
 2026-11-16,AJ Dybantsa,WSH,Threes,0.5,over,1,yes
 2026-11-17,Devin Vassell,SA,Steals,0.5,over,1,yes
 2026-11-17,Immanuel Quickley,TOR,Steals,0.5,under,0,no
 2026-11-17,Ziaire Williams,LAL,Threes,0.5,under,0,no
-2026-11-17,Luka Doncic,LAL,Threes,4.5,over,5,yes
 2026-11-17,Max Strus,LAC,Assists,2.5,under,1,no
 2026-11-18,Zach LaVine,SAC,Rebounds,2.5,over,5,yes
 2026-11-18,Matisse Thybulle,LAL,Steals,1.5,over,4,yes
-2026-11-18,Luka Doncic,LAL,Threes,4.5,under,2,no
 2026-11-18,Pelle Larsson,MIA,Threes,0.5,over,1,yes
 2026-11-18,Anthony Black,ORL,Assists,4.5,over,6,yes
 2026-11-19,Kris Dunn,LAC,Rebounds,2.5,under,2,no
@@ -389,7 +319,6 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-20,Trey Murphy III,NO,Assists,2.5,under,1,no
 2026-11-20,Alperen Sengun,HOU,Threes,0.5,over,1,yes
 2026-11-20,Moritz Wagner,BKN,Threes,0.5,over,1,yes
-2026-11-20,Meleek Thomas,CLE,Threes,1.5,under,0,no
 2026-11-20,Ziaire Williams,LAL,Threes,0.5,over,1,yes
 2026-11-20,Anthony Black,ORL,Assists,4.5,over,6,yes
 2026-11-21,Zach LaVine,SAC,Rebounds,2.5,over,3,yes
@@ -398,7 +327,6 @@ Date,Player,Team,Market,Line,Result,Actual,Cleared
 2026-11-21,Jrue Holiday,POR,Steals,0.5,over,2,yes
 2026-11-21,Precious Achiuwa,SAC,Points,4.5,over,5,yes
 2026-11-21,Jaden McDaniels,MIN,Assists,2.5,over,4,yes
-2026-11-21,Jrue Holiday,POR,Threes,1.5,under,1,no
 2026-11-22,Ace Bailey,UTAH,Rebounds,4.5,over,5,yes
 2026-11-22,Anthony Black,ORL,Assists,4.5,under,2,no
 2026-11-22,Pelle Larsson,MIA,Threes,0.5,over,3,yes
