@@ -13,6 +13,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from propcomp.db import DOCS, connect
+from propcomp.signals import cold_line
 
 CORE = ("pts", "reb", "ast", "fg3m", "pra", "stl", "blk")
 LABELS = {
@@ -53,7 +54,7 @@ def _history(conn, teams: dict[str, str]) -> dict[str, list[dict]]:
     rows = conn.execute(
         """
         SELECT pg.player_id, pg.team_id, pg.minutes, pg.seconds, pg.starter,
-               pg.pts, pg.reb, pg.ast, pg.fg3m, pg.stl, pg.blk, pg.fgm, pg.fga,
+               pg.pts, pg.reb, pg.ast, pg.fg3m, pg.fg3a, pg.stl, pg.blk, pg.fgm, pg.fga,
                g.slate_date, g.home_id, g.away_id, g.tip_utc
         FROM player_games pg
         JOIN games g ON g.id = pg.game_id
@@ -132,7 +133,17 @@ def _guide() -> list[list]:
         [
             "Refresh",
             "Google Sheets caches an IMPORTDATA pull. The files themselves update with the board.",
-            "If a tab looks old, reload the sheet. A new board sync publishes the next file.",
+            "If a tab looks old, reload the sheet. A new board sync publishes the next file about once an hour from 9am to 1am Eastern.",
+        ],
+        [
+            "Low and high",
+            "The lowest and highest of that stat over the last 10 played games, or fewer when that is all he has played.",
+            "Read it beside the line. It does not move a star.",
+        ],
+        [
+            "Cold line",
+            "The last three games sit under his longer mean, the minutes and the attempts held, and the posted number followed the cold stretch down. Through Nov 23 this cashed 13 of 23.",
+            "It is a look on the board, marked cold. It is not a star and it does not raise the hit rate of the book.",
         ],
     ]
 
@@ -172,7 +183,7 @@ def _board_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
     header = [
         "Date", "Section", "Game", "Team", "Player", "Market", "Line", "Call",
         "Last 5 average", "Last 5 median", "Season skew", "Last 5 spread", "Clear", "Detail",
-        "Last 10 min",
+        "Last 10 min", "Low", "High", "Cold line",
     ]
     rows = [header]
     for day in days:
@@ -187,6 +198,7 @@ def _board_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
                 shape["mean"], shape["median"], shape["skew"], shape["spread"], "",
                 item.get("why") or "",
                 _last_minutes(history.get(item.get("id")) or [], slate),
+                *_extra(history.get(item.get("id")) or [], slate, _code(item.get("label")), item.get("line")),
             ])
         for item in card.get("stars") or []:
             shape = _shape(history.get(item.get("id")) or [], slate, item.get("code"))
@@ -197,6 +209,7 @@ def _board_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
                 shape["mean"], shape["median"], shape["skew"], shape["spread"],
                 _percent(item.get("rate")), item.get("note") or "",
                 _last_minutes(history.get(item.get("id")) or [], slate),
+                *_extra(history.get(item.get("id")) or [], slate, item.get("code"), item.get("posted")),
             ])
         for section, key in (
             ("Points paused", "pauses"),
@@ -210,7 +223,33 @@ def _board_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
                     item.get("label") or "", item.get("cap") if item.get("cap") is not None else "",
                     "", "", "", "", "", "", item.get("detail") or "",
                     _last_minutes(history.get(item.get("id")) or [], slate),
+                    *_extra(history.get(item.get("id")) or [], slate, item.get("code") or _code(item.get("label")), None),
                 ])
+        listed = {
+            (item.get("id"), item.get("code") or _code(item.get("label")))
+            for item in (card.get("calls") or []) + (card.get("stars") or [])
+        }
+        for game in day.get("games") or []:
+            matchup = f"{game.get('away')} at {game.get('home')}"
+            for player in game.get("rows") or []:
+                if player.get("avail") == "out":
+                    continue
+                prior = [item for item in history.get(player.get("id")) or [] if item["slate_date"] < slate]
+                for prop in player.get("props") or []:
+                    if prop.get("k") != "ou" or prop.get("c") not in CORE:
+                        continue
+                    if (player.get("id"), prop.get("c")) in listed:
+                        continue
+                    found = cold_line(prior, prop.get("c"), _number(prop.get("line")))
+                    if not found:
+                        continue
+                    rows.append([
+                        slate, "Cold line", matchup, player.get("team") or "", player.get("name") or "",
+                        LABELS.get(prop.get("c"), prop.get("c")), prop.get("line") or "", "Look",
+                        "", "", "", "", "", found["why"],
+                        _last_minutes(history.get(player.get("id")) or [], slate),
+                        *_extra(prior, slate, prop.get("c"), prop.get("line"), already_prior=True),
+                    ])
     return rows
 
 
@@ -218,7 +257,7 @@ def _line_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
     header = [
         "Date", "Game", "Team", "Opponent", "Player", "Pos", "Market", "Line",
         "Result", "Actual", "Last 5 average", "Last 5 median", "Season skew", "Last 5 spread", "Season clear",
-        "Last 10 min",
+        "Last 10 min", "Low", "High", "Cold line",
     ]
     rows = [header]
     for day in days:
@@ -238,6 +277,7 @@ def _line_rows(days: list[dict], history: dict[str, list[dict]]) -> list[list]:
                         prop.get("line") or "", prop.get("r") or "", prop.get("act") if prop.get("act") is not None else "",
                         shape["mean"], shape["median"], shape["skew"], shape["spread"], shape["clear"],
                         _last_minutes(history.get(row.get("id")) or [], slate),
+                        *_extra(prior, slate, prop.get("c"), prop.get("line"), already_prior=True),
                     ])
     return rows
 
@@ -472,6 +512,42 @@ def _percent(rate) -> str:
     if rate is None:
         return ""
     return f"{round(float(rate) * 100)}%"
+
+
+def _extra(games: list[dict], slate: str, code: str | None, line, already_prior: bool = False) -> list:
+    low, high = _stat_span(games, slate, code, already_prior=already_prior)
+    prior = games if already_prior else [game for game in games if game["slate_date"] < slate]
+    found = cold_line(prior, code, _number(line)) if code else None
+    return [_count_text(low), _count_text(high), "yes" if found else ""]
+
+
+def _stat_span(games: list[dict], slate: str, code: str | None, already_prior: bool = False) -> tuple:
+    if not code:
+        return "", ""
+    prior = games if already_prior else [game for game in games if game["slate_date"] < slate and (game.get("seconds") or 0) > 0]
+    values = []
+    for game in prior:
+        if (game.get("seconds") or 0) <= 0:
+            continue
+        if code == "pra":
+            total = _sum(game.get("pts"), game.get("reb"), game.get("ast"))
+        else:
+            total = game.get(code)
+        if total is not None:
+            values.append(float(total))
+    if not values:
+        return "", ""
+    sample = values[-10:]
+    return min(sample), max(sample)
+
+
+def _count_text(value) -> float | str:
+    if value == "":
+        return ""
+    number = float(value)
+    if number == int(number):
+        return int(number)
+    return round(number, 1)
 
 
 def _last_minutes(games: list[dict], slate: str, count: int = 10) -> float | str:

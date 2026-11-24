@@ -434,6 +434,8 @@ def _attach_box_logs(logs, history) -> None:
                 row["fg3m"],
                 row["stl"],
                 row["blk"],
+                row["fga"],
+                row["fg3a"],
             ])
         if series:
             logs.setdefault(player_id, {})["box"] = series

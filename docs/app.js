@@ -375,7 +375,8 @@ function paintBoard() {
       const indexed = indexMain(row.props);
       core.forEach((market) => {
         const prop = indexed.get(market.code);
-        fillCell(addCell(tr, "td", ""), prop, starReason(row, prop), prop && prop.lean);
+        const cold = prop && coldLine(row.id, prop.c, lineNumber(prop), state.date);
+        fillCell(addCell(tr, "td", ""), prop, starReason(row, prop), prop && prop.lean, cold);
       });
       const extras = row.props.filter((prop) => prop.k === "milestone" || !coreCodes.has(prop.c));
       const key = `${game.id}:${row.id}`;
@@ -743,6 +744,79 @@ function statSpan(playerId, code, slate) {
   return { low: Math.min(...sample), high: Math.max(...sample), n: sample.length };
 }
 
+const COLD_FLOORS = { pts: 3, reb: 1.5, ast: 1, fg3m: 0.6, pra: 4, stl: 0.5 };
+const COLD_VOLUME = { pts: 7, pra: 7, fg3m: 8 };
+
+function coldLine(playerId, code, line, slate) {
+  if (!Number.isFinite(line) || COLD_FLOORS[code] == null) return null;
+  const box = (state.logs && state.logs[playerId] && state.logs[playerId].box) || [];
+  const prior = box.filter((row) => row[0] < slate);
+  if (prior.length < 11) return null;
+  const longer = prior.slice(0, -3);
+  const recent = prior.slice(-3);
+  const valueOf = (row) => {
+    if (code === "pra") return Number(row[1]) + Number(row[2]) + Number(row[3]);
+    const index = BOX_INDEX[code];
+    return index == null ? null : Number(row[index]);
+  };
+  const longValues = longer.map(valueOf);
+  const shortValues = recent.map(valueOf);
+  if (longValues.concat(shortValues).some((value) => !Number.isFinite(value))) return null;
+  const longMean = longValues.reduce((sum, value) => sum + value, 0) / longValues.length;
+  const shortMean = shortValues.reduce((sum, value) => sum + value, 0) / shortValues.length;
+  const center = longMean;
+  const variance = longValues.reduce((sum, value) => sum + (value - center) ** 2, 0) / (longValues.length - 1);
+  const gap = Math.max(0.75 * Math.sqrt(variance), COLD_FLOORS[code]);
+  if (shortMean > longMean - gap || longMean - line < COLD_FLOORS[code] || line > shortMean + 0.5) return null;
+  const minuteByDate = new Map();
+  ((state.logs[playerId] && state.logs[playerId].min) || []).forEach((row) => {
+    if (row[0] < slate && Number.isFinite(Number(row[3]))) minuteByDate.set(row[0], Number(row[3]));
+  });
+  const minutes = prior.map((row) => minuteByDate.get(row[0]));
+  if (minutes.some((value) => !Number.isFinite(value))) return null;
+  const longMinutes = minutes.slice(0, -3).reduce((sum, value) => sum + value, 0) / (minutes.length - 3);
+  const shortMinutes = minutes.slice(-3).reduce((sum, value) => sum + value, 0) / 3;
+  if (!(longMinutes > 0) || shortMinutes < longMinutes * 0.85) return null;
+  const volumeIndex = COLD_VOLUME[code];
+  if (volumeIndex != null) {
+    if (prior.some((row) => !Number.isFinite(Number(row[volumeIndex])))) return null;
+    const longVolume = longer.reduce((sum, row) => sum + Number(row[volumeIndex]), 0) / longer.length;
+    const shortVolume = recent.reduce((sum, row) => sum + Number(row[volumeIndex]), 0) / recent.length;
+    if (!(longVolume > 0) || shortVolume < longVolume * 0.85) return null;
+    if (code === "fg3m" && shortVolume < 1) return null;
+  }
+  return {
+    long: longMean,
+    short: shortMean,
+    why: `Last 3 average ${formatNumber(shortMean)} sits under the longer average of ${formatNumber(longMean)}. The line ${formatNumber(line)} followed that cold stretch. Minutes and attempts held. This group cashed 13 of 23. It is a look, not a star.`,
+  };
+}
+
+function slateColdLines() {
+  const items = [];
+  (state.day.games || []).forEach((game) => {
+    (game.rows || []).forEach((row) => {
+      if (row.avail === "out") return;
+      (row.props || []).forEach((prop) => {
+        if (prop.k === "milestone" || prop.k === "yesno") return;
+        const found = coldLine(row.id, prop.c, lineNumber(prop), state.date);
+        if (!found) return;
+        items.push({
+          team: row.team,
+          name: row.name,
+          game: `${game.away} at ${game.home}`,
+          label: prop.m,
+          line: prop.line,
+          long: found.long,
+          short: found.short,
+          why: found.why,
+        });
+      });
+    });
+  });
+  return items;
+}
+
 function trailingAverage(series, code) {
   const sample = [];
   for (let index = series.length - 1; index >= 0 && sample.length < 5; index -= 1) {
@@ -878,7 +952,7 @@ function extraGrid(props) {
   return grid;
 }
 
-function fillCell(cell, prop, reason, lean) {
+function fillCell(cell, prop, reason, lean, cold) {
   if (!prop) return cell;
   cell.classList.add("stat", tone(prop.r));
   const strong = document.createElement("strong");
@@ -906,6 +980,7 @@ function fillCell(cell, prop, reason, lean) {
   cell.append(strong, em);
   if (lean) cell.append(makeMark("lean", "↑", lean));
   if (reason) cell.append(makeMark("star", "★", reason));
+  if (cold) cell.append(makeMark("cold", "cold", cold.why));
   if (prop.open) {
     const small = document.createElement("small");
     small.textContent = `opened at ${prop.open}`;
@@ -916,6 +991,7 @@ function fillCell(cell, prop, reason, lean) {
     prop.c === "fg3m" && lineNumber(prop) === 0.5 && reason
       ? "One make. The clear rate means he made at least one three. The 3.5 cushion does not bind on 0.5. This group cashed 19 of 29, so about one in three still miss."
       : "",
+    cold ? cold.why : "",
   ].filter(Boolean).join(" ");
   cell.title = `${prop.m} ${prop.line || ""} ${priceText(prop)} ${because}`.trim();
   return cell;
@@ -1206,7 +1282,7 @@ function formulaCard(card) {
   section.append(summary);
   const note = document.createElement("p");
   note.className = "card-note";
-  note.textContent = "Calls are sorted strongest first. A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A filled U needs the minutes short on more than one of the last three games, with the number still up. A rebound or steal can still be a strong under after one short night when the number is at least a point above the recent average. One short night does not mark points, PRA, threes, or assists. Threes at 1.5 and up cashed 36 of 72 and do not star. A 0.5 three is one make: the clear rate means he made at least one, the 3.5 cushion does not bind, and that group cashed 19 of 29. Low and high are that stat over the last 10 played games, or fewer when that is all he has played. They do not move a star. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over. The bottom pair is an assist line that has lined up with a teammate's points. It is a stacking check, not a star.";
+  note.textContent = "Calls are sorted strongest first. A star needs five prior games, an 80% clear rate, the last five median over the number, a cushion under 3.5, and a number that has not risen by a point. A filled O is that same strict profile and has cashed 59% of the time. A filled U needs the minutes short on more than one of the last three games, with the number still up. A rebound or steal can still be a strong under after one short night when the number is at least a point above the recent average. One short night does not mark points, PRA, threes, or assists. Threes at 1.5 and up cashed 36 of 72 and do not star. A 0.5 three is one make: the clear rate means he made at least one, the 3.5 cushion does not bind, and that group cashed 19 of 29. Low and high are that stat over the last 10 played games, or fewer when that is all he has played. They do not move a star. A cold mark means the last three games sit under his longer mean, the minutes and attempts held, and the posted number followed them down. That group cashed 13 of 23. It is a look, not a star. A half-point gap, a moved number, or a single spike does not get a mark. The arrow is a minute ramp. The ceiling is the pregame role and does not star the over. The bottom pair is an assist line that has lined up with a teammate's points. It is a stacking check, not a star.";
   section.append(note);
   if ((card.calls || []).length) {
     section.append(cardTable(
@@ -1244,6 +1320,23 @@ function formulaCard(card) {
     ];
     },
   ));
+  const coldLines = slateColdLines();
+  if (coldLines.length) {
+    section.append(cardTable(
+      "Cold lines",
+      coldLines,
+      ["Player", "Game", "Market", "Line", "Long mean", "Last 3", "Note"],
+      (item) => [
+        `${item.team} ${item.name}`,
+        item.game,
+        item.label,
+        item.line,
+        formatNumber(item.long),
+        formatNumber(item.short),
+        item.why,
+      ],
+    ));
+  }
   if ((card.pauses || []).length) {
     section.append(cardTable(
       "Points paused",

@@ -52,6 +52,11 @@ VOID_MINUTES = 12.0
 RAMP_MINUTES = 24.0
 SCRIPT_SPREAD = -8.0
 PRIOR_GAMES = 5
+# A cold line is a look, not a star. Through Nov 23, 2026 the rule below cashed 13 of 23.
+# Minutes and attempt volume had to hold, the last three games had to sit under the longer
+# mean, and the posted number had to follow that short stretch down.
+COLD_FLOORS = {"pts": 3.0, "reb": 1.5, "ast": 1.0, "fg3m": 0.6, "pra": 4.0, "stl": 0.5}
+COLD_VOLUME = {"pts": "fga", "pra": "fga", "fg3m": "fg3a"}
 
 
 def stat_value(game: dict, code: str) -> float | None:
@@ -93,6 +98,75 @@ def recent_values(history: list[dict], code: str, count: int = 5) -> list[float]
         if len(values) >= count:
             break
     return values
+
+
+def cold_line(history: list[dict], code: str, line: float | None) -> dict | None:
+    """Posted number sitting on a three-game cold stretch while the role held."""
+    if line is None or code not in COLD_FLOORS:
+        return None
+    rows = played_rows(history)
+    if len(rows) < 11:
+        return None
+    longer, recent = rows[:-3], rows[-3:]
+    if len(longer) < 8:
+        return None
+    long_values = [_box_value(game, code) for game in longer]
+    short_values = [_box_value(game, code) for game in recent]
+    if any(value is None for value in long_values + short_values):
+        return None
+    long_mean = mean(long_values)
+    short_mean = mean(short_values)
+    if long_mean is None or short_mean is None:
+        return None
+    long_sd = pstdev(long_values) if len(long_values) > 1 else 0.0
+    gap = max(0.75 * (long_sd or 0.0), COLD_FLOORS[code])
+    # The cold stretch has to clear a spread-aware gap. The line only has to sit on that
+    # stretch, with the longer mean still above the number by the practical floor.
+    if short_mean > long_mean - gap or long_mean - line < COLD_FLOORS[code] or line > short_mean + 0.5:
+        return None
+    long_minutes = mean([_box_value(game, "min") for game in longer]) or 0
+    short_minutes = mean([_box_value(game, "min") for game in recent]) or 0
+    if long_minutes <= 0 or short_minutes < long_minutes * 0.85:
+        return None
+    volume = COLD_VOLUME.get(code)
+    if volume:
+        long_volume = mean([_box_value(game, volume) or 0 for game in longer]) or 0
+        short_volume = mean([_box_value(game, volume) or 0 for game in recent]) or 0
+        if long_volume <= 0 or short_volume < long_volume * 0.85:
+            return None
+        if code == "fg3m" and short_volume < 1:
+            return None
+    return {
+        "long": long_mean,
+        "short": short_mean,
+        "line": line,
+        "why": (
+            f"Last 3 average {_number(short_mean)} sits under the longer average of {_number(long_mean)}. "
+            f"The line {_number(line)} followed that cold stretch. Minutes and attempts held. "
+            "This group cashed 13 of 23. It is a look, not a star."
+        ),
+    }
+
+
+def _box_value(game: dict, key: str) -> float | None:
+    if key == "min":
+        seconds = game.get("seconds")
+        if seconds is None:
+            return None
+        return float(seconds) / 60
+    if key in FIELDS:
+        return stat_value(game, key)
+    value = game.get(key)
+    if value is None:
+        return None
+    return float(value)
+
+
+def pstdev(values: list[float]) -> float:
+    if len(values) < 2:
+        return 0.0
+    center = mean(values) or 0.0
+    return math.sqrt(sum((value - center) ** 2 for value in values) / (len(values) - 1))
 
 
 def played_rows(history: list[dict]) -> list[dict]:
@@ -1232,3 +1306,37 @@ def check() -> None:
         raise SystemExit("a 1.5 three should not star")
     if not evaluate_line("fg3m", 0.5, 0.5, made):
         raise SystemExit("a 0.5 three with a steady make should still star")
+    cold_games = []
+    for index in range(8):
+        cold_games.append({
+            "game_id": f"c{index}",
+            "slate_date": f"2026-10-{index + 1:02d}",
+            "seconds": 34 * 60,
+            "pts": 28,
+            "reb": 8,
+            "ast": 8,
+            "fg3m": 4,
+            "fg3a": 10,
+            "fga": 20,
+            "stl": 1,
+        })
+    for index, makes in enumerate((2, 2, 2)):
+        cold_games.append({
+            "game_id": f"c{index + 8}",
+            "slate_date": f"2026-10-{index + 12:02d}",
+            "seconds": 34 * 60,
+            "pts": 22,
+            "reb": 8,
+            "ast": 8,
+            "fg3m": makes,
+            "fg3a": 10,
+            "fga": 20,
+            "stl": 1,
+        })
+    if not cold_line(cold_games, "fg3m", 2.5):
+        raise SystemExit("a line that followed a cold three stretch should be marked")
+    short_minutes = [dict(game) for game in cold_games]
+    for game in short_minutes[-3:]:
+        game["seconds"] = 10 * 60
+    if cold_line(short_minutes, "fg3m", 2.5):
+        raise SystemExit("a cold stretch with lost minutes should stay unmarked")
