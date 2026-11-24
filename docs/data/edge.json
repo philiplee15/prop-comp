@@ -1,13 +1,13 @@
 {
-  "pulled_at": "Tue Nov 24, 6:39 AM ET",
+  "pulled_at": "Tue Nov 24, 7:06 AM ET",
   "slate": "2026-11-24",
   "book": "FanDuel published prices",
   "counts": {
     "games": 3,
     "book": 184,
-    "prizepicks": 226,
-    "matched": 88,
-    "playable": 3
+    "prizepicks": 224,
+    "matched": 86,
+    "playable": 2
   },
   "slips": [
     {
@@ -91,45 +91,7 @@
       "bar": 0.5503212081491042
     }
   ],
-  "cards": [
-    {
-      "id": "3-power",
-      "label": "3-pick Power",
-      "payout": "6x",
-      "bar": 0.5503,
-      "ev": 1.034,
-      "same_game": true,
-      "legs": [
-        {
-          "player": "Alex Sarr",
-          "team": "WAS",
-          "stat_label": "Points",
-          "line": 2.5,
-          "side": "under",
-          "fair": 0.5635,
-          "game": "Boston Celtics @ Washington Wizards"
-        },
-        {
-          "player": "Caleb Martin",
-          "team": "DAL",
-          "stat_label": "Threes",
-          "line": 0.5,
-          "side": "over",
-          "fair": 0.5548,
-          "game": "Dallas Mavericks @ Denver Nuggets"
-        },
-        {
-          "player": "P.J. Washington",
-          "team": "DAL",
-          "stat_label": "Rebounds",
-          "line": 5.5,
-          "side": "under",
-          "fair": 0.5511,
-          "game": "Dallas Mavericks @ Denver Nuggets"
-        }
-      ]
-    }
-  ],
+  "cards": [],
   "legs": [
     {
       "player": "Alex Sarr",
@@ -156,64 +118,53 @@
       "playable": true
     },
     {
-      "player": "Caleb Martin",
-      "team": "DAL",
-      "stat": "fg3m",
-      "stat_label": "Threes",
-      "line": 0.5,
-      "side": "over",
-      "fair": 0.5548,
-      "over": -146,
-      "under": 110,
-      "game": "Dallas Mavericks @ Denver Nuggets",
-      "event_id": "36350565",
-      "tip": "Tue 10:10 PM ET",
-      "clears": [
-        "6-flex",
-        "5-flex",
-        "6-power",
-        "5-power",
-        "3-power",
-        "4-flex"
-      ],
-      "playable": true
-    },
-    {
       "player": "P.J. Washington",
       "team": "DAL",
       "stat": "reb",
       "stat_label": "Rebounds",
       "line": 5.5,
       "side": "under",
-      "fair": 0.5511,
-      "over": 108,
-      "under": -144,
+      "fair": 0.5458,
+      "over": 106,
+      "under": -140,
       "game": "Dallas Mavericks @ Denver Nuggets",
       "event_id": "36350565",
       "tip": "Tue 10:10 PM ET",
       "clears": [
         "6-flex",
-        "5-flex",
-        "6-power",
-        "5-power",
-        "3-power",
-        "4-flex"
+        "5-flex"
       ],
       "playable": true
     },
     {
-      "player": "Desmond Bane",
-      "team": "ORL",
+      "player": "Naji Marshall",
+      "team": "DAL",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 10.5,
+      "side": "under",
+      "fair": 0.5419,
+      "over": 104,
+      "under": -138,
+      "game": "Dallas Mavericks @ Denver Nuggets",
+      "event_id": "36350565",
+      "tip": "Tue 10:10 PM ET",
+      "clears": [],
+      "playable": false
+    },
+    {
+      "player": "Nikola Joki\u0107",
+      "team": "DEN",
       "stat": "ast",
       "stat_label": "Assists",
-      "line": 2.5,
+      "line": 9.5,
       "side": "over",
       "fair": 0.5419,
       "over": -138,
       "under": 104,
-      "game": "Detroit Pistons @ Orlando Magic",
-      "event_id": "36350563",
-      "tip": "Tue 7:11 PM ET",
+      "game": "Dallas Mavericks @ Denver Nuggets",
+      "event_id": "36350565",
+      "tip": "Tue 10:10 PM ET",
       "clears": [],
       "playable": false
     },
@@ -234,22 +185,6 @@
       "playable": false
     },
     {
-      "player": "Christian Braun",
-      "team": "DEN",
-      "stat": "reb",
-      "stat_label": "Rebounds",
-      "line": 4.5,
-      "side": "over",
-      "fair": 0.5379,
-      "over": -136,
-      "under": 102,
-      "game": "Dallas Mavericks @ Denver Nuggets",
-      "event_id": "36350565",
-      "tip": "Tue 10:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
       "player": "Kyrie Irving",
       "team": "DAL",
       "stat": "ast",
@@ -259,22 +194,6 @@
       "fair": 0.5379,
       "over": -136,
       "under": 102,
-      "game": "Dallas Mavericks @ Denver Nuggets",
-      "event_id": "36350565",
-      "tip": "Tue 10:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Naji Marshall",
-      "team": "DAL",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 10.5,
-      "side": "under",
-      "fair": 0.5379,
-      "over": 102,
-      "under": -136,
       "game": "Dallas Mavericks @ Denver Nuggets",
       "event_id": "36350565",
       "tip": "Tue 10:10 PM ET",
@@ -314,6 +233,22 @@
       "playable": false
     },
     {
+      "player": "Christian Braun",
+      "team": "DEN",
+      "stat": "reb",
+      "stat_label": "Rebounds",
+      "line": 4.5,
+      "side": "over",
+      "fair": 0.5323,
+      "over": -132,
+      "under": 100,
+      "game": "Dallas Mavericks @ Denver Nuggets",
+      "event_id": "36350565",
+      "tip": "Tue 10:10 PM ET",
+      "clears": [],
+      "playable": false
+    },
+    {
       "player": "Cooper Flagg",
       "team": "DAL",
       "stat": "reb",
@@ -330,18 +265,34 @@
       "playable": false
     },
     {
-      "player": "Daniel Gafford",
-      "team": "DAL",
-      "stat": "ast",
-      "stat_label": "Assists",
-      "line": 1.5,
+      "player": "Neemias Queta",
+      "team": "BOS",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 10.5,
       "side": "over",
       "fair": 0.5323,
       "over": -132,
       "under": 100,
-      "game": "Dallas Mavericks @ Denver Nuggets",
-      "event_id": "36350565",
-      "tip": "Tue 10:10 PM ET",
+      "game": "Boston Celtics @ Washington Wizards",
+      "event_id": "36350564",
+      "tip": "Tue 8:10 PM ET",
+      "clears": [],
+      "playable": false
+    },
+    {
+      "player": "AJ Dybantsa",
+      "team": "WAS",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 16.5,
+      "side": "under",
+      "fair": 0.5282,
+      "over": -102,
+      "under": -130,
+      "game": "Boston Celtics @ Washington Wizards",
+      "event_id": "36350564",
+      "tip": "Tue 8:10 PM ET",
       "clears": [],
       "playable": false
     }
