@@ -1,12 +1,12 @@
 {
-  "pulled_at": "Mon Nov 23, 8:30 PM ET",
+  "pulled_at": "Mon Nov 23, 8:31 PM ET",
   "slate": "2026-11-23",
   "book": "FanDuel published prices",
   "counts": {
     "games": 10,
-    "book": 545,
-    "prizepicks": 197,
-    "matched": 52,
+    "book": 549,
+    "prizepicks": 194,
+    "matched": 51,
     "playable": 0
   },
   "slips": [
@@ -174,22 +174,6 @@
       "playable": false
     },
     {
-      "player": "Zach LaVine",
-      "team": "SAC",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 17.5,
-      "side": "under",
-      "fair": 0.5331,
-      "over": 102,
-      "under": -130,
-      "game": "San Antonio Spurs @ Sacramento Kings",
-      "event_id": "36345802",
-      "tip": "Mon 10:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
       "player": "Kevin Durant",
       "team": "HOU",
       "stat": "pts",
@@ -233,6 +217,22 @@
       "under": -128,
       "game": "Utah Jazz @ Los Angeles Lakers",
       "event_id": "36345805",
+      "tip": "Mon 10:10 PM ET",
+      "clears": [],
+      "playable": false
+    },
+    {
+      "player": "Darius Acuff Jr.",
+      "team": "SAC",
+      "stat": "ast",
+      "stat_label": "Assists",
+      "line": 6.5,
+      "side": "under",
+      "fair": 0.5289,
+      "over": 100,
+      "under": -128,
+      "game": "San Antonio Spurs @ Sacramento Kings",
+      "event_id": "36345802",
       "tip": "Mon 10:10 PM ET",
       "clears": [],
       "playable": false
