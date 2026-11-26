@@ -2,32 +2,30 @@ Team,Player A,Player B,Shared games,Points correlation,A points vs B assists,B p
 IND,Kobe Brown,Jarace Walker,8,0.95,0.7,0.76,"Kobe Brown's assists have lined up with Jarace Walker's points across 8 shared games (r 0.76). Pairing check, not a star."
 MIL,Jericho Sims,Tyler Herro,10,-0.95,-0.24,-0.23,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 OKC,Josh Dix,Bennett Stirtz,9,0.93,0.78,0.5,"Bennett Stirtz's assists have lined up with Josh Dix's points across 9 shared games (r 0.78). Pairing check, not a star."
-SAC,Dylan Cardwell,Emanuel Sharp,10,0.91,0.06,0.58,"Dylan Cardwell's assists have lined up with Emanuel Sharp's points across 10 shared games (r 0.58). Pairing check, not a star."
 CHA,Coby White,Sion James,10,-0.89,0.79,0.25,"Sion James's assists have lined up with Coby White's points across 10 shared games (r 0.79). Pairing check, not a star."
 HOU,Isaiah Crawford,Bruce Thornton,11,0.87,,0.65,"Isaiah Crawford's assists have lined up with Bruce Thornton's points across 11 shared games (r 0.65). Pairing check, not a star."
 NY,OG Anunoby,Jose Alvarado,8,-0.87,-0.47,-0.2,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 POR,Micah Potter,Deni Avdija,8,-0.87,-0.38,-0.25,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-SAC,Leaky Black,Emanuel Sharp,12,0.85,0.1,0.27,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 LAL,Austin Reaves,Ziaire Williams,9,0.84,-0.62,0.3,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 PHX,Luke Kennard,Jordan Goodwin,12,0.84,0.29,0.65,"Luke Kennard's assists have lined up with Jordan Goodwin's points across 12 shared games (r 0.65). Pairing check, not a star."
+SAC,Precious Achiuwa,Alex Karaban,8,0.84,-0.4,0.54,"Precious Achiuwa's assists have lined up with Alex Karaban's points across 8 shared games (r 0.54). Pairing check, not a star."
 WSH,Tre Mann,Alex Sarr,9,0.84,0.04,0.48,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 OKC,Kenrich Williams,Brooks Barnhizer,11,0.83,0.07,0.4,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 TOR,Kyle Anderson,Jakob Poeltl,8,0.83,0.04,0.21,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-SAC,Leaky Black,Keegan Murray,8,-0.82,-0.53,-0.44,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 MEM,Isaiah Stewart,GG Jackson,10,0.8,0.34,-0.44,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 CHA,Tidjane Salaun,Liam McNeeley,8,0.78,0.54,-0.13,"Liam McNeeley's assists have lined up with Tidjane Salaun's points across 8 shared games (r 0.54). Pairing check, not a star."
 CHI,Nic Claxton,Isaac Okoro,8,-0.78,0.47,0.2,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 PHX,Dillon Brooks,Koa Peat,10,-0.78,-0.32,-0.62,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 UTAH,Tony Bradley,Mo Bamba,8,0.78,0.56,0.09,"Mo Bamba's assists have lined up with Tony Bradley's points across 8 shared games (r 0.56). Pairing check, not a star."
 WSH,Trae Young,Tre Mann,9,-0.78,-0.71,-0.4,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-SAC,Leaky Black,Dylan Cardwell,10,0.77,0.5,0.38,"Dylan Cardwell's assists have lined up with Leaky Black's points across 10 shared games (r 0.5). Pairing check, not a star."
 CLE,Craig Porter Jr.,Meleek Thomas,10,0.76,0.35,0.6,"Craig Porter Jr.'s assists have lined up with Meleek Thomas's points across 10 shared games (r 0.6). Pairing check, not a star."
 CLE,Thomas Bryant,Sam Merrill,8,-0.76,-0.27,-0.2,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 LAL,Luka Doncic,Cameron Carr,8,-0.76,-0.28,-0.02,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 NY,Landry Shamet,Mohamed Diawara,8,-0.75,-0.76,-0.15,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-SAC,Malik Monk,Leaky Black,12,0.75,0.26,0.81,"Malik Monk's assists have lined up with Leaky Black's points across 12 shared games (r 0.81). Pairing check, not a star."
+SAC,Leaky Black,Dylan Cardwell,11,0.75,0.5,0.34,"Dylan Cardwell's assists have lined up with Leaky Black's points across 11 shared games (r 0.5). Pairing check, not a star."
+SAC,Malik Monk,Leaky Black,13,0.75,0.24,0.81,"Malik Monk's assists have lined up with Leaky Black's points across 13 shared games (r 0.81). Pairing check, not a star."
 BOS,Luka Garza,Chris Cenac Jr.,9,-0.74,-0.1,0.71,"Luka Garza's assists have lined up with Chris Cenac Jr.'s points across 9 shared games (r 0.71). Pairing check, not a star."
-SAC,Keegan Murray,Emanuel Sharp,10,-0.74,-0.02,-0.23,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
+SAC,Leaky Black,Emanuel Sharp,13,0.74,0.03,0.28,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 SAC,Nique Clifford,Darius Acuff Jr.,8,-0.74,-0.36,-0.21,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 BKN,Danny Wolf,Nolan Traore,9,-0.73,-0.73,-0.38,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 GS,Gary Payton II,Stephen Curry,8,-0.73,-0.91,0.6,"Gary Payton II's assists have lined up with Stephen Curry's points across 8 shared games (r 0.6). Pairing check, not a star."
@@ -43,16 +41,16 @@ GS,Al Horford,LJ Cryer,10,-0.7,-0.58,0.2,No assist-to-points link across 10 shar
 HOU,Marcus Smart,Jabari Smith Jr.,13,0.7,0.53,0.29,"Jabari Smith Jr.'s assists have lined up with Marcus Smart's points across 13 shared games (r 0.53). Pairing check, not a star."
 LAC,Kobe Sanders,Cam Christie,9,0.7,0.2,-0.25,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 LAC,Rui Hachimura,Cam Christie,8,0.7,-0.1,-0.7,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
+SAC,Leaky Black,Keegan Murray,9,-0.7,-0.53,-0.25,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 WSH,Tre Johnson,Anthony Davis,15,-0.7,-0.05,-0.19,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 ATL,CJ McCollum,Zuby Ejiofor,8,-0.69,-0.71,0.02,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 BKN,Julius Randle,Josh Minott,9,-0.69,-0.69,0.6,"Julius Randle's assists have lined up with Josh Minott's points across 9 shared games (r 0.6). Pairing check, not a star."
 MIA,Andrew Wiggins,Myron Gardner,11,0.69,0.61,-0.49,"Myron Gardner's assists have lined up with Andrew Wiggins's points across 11 shared games (r 0.61). Pairing check, not a star."
-SAC,De'Andre Hunter,Leaky Black,10,-0.69,-0.41,-0.06,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
+SAC,De'Andre Hunter,Leaky Black,11,-0.69,-0.41,-0.06,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 TOR,Jakob Poeltl,Scottie Barnes,10,0.69,0.71,0.65,"Scottie Barnes's assists have lined up with Jakob Poeltl's points across 10 shared games (r 0.71). Pairing check, not a star."
 UTAH,Mo Bamba,Jaxson Hayes,11,-0.69,0.36,-0.04,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 WSH,Tre Mann,Will Riley,9,0.69,-0.23,0.54,"Tre Mann's assists have lined up with Will Riley's points across 9 shared games (r 0.54). Pairing check, not a star."
 DAL,Moussa Cisse,Kyrie Irving,8,0.68,-0.51,0.44,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-GS,Brandon Williams,Will Richard,9,0.68,0.48,0.65,"Brandon Williams's assists have lined up with Will Richard's points across 9 shared games (r 0.65). Pairing check, not a star."
 MIL,Myles Turner,Ousmane Dieng,9,-0.68,0.39,0.2,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 BKN,Keon Ellis,Danny Wolf,11,-0.67,0.14,-0.13,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 BOS,Paul George,Ron Harper Jr.,8,-0.67,-0.47,0.13,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
@@ -71,6 +69,7 @@ IND,Kobe Brown,Quenton Jackson,8,0.66,-0.26,0.7,"Kobe Brown's assists have lined
 LAL,Sandro Mamukelashvili,Jaden Hardy,8,0.66,-0.12,0.71,"Sandro Mamukelashvili's assists have lined up with Jaden Hardy's points across 8 shared games (r 0.71). Pairing check, not a star."
 MIL,Jericho Sims,Jaime Jaquez Jr.,11,-0.66,0.8,-0.01,"Jaime Jaquez Jr.'s assists have lined up with Jericho Sims's points across 11 shared games (r 0.8). Pairing check, not a star."
 OKC,Isaiah Hartenstein,Nique Clifford,9,-0.66,0.07,-0.34,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+POR,Deni Avdija,Yang Hansen,10,-0.66,0.37,-0.71,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 SAC,Daeqwon Plowden,Leaky Black,8,0.66,0.2,0.6,"Daeqwon Plowden's assists have lined up with Leaky Black's points across 8 shared games (r 0.6). Pairing check, not a star."
 SAC,Zach LaVine,Keegan Murray,9,-0.66,-0.42,-0.11,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 BOS,Derrick White,Ron Harper Jr.,9,0.65,0.48,-0.25,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
@@ -89,8 +88,6 @@ HOU,Jae'Sean Tate,Amen Thompson,9,0.64,0.67,-0.59,"Amen Thompson's assists have 
 LAC,Rui Hachimura,Gradey Dick,14,-0.64,0.37,-0.04,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 NO,Dejounte Murray,Derik Queen,9,0.64,0.37,-0.08,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 OKC,Jaylin Williams,Jared McCain,9,0.64,0.25,0.0,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-POR,Deni Avdija,Yang Hansen,9,-0.64,0.4,-0.72,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-SA,Keldon Johnson,Stephon Castle,18,0.64,0.05,0.43,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 BKN,Julius Randle,Moritz Wagner,17,-0.63,-0.13,0.19,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 BOS,Sam Hauser,Luka Garza,18,-0.63,0.2,-0.16,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 CHA,Grayson Allen,Ryan Kalkbrenner,13,0.63,0.91,0.26,"Ryan Kalkbrenner's assists have lined up with Grayson Allen's points across 13 shared games (r 0.91). Pairing check, not a star."
@@ -101,16 +98,19 @@ DAL,Daniel Gafford,Naji Marshall,15,-0.63,0.05,-0.11,No assist-to-points link ac
 DAL,Marcus Sasser,Moussa Cisse,9,0.63,-0.2,0.42,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 DAL,Moussa Cisse,Tobi Lawal,8,0.63,0.04,0.14,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 DET,Duncan Robinson,Tolu Smith,8,-0.63,-0.04,-0.82,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
+GS,Brandon Williams,Will Richard,10,0.63,0.47,0.62,"Brandon Williams's assists have lined up with Will Richard's points across 10 shared games (r 0.62). Pairing check, not a star."
 MIA,Simone Fontecchio,Pelle Larsson,8,0.63,0.46,-0.37,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 MIN,Bones Hyland,Isaiah Evans,8,0.63,-0.57,0.58,"Bones Hyland's assists have lined up with Isaiah Evans's points across 8 shared games (r 0.58). Pairing check, not a star."
 SA,Julian Champagnie,Tarris Reed Jr.,11,0.63,0.13,0.11,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
+SAC,Dylan Cardwell,Keegan Murray,9,-0.63,0.0,-0.37,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 TOR,RJ Barrett,Allen Graves,14,-0.63,-0.13,0.09,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 BKN,Terance Mann,Keon Ellis,9,0.62,0.31,0.29,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 LAC,Rui Hachimura,Isaiah Jackson,14,-0.62,-0.31,-0.46,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 MIA,Tim Hardaway Jr.,Klay Thompson,10,-0.62,-0.41,-0.64,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 MIL,Jericho Sims,Kasparas Jakucionis,11,0.62,0.25,0.33,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 MIL,Kyle Kuzma,Jaime Jaquez Jr.,18,-0.62,0.23,0.19,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
-POR,Robert Williams III,Scoot Henderson,14,-0.62,0.35,0.1,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+POR,Robert Williams III,Scoot Henderson,15,-0.62,0.36,0.07,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+SAC,Dylan Cardwell,Emanuel Sharp,11,0.62,-0.15,0.38,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 SAC,Nique Clifford,Emanuel Sharp,8,0.62,-0.5,0.18,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 WSH,AJ Dybantsa,Tre Johnson,13,-0.62,-0.16,-0.04,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 ATL,Nickeil Alexander-Walker,Corey Kispert,10,0.61,0.16,0.13,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -123,6 +123,7 @@ MIL,Tyler Herro,Kasparas Jakucionis,17,-0.61,-0.06,-0.16,No assist-to-points lin
 NO,Herbert Jones,Yves Missi,8,-0.61,-0.21,-0.53,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 NO,Saddiq Bey,Bennedict Mathurin,12,-0.61,-0.31,0.0,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 ORL,Wendell Carter Jr.,Nikola Vucevic,14,-0.61,-0.52,0.32,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+SA,Keldon Johnson,Victor Wembanyama,18,-0.61,0.33,0.09,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 GS,Brandin Podziemski,Malevy Leons,8,-0.6,-0.02,-0.72,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 PHI,Joel Embiid,Jaylen Brown,11,0.6,-0.26,0.23,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 CHA,Coby White,Christian Anderson,9,0.59,-0.12,-0.33,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
@@ -138,16 +139,14 @@ BKN,Mikel Brown Jr.,Danny Wolf,9,0.58,0.61,-0.5,"Danny Wolf's assists have lined
 MEM,Olivier-Maxence Prosper,Cedric Coward,13,0.58,0.28,-0.09,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 MIN,Jaden McDaniels,Isaiah Evans,8,0.58,-0.36,0.28,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 MIN,LaMelo Ball,Terrence Shannon Jr.,16,-0.58,-0.31,-0.47,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-POR,Toumani Camara,Damian Lillard,17,0.58,-0.41,0.55,"Toumani Camara's assists have lined up with Damian Lillard's points across 17 shared games (r 0.55). Pairing check, not a star."
+SA,Keldon Johnson,Stephon Castle,19,0.58,-0.02,0.41,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 SA,Luke Kornet,Tarris Reed Jr.,11,0.58,0.48,0.73,"Luke Kornet's assists have lined up with Tarris Reed Jr.'s points across 11 shared games (r 0.73). Pairing check, not a star."
-SAC,Dylan Cardwell,Keegan Murray,8,-0.58,0.01,-0.27,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 UTAH,Keyonte George,Isaiah Collier,15,-0.58,0.03,-0.26,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 DAL,P.J. Washington,Morez Johnson Jr.,15,0.57,0.02,-0.19,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 IND,Andrew Nembhard,Quenton Jackson,14,0.57,-0.09,-0.15,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 NY,Jalen Brunson,Mohamed Diawara,8,0.57,0.68,-0.65,"Mohamed Diawara's assists have lined up with Jalen Brunson's points across 8 shared games (r 0.68). Pairing check, not a star."
 ORL,Jevon Carter,Desmond Bane,12,0.57,0.31,0.17,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 SA,De'Aaron Fox,Dylan Harper,14,0.57,0.25,0.44,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-SA,Keldon Johnson,Victor Wembanyama,17,-0.57,0.34,0.11,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 TOR,Jaden Bradley,Ja'Kobe Walter,9,0.57,0.07,0.35,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 CHI,Buddy Hield,Jalen Smith,13,0.56,-0.09,0.75,"Buddy Hield's assists have lined up with Jalen Smith's points across 13 shared games (r 0.75). Pairing check, not a star."
 DEN,Marvin Bagley III,Bryce Hopkins,8,0.56,0.24,0.28,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
@@ -158,8 +157,6 @@ IND,Jay Huff,Quenton Jackson,15,0.56,0.12,0.06,No assist-to-points link across 1
 IND,Pascal Siakam,Jarace Walker,16,-0.56,-0.62,0.44,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 OKC,Isaiah Hartenstein,Josh Dix,9,-0.56,-0.02,-0.15,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 ORL,Desmond Bane,Jalen Suggs,9,-0.56,-0.32,-0.15,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-POR,Toumani Camara,Jayson Kent,8,-0.56,0.18,-0.12,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-SAC,De'Andre Hunter,Keegan Murray,9,0.56,0.55,0.35,"Keegan Murray's assists have lined up with De'Andre Hunter's points across 9 shared games (r 0.55). Pairing check, not a star."
 WSH,Trae Young,AJ Dybantsa,15,-0.56,0.15,-0.2,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 ATL,CJ McCollum,Aaron Wiggins,14,-0.55,-0.27,-0.16,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 ATL,CJ McCollum,Onyeka Okongwu,14,-0.55,-0.0,0.47,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
@@ -171,12 +168,13 @@ MEM,Isaiah Stewart,Olivier-Maxence Prosper,9,-0.55,-0.1,0.63,"Isaiah Stewart's a
 MEM,Jerami Grant,Zach Edey,12,-0.55,-0.22,0.23,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 MIA,Davion Mitchell,Ryan Conwell,15,0.55,-0.16,0.24,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 NO,Dejounte Murray,Jeremiah Fears,9,-0.55,-0.69,-0.47,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+POR,Sidy Cissoko,Yang Hansen,11,-0.55,-0.19,-0.5,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
+SAC,Malik Monk,Dylan Cardwell,11,0.55,0.23,0.69,"Malik Monk's assists have lined up with Dylan Cardwell's points across 11 shared games (r 0.69). Pairing check, not a star."
 TOR,Ja'Kobe Walter,Collin Murray-Boyles,15,-0.55,0.13,-0.17,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 TOR,Scottie Barnes,Ja'Kobe Walter,12,-0.55,-0.23,-0.5,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 BKN,Moritz Wagner,Terance Mann,10,0.54,0.51,0.69,"Moritz Wagner's assists have lined up with Terance Mann's points across 10 shared games (r 0.69). Pairing check, not a star."
 GS,Al Horford,Graham Ike,10,-0.54,-0.44,-0.08,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 GS,Gary Payton II,Malevy Leons,8,-0.54,-0.37,-0.01,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-GS,Georges Niang,Draymond Green,14,-0.54,0.34,-0.56,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 HOU,Isaiah Crawford,Reed Sheppard,10,-0.54,0.07,-0.36,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 HOU,Marcus Smart,Amen Thompson,13,-0.54,-0.13,-0.18,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 MEM,Olivier-Maxence Prosper,Javon Small,10,0.54,0.45,0.08,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -193,14 +191,12 @@ WSH,Deandre Ayton,Bilal Coulibaly,18,0.54,-0.2,0.03,No assist-to-points link acr
 ATL,Jalen Johnson,Kingston Flemings,11,-0.53,-0.77,-0.12,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 DAL,Max Christie,Santi Aldama,8,-0.53,-0.61,-0.36,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 DEN,Nikola Jokic,Trevon Brazile,16,0.53,-0.15,0.35,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-GS,Charles Bassey,Yaxel Lendeborg,15,-0.53,0.28,-0.35,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+GS,Charles Bassey,Yaxel Lendeborg,16,-0.53,0.26,-0.36,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 GS,LJ Cryer,Malevy Leons,10,0.53,0.03,0.71,"LJ Cryer's assists have lined up with Malevy Leons's points across 10 shared games (r 0.71). Pairing check, not a star."
 MEM,Jerami Grant,Cedric Coward,14,-0.53,0.15,-0.21,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 MEM,Kris Murray,Javon Small,10,-0.53,-0.49,0.3,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 MIA,Andrew Wiggins,Bobby Portis,17,0.53,0.04,-0.38,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Collin Gillespie,Oso Ighodaro,15,-0.53,-0.01,-0.38,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SAC,De'Andre Hunter,Emanuel Sharp,15,-0.53,0.04,-0.25,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SAC,Malik Monk,Dylan Cardwell,10,0.53,0.19,0.74,"Malik Monk's assists have lined up with Dylan Cardwell's points across 10 shared games (r 0.74). Pairing check, not a star."
 TOR,Jakob Poeltl,Collin Murray-Boyles,13,0.53,-0.15,0.03,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 UTAH,Jaxson Hayes,Ace Bailey,15,-0.53,0.19,0.13,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 UTAH,Josh Green,Isaiah Collier,14,-0.53,-0.52,0.49,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
@@ -212,10 +208,12 @@ LAL,Jake LaRavia,Cameron Carr,8,0.52,-0.24,-0.63,No assist-to-points link across
 NY,Jordan Clarkson,Jalen Brunson,12,0.52,0.11,0.03,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 OKC,Brooks Barnhizer,Bennett Stirtz,11,0.52,0.86,0.38,"Bennett Stirtz's assists have lined up with Brooks Barnhizer's points across 11 shared games (r 0.86). Pairing check, not a star."
 PHX,Miles Bridges,Koa Peat,10,-0.52,-0.52,-0.38,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
+SAC,Malik Monk,Alex Karaban,8,-0.52,-0.01,-0.5,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 TOR,Alijah Martin,Collin Murray-Boyles,14,0.52,0.26,-0.09,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 CHA,Sion James,Tidjane Salaun,16,0.51,-0.03,-0.32,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 CLE,James Harden,Meleek Thomas,15,-0.51,0.29,0.07,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 CLE,Thomas Bryant,Tyrese Proctor,13,0.51,0.76,0.66,"Tyrese Proctor's assists have lined up with Thomas Bryant's points across 13 shared games (r 0.76). Pairing check, not a star."
+GS,Gary Payton II,Gui Santos,13,0.51,0.18,-0.05,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 GS,Georges Niang,Graham Ike,13,-0.51,-0.15,-0.3,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 HOU,Marcus Smart,Fred VanVleet,12,-0.51,0.55,-0.33,"Fred VanVleet's assists have lined up with Marcus Smart's points across 12 shared games (r 0.55). Pairing check, not a star."
 IND,Jalen Slawson,Braden Smith,10,0.51,0.68,0.56,"Braden Smith's assists have lined up with Jalen Slawson's points across 10 shared games (r 0.68). Pairing check, not a star."
@@ -229,7 +227,6 @@ NY,Mikal Bridges,OG Anunoby,15,-0.51,-0.41,-0.21,No assist-to-points link across
 ORL,Alex Morales,Nikola Vucevic,9,0.51,0.01,0.1,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 ORL,Franz Wagner,Tristan da Silva,15,-0.51,0.2,0.26,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 PHX,Dillon Brooks,Miles Bridges,17,0.51,0.38,0.19,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-SA,Luke Kornet,Victor Wembanyama,17,-0.51,0.17,-0.1,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 ATL,Aaron Wiggins,Jalen Johnson,14,0.5,0.19,0.48,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 ATL,Jalen Johnson,Zuby Ejiofor,8,0.5,0.2,0.17,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 BKN,Josh Minott,Danny Wolf,8,-0.5,-0.52,-0.5,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
@@ -238,7 +235,6 @@ DAL,Morez Johnson Jr.,Zaccharie Risacher,17,-0.5,-0.19,0.26,No assist-to-points 
 DAL,P.J. Washington,Tobi Lawal,8,-0.5,-0.08,0.51,"P.J. Washington's assists have lined up with Tobi Lawal's points across 8 shared games (r 0.51). Pairing check, not a star."
 DEN,Jamal Murray,Marvin Bagley III,16,-0.5,-0.5,0.32,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DET,Kevin Huerter,Tolu Smith,9,0.5,-0.07,0.72,"Kevin Huerter's assists have lined up with Tolu Smith's points across 9 shared games (r 0.72). Pairing check, not a star."
-GS,Brandon Williams,Draymond Green,8,-0.5,0.36,-0.24,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 HOU,Reed Sheppard,Bruce Thornton,10,-0.5,,-0.03,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 IND,Ivica Zubac,Quenton Jackson,13,-0.5,-0.17,0.27,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 LAC,Kris Dunn,Cam Christie,9,-0.5,-0.44,0.15,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
@@ -250,13 +246,13 @@ NY,Josh Hart,Jose Alvarado,9,0.5,0.25,0.75,"Josh Hart's assists have lined up wi
 OKC,Kenrich Williams,Shai Gilgeous-Alexander,18,0.5,0.36,0.4,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 PHI,Anfernee Simons,Adem Bona,11,-0.5,0.22,0.14,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 PHX,Collin Gillespie,Koa Peat,10,0.5,-0.17,0.33,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
+POR,Toumani Camara,Damian Lillard,18,0.5,-0.44,0.55,"Toumani Camara's assists have lined up with Damian Lillard's points across 18 shared games (r 0.55). Pairing check, not a star."
+SAC,De'Andre Hunter,Keegan Murray,10,0.5,0.54,0.34,"Keegan Murray's assists have lined up with De'Andre Hunter's points across 10 shared games (r 0.54). Pairing check, not a star."
 WSH,Anthony Davis,Khris Middleton,11,-0.5,-0.06,0.17,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 BKN,Day'Ron Sharpe,Danny Wolf,12,0.49,-0.15,0.14,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 BOS,Jordan Walsh,Chris Cenac Jr.,9,0.49,-0.07,-0.21,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 CHA,Dennis Schroder,Brandon Miller,9,0.49,0.15,0.3,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 GS,Al Horford,Malevy Leons,8,-0.49,-0.06,-0.34,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-GS,De'Anthony Melton,Gui Santos,14,-0.49,0.01,0.18,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-GS,Gary Payton II,De'Anthony Melton,15,-0.49,0.01,0.06,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 GS,Georges Niang,Stephen Curry,10,0.49,0.56,0.46,"Stephen Curry's assists have lined up with Georges Niang's points across 10 shared games (r 0.56). Pairing check, not a star."
 HOU,Jae'Sean Tate,Jabari Smith Jr.,10,-0.49,0.23,0.07,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 MEM,Isaiah Stewart,Cameron Boozer,11,0.49,0.15,-0.22,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
@@ -265,11 +261,9 @@ MIL,Jaime Jaquez Jr.,Brayden Burries,19,-0.49,-0.37,-0.12,No assist-to-points li
 OKC,Alex Caruso,Bennett Stirtz,13,-0.49,-0.22,-0.33,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 OKC,Jared McCain,Aday Mara,16,0.49,0.18,-0.07,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 PHI,Joel Embiid,Dean Wade,10,0.49,-0.09,-0.06,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-POR,Sidy Cissoko,Yang Hansen,10,-0.49,-0.27,-0.54,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
+POR,Jrue Holiday,Robert Williams III,15,0.49,0.37,-0.01,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 SA,Dylan Harper,Harrison Barnes,13,-0.49,0.3,0.24,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 SA,Keldon Johnson,Dylan Harper,15,-0.49,0.41,-0.23,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SA,Stephon Castle,Victor Wembanyama,17,-0.49,0.18,0.08,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-SAC,Malik Monk,Emanuel Sharp,16,0.49,0.36,0.75,"Malik Monk's assists have lined up with Emanuel Sharp's points across 16 shared games (r 0.75). Pairing check, not a star."
 TOR,Kyle Anderson,Immanuel Quickley,9,-0.49,-0.1,-0.67,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 UTAH,Svi Mykhailiuk,Darryn Peterson,19,-0.49,0.2,-0.17,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 WSH,AJ Dybantsa,Alex Sarr,14,-0.49,-0.21,-0.13,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
@@ -277,30 +271,32 @@ CHA,Coby White,Ryan Kalkbrenner,9,-0.48,-0.14,0.57,"Coby White's assists have li
 CHI,Buddy Hield,Isaac Okoro,16,0.48,0.21,0.21,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DAL,Daniel Gafford,Tobi Lawal,8,0.48,-0.24,-0.15,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 DET,Paul Reed,Chaz Lanier,8,0.48,-0.12,-0.29,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
+GS,Brandon Williams,Brandin Podziemski,9,-0.48,0.61,-0.54,"Brandin Podziemski's assists have lined up with Brandon Williams's points across 9 shared games (r 0.61). Pairing check, not a star."
+GS,De'Anthony Melton,Brandon Williams,11,0.48,0.14,0.49,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 HOU,Jae'Sean Tate,Tari Eason,10,0.48,0.15,-0.24,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 IND,Jay Huff,Jarace Walker,14,0.48,0.28,0.19,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 LAL,Sandro Mamukelashvili,Cameron Carr,8,-0.48,-0.25,-0.18,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 MEM,Ty Jerome,Cedric Coward,13,-0.48,-0.21,0.12,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 MIA,Giannis Antetokounmpo,Pelle Larsson,13,-0.48,-0.47,0.12,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 MIA,Nikola Jovic,Klay Thompson,10,-0.48,0.36,0.26,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-POR,Donovan Clingan,Yang Hansen,10,-0.48,-0.33,-0.44,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 SA,De'Aaron Fox,Stephon Castle,16,-0.48,-0.2,-0.24,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+SAC,Alex Karaban,Emanuel Sharp,9,-0.48,-0.49,0.0,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 SAC,Daeqwon Plowden,Emanuel Sharp,12,0.48,0.22,0.39,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
+SAC,De'Andre Hunter,Emanuel Sharp,16,-0.48,0.03,-0.16,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 TOR,Jakob Poeltl,Ja'Kobe Walter,15,-0.48,-0.29,-0.17,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 TOR,Kyle Anderson,Jamal Shead,10,0.48,0.72,-0.11,"Jamal Shead's assists have lined up with Kyle Anderson's points across 10 shared games (r 0.72). Pairing check, not a star."
 CHI,Josh Giddey,Noa Essengue,17,0.47,-0.0,0.45,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 DAL,Naji Marshall,Walter Clayton Jr.,14,-0.47,0.17,-0.04,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 DET,Duncan Robinson,Paul Reed,12,-0.47,0.59,-0.16,"Paul Reed's assists have lined up with Duncan Robinson's points across 12 shared games (r 0.59). Pairing check, not a star."
+GS,Al Horford,Yaxel Lendeborg,15,0.47,0.57,0.17,"Yaxel Lendeborg's assists have lined up with Al Horford's points across 15 shared games (r 0.57). Pairing check, not a star."
 HOU,Oscar Tshiebwe,Amen Thompson,10,0.47,-0.01,0.52,"Oscar Tshiebwe's assists have lined up with Amen Thompson's points across 10 shared games (r 0.52). Pairing check, not a star."
 MEM,Cam Spencer,Javon Small,11,-0.47,-0.07,0.27,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 MIA,Giannis Antetokounmpo,Myron Gardner,10,-0.47,-0.12,0.06,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 MIL,AJ Green,Nate Ament,15,-0.47,-0.54,0.27,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 OKC,Aday Mara,Bennett Stirtz,16,0.47,0.36,0.07,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 PHX,Luke Kennard,Collin Gillespie,16,0.47,0.37,0.25,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-POR,Jrue Holiday,Robert Williams III,14,0.47,0.34,0.02,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-POR,Robert Williams III,Sidy Cissoko,14,0.47,0.25,-0.51,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-SA,Devin Vassell,Julian Champagnie,16,0.47,-0.23,0.56,"Devin Vassell's assists have lined up with Julian Champagnie's points across 16 shared games (r 0.56). Pairing check, not a star."
-SAC,Alex Karaban,Emanuel Sharp,8,-0.47,-0.51,0.1,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
+POR,Toumani Camara,Jayson Kent,9,-0.47,0.2,-0.15,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+SA,Luke Kornet,Victor Wembanyama,18,-0.47,0.16,0.04,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 TOR,Kyle Anderson,Jamison Battle,10,0.47,0.25,0.28,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 BOS,Jayson Tatum,Paul George,13,-0.46,0.54,0.2,"Paul George's assists have lined up with Jayson Tatum's points across 13 shared games (r 0.54). Pairing check, not a star."
 CLE,James Harden,Jaylon Tyson,9,-0.46,-0.26,0.82,"James Harden's assists have lined up with Jaylon Tyson's points across 9 shared games (r 0.82). Pairing check, not a star."
@@ -308,7 +304,6 @@ CLE,Mario Hezonja,Craig Porter Jr.,13,0.46,0.29,0.11,No assist-to-points link ac
 CLE,Mario Hezonja,Jaylon Tyson,10,0.46,0.22,0.34,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 DET,Kevin Huerter,Chaz Lanier,8,-0.46,-0.21,0.52,"Kevin Huerter's assists have lined up with Chaz Lanier's points across 8 shared games (r 0.52). Pairing check, not a star."
 DET,Kevin Huerter,Daniss Jenkins,17,0.46,0.07,0.14,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-GS,Al Horford,Yaxel Lendeborg,14,0.46,0.56,0.18,"Yaxel Lendeborg's assists have lined up with Al Horford's points across 14 shared games (r 0.56). Pairing check, not a star."
 LAC,Darius Garland,Kobe Sanders,17,-0.46,0.14,0.36,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 MEM,Jerami Grant,Olivier-Maxence Prosper,9,-0.46,-0.25,-0.5,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 MIA,Bam Adebayo,Klay Thompson,16,0.46,0.29,-0.02,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
@@ -316,6 +311,7 @@ MIA,Bam Adebayo,Myron Gardner,11,-0.46,0.07,0.08,No assist-to-points link across
 MIA,Giannis Antetokounmpo,Nikola Jovic,9,0.46,0.38,-0.28,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 PHI,Joel Embiid,Jabari Walker,11,0.46,0.26,0.07,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 PHX,Luke Kennard,Koa Peat,9,0.46,-0.34,0.36,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+POR,Jayson Kent,Sidy Cissoko,9,-0.46,-0.35,0.2,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 SAC,Zach LaVine,De'Andre Hunter,15,-0.46,-0.12,0.32,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 BOS,Neemias Queta,Hugo Gonzalez,17,-0.45,-0.23,-0.14,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 BOS,Sam Hauser,Chris Cenac Jr.,9,0.45,0.04,-0.2,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
@@ -325,6 +321,7 @@ CLE,Donovan Mitchell,Craig Porter Jr.,12,-0.45,-0.34,-0.3,No assist-to-points li
 CLE,Jarrett Allen,Meleek Thomas,13,0.45,0.2,-0.19,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 DAL,Daniel Gafford,P.J. Washington,16,-0.45,-0.37,0.18,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DAL,Daniel Gafford,Santi Aldama,9,0.45,-0.51,0.04,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+GS,Georges Niang,Draymond Green,15,-0.45,0.39,-0.48,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 GS,LJ Cryer,Yaxel Lendeborg,13,-0.45,-0.66,-0.45,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 LAC,Baba Miller,Gradey Dick,14,0.45,0.02,0.46,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 LAC,Isaiah Jackson,Gradey Dick,15,0.45,0.17,0.03,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -334,6 +331,7 @@ MIN,Jaylen Clark,Jonathan Kuminga,12,0.45,0.18,0.08,No assist-to-points link acr
 MIN,Rudy Gobert,Ayo Dosunmu,18,-0.45,0.24,0.23,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 MIN,Terrence Shannon Jr.,Joan Beringer,16,-0.45,-0.22,0.16,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 PHI,LeBron James,Joel Embiid,11,0.45,0.77,0.2,"Joel Embiid's assists have lined up with LeBron James's points across 11 shared games (r 0.77). Pairing check, not a star."
+SA,Devin Vassell,Julian Champagnie,17,0.45,-0.25,0.55,"Devin Vassell's assists have lined up with Julian Champagnie's points across 17 shared games (r 0.55). Pairing check, not a star."
 UTAH,Jaxson Hayes,Darryn Peterson,15,0.45,-0.01,-0.12,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 ATL,Nickeil Alexander-Walker,Zuby Ejiofor,11,0.44,0.6,-0.5,"Zuby Ejiofor's assists have lined up with Nickeil Alexander-Walker's points across 11 shared games (r 0.6). Pairing check, not a star."
 BOS,Ron Harper Jr.,Jordan Walsh,10,0.44,-0.26,0.1,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -342,9 +340,6 @@ CHI,Tre Jones,Caleb Wilson,10,-0.44,-0.29,0.12,No assist-to-points link across 1
 CHI,Zach Collins,Jalen Smith,9,0.44,0.02,-0.33,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 CLE,James Harden,Jarrett Allen,16,-0.44,0.27,0.15,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DET,Javonte Green,Chaz Lanier,8,0.44,-0.16,0.12,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-GS,Brandon Williams,Brandin Podziemski,8,-0.44,0.58,-0.51,"Brandin Podziemski's assists have lined up with Brandon Williams's points across 8 shared games (r 0.58). Pairing check, not a star."
-GS,De'Anthony Melton,Brandon Williams,10,0.44,0.09,0.49,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-GS,Georges Niang,Brandon Williams,10,-0.44,-0.13,0.52,"Georges Niang's assists have lined up with Brandon Williams's points across 10 shared games (r 0.52). Pairing check, not a star."
 GS,Malevy Leons,Yaxel Lendeborg,10,-0.44,-0.37,-0.31,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 HOU,Jabari Smith Jr.,Tari Eason,19,-0.44,-0.03,0.39,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 IND,Jay Huff,Jalen Slawson,15,0.44,0.2,0.15,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -355,6 +350,7 @@ MIL,Gary Trent Jr.,Nate Ament,9,-0.44,0.15,0.07,No assist-to-points link across 
 OKC,Shai Gilgeous-Alexander,Aday Mara,16,0.44,0.08,0.42,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 PHX,Devin Booker,Jordan Goodwin,13,-0.44,0.08,0.29,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 PHX,Jordan Goodwin,Khaman Maluach,13,0.44,0.34,0.1,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+SAC,Domantas Sabonis,Keegan Murray,10,0.44,0.22,-0.1,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 TOR,Trayce Jackson-Davis,Collin Murray-Boyles,10,-0.44,0.64,-0.28,"Collin Murray-Boyles's assists have lined up with Trayce Jackson-Davis's points across 10 shared games (r 0.64). Pairing check, not a star."
 UTAH,Jaxson Hayes,Keyonte George,14,-0.44,0.21,0.34,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 WSH,Trae Young,Will Riley,16,-0.44,-0.32,0.04,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
@@ -368,8 +364,6 @@ DAL,Max Christie,Moussa Cisse,10,0.43,-0.01,0.4,No assist-to-points link across 
 DAL,Moussa Cisse,Walter Clayton Jr.,10,-0.43,-0.03,-0.12,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 DET,Duncan Robinson,Daniss Jenkins,12,-0.43,0.5,0.11,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 DET,Kevin Huerter,Paul Reed,17,-0.43,-0.23,-0.17,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-GS,Al Horford,Will Richard,13,-0.43,0.3,0.23,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
-GS,Brandin Podziemski,Will Richard,14,-0.43,-0.2,-0.19,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 HOU,Fred VanVleet,Kevin Durant,16,-0.43,0.1,-0.13,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 IND,Ivica Zubac,Jay Huff,10,-0.43,-0.54,-0.29,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 IND,Jalen Slawson,Kobe Brown,8,0.43,-0.01,0.35,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
@@ -378,6 +372,7 @@ MIN,Ayo Dosunmu,Isaiah Evans,8,0.43,-0.46,-0.08,No assist-to-points link across 
 MIN,Ayo Dosunmu,Terrence Shannon Jr.,16,-0.43,-0.11,0.03,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 ORL,Jalen Suggs,Tristan da Silva,9,-0.43,-0.42,0.09,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 POR,Robert Williams III,Branden Carlson,9,-0.43,-0.56,0.69,"Robert Williams III's assists have lined up with Branden Carlson's points across 9 shared games (r 0.69). Pairing check, not a star."
+SA,Stephon Castle,Victor Wembanyama,18,-0.43,0.17,0.15,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 TOR,RJ Barrett,Immanuel Quickley,12,0.43,-0.13,-0.4,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 TOR,RJ Barrett,Scottie Barnes,10,-0.43,0.21,0.72,"RJ Barrett's assists have lined up with Scottie Barnes's points across 10 shared games (r 0.72). Pairing check, not a star."
 UTAH,Mo Bamba,Kyle Filipowski,9,-0.43,-0.3,0.62,"Mo Bamba's assists have lined up with Kyle Filipowski's points across 9 shared games (r 0.62). Pairing check, not a star."
@@ -397,7 +392,6 @@ OKC,Shai Gilgeous-Alexander,Micah Peavy,12,0.42,0.47,0.52,"Shai Gilgeous-Alexand
 PHX,Jordan Goodwin,Ryan Dunn,13,0.42,0.34,-0.01,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 PHX,Luke Kennard,Ryan Dunn,16,0.42,0.16,0.54,"Luke Kennard's assists have lined up with Ryan Dunn's points across 16 shared games (r 0.54). Pairing check, not a star."
 SAC,De'Andre Hunter,Daeqwon Plowden,11,-0.42,-0.43,-0.38,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
-SAC,Domantas Sabonis,Darius Acuff Jr.,16,-0.42,-0.12,0.27,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 WSH,Bilal Coulibaly,Tre Johnson,16,0.42,-0.21,-0.42,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 WSH,Tre Mann,Bub Carrington,9,0.42,0.39,0.34,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 BKN,Terance Mann,Noah Clowney,10,0.41,0.0,0.04,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -407,7 +401,6 @@ CHI,Buddy Hield,Josh Giddey,16,0.41,0.71,0.67,"Josh Giddey's assists have lined 
 CLE,James Harden,Craig Porter Jr.,12,-0.41,-0.46,0.09,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 DAL,Caleb Martin,Zaccharie Risacher,14,0.41,-0.07,0.43,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 DAL,P.J. Washington,Zaccharie Risacher,16,-0.41,-0.27,-0.2,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-GS,Georges Niang,Gui Santos,14,-0.41,0.06,-0.02,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 IND,Obi Toppin,Quenton Jackson,15,-0.41,-0.53,0.14,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 LAC,Derrick Jones Jr.,Keaton Wagler,16,0.41,0.22,-0.11,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 LAC,Derrick Jones Jr.,Max Strus,10,0.41,0.68,-0.02,"Max Strus's assists have lined up with Derrick Jones Jr.'s points across 10 shared games (r 0.68). Pairing check, not a star."
@@ -419,6 +412,8 @@ NY,Miles McBride,Andre Drummond,16,-0.41,0.07,-0.05,No assist-to-points link acr
 ORL,Desmond Bane,Franz Wagner,16,0.41,0.08,0.14,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 ORL,Jevon Carter,Tristan da Silva,11,0.41,0.05,-0.04,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 PHX,Dillon Brooks,Luke Kennard,16,-0.41,-0.09,-0.3,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+POR,Jayson Kent,Damian Lillard,9,-0.41,0.01,0.19,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+SAC,Malik Monk,Emanuel Sharp,17,0.41,0.23,0.7,"Malik Monk's assists have lined up with Emanuel Sharp's points across 17 shared games (r 0.7). Pairing check, not a star."
 TOR,Jakob Poeltl,Jamal Shead,15,0.41,0.72,0.13,"Jamal Shead's assists have lined up with Jakob Poeltl's points across 15 shared games (r 0.72). Pairing check, not a star."
 UTAH,Keyonte George,Ace Bailey,18,0.41,0.08,-0.04,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 WSH,Bub Carrington,Will Riley,15,0.41,-0.09,0.09,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -429,7 +424,7 @@ CHI,Buddy Hield,Noa Essengue,15,0.4,-0.15,0.17,No assist-to-points link across 1
 CLE,Evan Mobley,Tyrese Proctor,11,-0.4,0.18,0.17,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 CLE,Peyton Watson,Craig Porter Jr.,9,0.4,0.09,-0.19,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 DET,Duncan Robinson,John Collins,12,0.4,0.24,-0.01,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-GS,De'Anthony Melton,Brandin Podziemski,15,0.4,0.57,0.31,"Brandin Podziemski's assists have lined up with De'Anthony Melton's points across 15 shared games (r 0.57). Pairing check, not a star."
+GS,Brandin Podziemski,Will Richard,15,-0.4,-0.2,-0.23,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 HOU,Bogdan Bogdanovic,Tari Eason,19,0.4,-0.19,0.32,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 HOU,Jae'Sean Tate,Bruce Thornton,10,0.4,,0.64,"Jae'Sean Tate's assists have lined up with Bruce Thornton's points across 10 shared games (r 0.64). Pairing check, not a star."
 IND,Larry Nance Jr.,Jarace Walker,16,0.4,0.05,0.27,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
@@ -437,8 +432,9 @@ IND,Quenton Jackson,Jarace Walker,17,0.4,0.51,-0.12,"Jarace Walker's assists hav
 LAL,Luka Doncic,Walker Kessler,15,-0.4,-0.24,-0.04,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 OKC,Alex Caruso,Isaiah Hartenstein,13,0.4,-0.43,0.25,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 OKC,Isaiah Hartenstein,Micah Peavy,13,-0.4,0.16,0.08,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+POR,Jrue Holiday,Jayson Kent,9,0.4,0.53,-0.11,"Jayson Kent's assists have lined up with Jrue Holiday's points across 9 shared games (r 0.53). Pairing check, not a star."
 SA,Devin Vassell,Dylan Harper,13,-0.4,0.43,-0.19,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
-SAC,Domantas Sabonis,Alex Karaban,8,-0.4,0.04,0.07,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
+SAC,Domantas Sabonis,Darius Acuff Jr.,17,-0.4,-0.04,0.27,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 TOR,Jakob Poeltl,Alijah Martin,14,0.4,0.41,-0.06,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 TOR,Jamal Shead,Allen Graves,17,-0.4,0.11,-0.3,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 UTAH,Tony Bradley,Brice Sensabaugh,9,0.4,0.48,0.61,"Tony Bradley's assists have lined up with Brice Sensabaugh's points across 9 shared games (r 0.61). Pairing check, not a star."
@@ -456,7 +452,7 @@ CLE,Donovan Mitchell,Thomas Bryant,12,-0.39,0.62,-0.06,"Thomas Bryant's assists 
 DAL,Marcus Sasser,Walter Clayton Jr.,11,-0.39,0.01,-0.47,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 DEN,Jamal Murray,Christian Braun,16,0.39,0.13,0.14,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DET,Duncan Robinson,Kevin Huerter,12,-0.39,-0.37,0.02,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-GS,Gary Payton II,Al Horford,12,0.39,0.02,0.31,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
+GS,Al Horford,Will Richard,14,-0.39,0.3,0.21,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 HOU,Kevin Durant,Bruce Thornton,11,-0.39,,-0.12,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 HOU,Tari Eason,Reed Sheppard,16,0.39,0.56,-0.11,"Reed Sheppard's assists have lined up with Tari Eason's points across 16 shared games (r 0.56). Pairing check, not a star."
 IND,Obi Toppin,Jarace Walker,14,0.39,0.51,0.39,"Jarace Walker's assists have lined up with Obi Toppin's points across 14 shared games (r 0.51). Pairing check, not a star."
@@ -470,11 +466,9 @@ ORL,Jevon Carter,Jase Richardson,9,-0.39,-0.06,0.4,No assist-to-points link acro
 PHI,LeBron James,Jabari Walker,11,0.39,0.36,-0.04,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 PHX,Jalen Green,Koa Peat,10,-0.39,-0.46,-0.46,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 PHX,Luke Kennard,Jalen Green,16,-0.39,-0.26,-0.23,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-POR,Scoot Henderson,Damian Lillard,17,0.39,-0.12,0.42,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+POR,Robert Williams III,Yang Hansen,8,-0.39,-0.57,0.16,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 POR,Toumani Camara,Branden Carlson,12,-0.39,-0.04,-0.55,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-SA,Carter Bryant,Victor Wembanyama,16,0.39,-0.17,-0.22,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-SA,Devin Vassell,Harrison Barnes,14,0.39,0.02,-0.31,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-SAC,De'Andre Hunter,Dylan Cardwell,8,-0.39,0.11,-0.25,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
+SAC,Domantas Sabonis,Alex Karaban,9,-0.39,-0.15,0.09,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 UTAH,Josh Okogie,Kyle Filipowski,11,-0.39,-0.41,0.0,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 UTAH,Josh Okogie,Mo Bamba,15,0.39,0.26,0.02,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 BOS,Jayson Tatum,Payton Pritchard,16,-0.38,0.37,-0.24,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
@@ -482,14 +476,14 @@ CHA,Naz Reid,Ryan Kalkbrenner,16,0.38,0.35,0.13,No assist-to-points link across 
 CHA,Ryan Kalkbrenner,Liam McNeeley,9,0.38,0.12,0.1,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 CLE,Mario Hezonja,Meleek Thomas,16,0.38,0.37,0.15,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DEN,Marvin Bagley III,Christian Braun,16,-0.38,0.24,-0.28,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-GS,Gary Payton II,Gui Santos,12,0.38,0.24,-0.3,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
+GS,Brandin Podziemski,Gui Santos,13,-0.38,-0.01,0.07,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 MEM,Kris Murray,Cameron Boozer,12,-0.38,-0.38,-0.19,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 MIN,Ayo Dosunmu,Bones Hyland,19,0.38,-0.05,-0.09,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 NY,Jalen Brunson,James Wiseman,8,0.38,0.36,-0.16,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 PHX,Jordan Goodwin,Collin Gillespie,13,0.38,0.5,0.77,"Jordan Goodwin's assists have lined up with Collin Gillespie's points across 13 shared games (r 0.77). Pairing check, not a star."
-SA,Luke Kornet,Keldon Johnson,18,0.38,0.32,0.32,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
-SA,Luke Kornet,Stephon Castle,18,0.38,0.17,0.38,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
-SAC,De'Andre Hunter,Malik Monk,14,-0.38,-0.04,0.36,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+POR,Robert Williams III,Sidy Cissoko,15,0.38,0.24,-0.56,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+POR,Robert Williams III,Toumani Camara,15,0.38,0.14,-0.14,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+SA,Luke Kornet,Stephon Castle,19,0.38,0.17,0.39,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 TOR,Trayce Jackson-Davis,Allen Graves,12,0.38,-0.1,0.29,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 ATL,Aaron Wiggins,Zuby Ejiofor,11,0.37,0.2,0.19,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 ATL,Dyson Daniels,Zuby Ejiofor,11,0.37,0.35,0.6,"Dyson Daniels's assists have lined up with Zuby Ejiofor's points across 11 shared games (r 0.6). Pairing check, not a star."
@@ -512,7 +506,9 @@ MEM,Taylor Hendricks,Javon Small,11,0.37,0.21,0.36,No assist-to-points link acro
 OKC,Micah Peavy,Brooks Barnhizer,8,0.37,0.37,0.56,"Micah Peavy's assists have lined up with Brooks Barnhizer's points across 8 shared games (r 0.56). Pairing check, not a star."
 PHI,Jaylen Brown,Labaron Philon Jr.,9,-0.37,-0.62,-0.02,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 POR,Branden Carlson,Sidy Cissoko,12,-0.37,0.11,-0.48,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-POR,Jrue Holiday,Jayson Kent,8,0.37,0.52,0.02,"Jayson Kent's assists have lined up with Jrue Holiday's points across 8 shared games (r 0.52). Pairing check, not a star."
+POR,Scoot Henderson,Damian Lillard,18,0.37,-0.11,0.37,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SAC,De'Andre Hunter,Malik Monk,15,-0.37,-0.05,0.34,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+SAC,Keegan Murray,Emanuel Sharp,11,-0.37,0.29,-0.17,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 SAC,Zach LaVine,Dylan Cardwell,9,-0.37,-0.37,0.34,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 TOR,RJ Barrett,Collin Murray-Boyles,13,0.37,0.04,-0.16,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 UTAH,Josh Okogie,Darryn Peterson,18,0.37,-0.06,0.13,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
@@ -527,14 +523,16 @@ CHI,Tre Jones,Leonard Miller,12,-0.36,0.55,0.26,"Leonard Miller's assists have l
 CLE,Donovan Mitchell,Meleek Thomas,15,-0.36,-0.22,0.39,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 DAL,Caleb Martin,Walter Clayton Jr.,14,-0.36,-0.13,-0.06,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 DEN,Tyus Jones,Spencer Jones,9,0.36,0.01,0.5,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-GS,De'Anthony Melton,Yaxel Lendeborg,17,0.36,0.05,-0.18,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 IND,Aaron Nesmith,Jalen Slawson,14,-0.36,-0.5,0.38,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 IND,Larry Nance Jr.,Andrew Nembhard,14,-0.36,0.15,0.18,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 IND,Quenton Jackson,Braden Smith,11,0.36,0.16,-0.05,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 LAC,Isaiah Jackson,Cam Christie,8,-0.36,-0.19,0.1,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 PHX,Jalen Green,Oso Ighodaro,15,0.36,0.01,0.52,"Jalen Green's assists have lined up with Oso Ighodaro's points across 15 shared games (r 0.52). Pairing check, not a star."
+POR,Donovan Clingan,Yang Hansen,11,-0.36,-0.34,-0.45,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 POR,Micah Potter,Sidy Cissoko,9,-0.36,0.2,-0.16,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-POR,Robert Williams III,Toumani Camara,14,0.36,0.17,-0.21,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+SA,Devin Vassell,Harrison Barnes,15,0.36,0.03,-0.3,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+SA,Luke Kornet,Keldon Johnson,19,0.36,0.32,0.15,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
+SAC,Precious Achiuwa,Keegan Murray,8,-0.36,-0.56,-0.23,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 SAC,Zach LaVine,Precious Achiuwa,14,0.36,-0.1,0.61,"Zach LaVine's assists have lined up with Precious Achiuwa's points across 14 shared games (r 0.61). Pairing check, not a star."
 UTAH,Lauri Markkanen,Isaiah Collier,8,-0.36,-0.5,-0.27,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 ATL,Corey Kispert,Aaron Wiggins,10,-0.35,-0.09,-0.15,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -551,6 +549,7 @@ DAL,Daniel Gafford,Max Christie,15,-0.35,-0.56,0.56,"Daniel Gafford's assists ha
 DEN,DeMar DeRozan,Marvin Bagley III,15,0.35,0.02,0.12,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 DEN,Spencer Jones,Trevon Brazile,9,-0.35,0.84,0.37,"Trevon Brazile's assists have lined up with Spencer Jones's points across 9 shared games (r 0.84). Pairing check, not a star."
 DEN,Tyus Jones,Jamal Murray,16,-0.35,0.16,-0.43,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+GS,Georges Niang,Brandon Williams,11,-0.35,-0.09,0.53,"Georges Niang's assists have lined up with Brandon Williams's points across 11 shared games (r 0.53). Pairing check, not a star."
 GS,Georges Niang,Malevy Leons,10,-0.35,-0.17,0.29,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 IND,Jalen Slawson,Quenton Jackson,16,0.35,-0.14,0.43,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 LAC,Baba Miller,Keaton Wagler,15,0.35,0.07,0.28,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -592,8 +591,7 @@ ORL,Jevon Carter,Franz Wagner,13,0.34,-0.31,0.08,No assist-to-points link across
 ORL,Jevon Carter,Jamal Cain,11,0.34,0.14,-0.01,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 PHI,Kentavious Caldwell-Pope,Adem Bona,11,-0.34,0.19,-0.18,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 PHI,Kentavious Caldwell-Pope,Justin Edwards,8,-0.34,,-0.46,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-SA,Jordan McLaughlin,Devin Vassell,10,-0.34,-0.5,-0.17,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-SA,Luke Kornet,Jordan McLaughlin,12,0.34,-0.25,-0.14,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
+SAC,Malik Monk,Precious Achiuwa,14,-0.34,0.32,-0.3,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 WSH,Alex Sarr,Khris Middleton,11,0.34,0.19,0.48,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 WSH,Will Riley,Anthony Davis,14,-0.34,0.45,0.48,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 ATL,CJ McCollum,Nickeil Alexander-Walker,14,-0.33,0.54,0.61,"CJ McCollum's assists have lined up with Nickeil Alexander-Walker's points across 14 shared games (r 0.61). Pairing check, not a star."
@@ -602,8 +600,6 @@ BKN,Mikel Brown Jr.,Chaney Johnson,10,0.33,0.4,0.49,No assist-to-points link acr
 BOS,Derrick White,Mitchell Robinson,14,-0.33,-0.21,0.26,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 BOS,Sam Hauser,Payton Pritchard,18,0.33,0.47,0.24,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 DAL,Naji Marshall,Santi Aldama,9,-0.33,-0.1,0.32,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-GS,Brandin Podziemski,Gui Santos,12,-0.33,-0.05,-0.24,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-GS,Charles Bassey,Will Richard,14,0.33,0.0,-0.35,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 GS,Stephen Curry,Brandon Williams,8,0.33,-0.18,0.04,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 HOU,Bogdan Bogdanovic,Jae'Sean Tate,10,0.33,-0.21,0.44,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 HOU,Fred VanVleet,Amen Thompson,15,0.33,-0.37,0.37,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -627,11 +623,12 @@ OKC,Alex Caruso,Aday Mara,12,-0.33,-0.15,-0.43,No assist-to-points link across 1
 OKC,Jaylin Williams,Aday Mara,9,0.33,0.1,-0.0,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 PHX,Devin Booker,Luke Kennard,16,-0.33,-0.25,0.45,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 PHX,Luke Kennard,Oso Ighodaro,14,-0.33,-0.19,-0.31,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-POR,Jrue Holiday,Damian Lillard,17,0.33,-0.19,0.11,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 SA,Dylan Harper,Carter Bryant,14,-0.33,-0.59,0.42,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-SA,Luke Kornet,Harrison Barnes,16,0.33,0.07,0.57,"Luke Kornet's assists have lined up with Harrison Barnes's points across 16 shared games (r 0.57). Pairing check, not a star."
-SAC,Dylan Cardwell,Darius Acuff Jr.,10,0.33,-0.15,0.13,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-SAC,Malik Monk,Precious Achiuwa,13,-0.33,0.37,-0.32,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+SA,Luke Kornet,Harrison Barnes,17,0.33,0.07,0.52,"Luke Kornet's assists have lined up with Harrison Barnes's points across 17 shared games (r 0.52). Pairing check, not a star."
+SA,Luke Kornet,Jordan McLaughlin,13,0.33,-0.23,-0.08,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+SAC,De'Andre Hunter,Dylan Cardwell,9,-0.33,0.13,-0.24,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+SAC,Dylan Cardwell,Darius Acuff Jr.,11,0.33,-0.19,0.14,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
+SAC,Precious Achiuwa,Dylan Cardwell,8,-0.33,0.22,-0.29,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 UTAH,Mo Bamba,Brice Sensabaugh,15,0.33,0.28,0.44,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 BKN,Julius Randle,Michael Porter Jr.,16,0.32,0.44,0.14,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 BOS,Payton Pritchard,Mitchell Robinson,14,0.32,-0.09,-0.08,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
@@ -639,6 +636,7 @@ DAL,Naji Marshall,Morez Johnson Jr.,14,-0.32,-0.28,0.35,No assist-to-points link
 DAL,P.J. Washington,Kyrie Irving,13,-0.32,-0.4,0.25,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 DAL,P.J. Washington,Max Christie,13,0.32,0.6,-0.12,"Max Christie's assists have lined up with P.J. Washington's points across 13 shared games (r 0.6). Pairing check, not a star."
 DEN,Aaron Gordon,Jamal Murray,16,-0.32,0.18,0.71,"Aaron Gordon's assists have lined up with Jamal Murray's points across 16 shared games (r 0.71). Pairing check, not a star."
+GS,Charles Bassey,Draymond Green,13,0.32,-0.35,0.59,"Charles Bassey's assists have lined up with Draymond Green's points across 13 shared games (r 0.59). Pairing check, not a star."
 HOU,Jabari Smith Jr.,Alperen Sengun,17,-0.32,0.03,-0.29,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 HOU,Oscar Tshiebwe,Alperen Sengun,9,-0.32,-0.39,-0.48,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 IND,Kelly Oubre Jr.,Jay Huff,13,0.32,0.24,0.42,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
@@ -655,7 +653,10 @@ ORL,Jase Richardson,Nikola Vucevic,12,0.32,-0.3,-0.35,No assist-to-points link a
 ORL,Tristan da Silva,Nikola Vucevic,12,-0.32,0.66,0.09,"Nikola Vucevic's assists have lined up with Tristan da Silva's points across 12 shared games (r 0.66). Pairing check, not a star."
 PHI,Jaylen Brown,Anfernee Simons,16,-0.32,-0.03,-0.18,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 POR,Branden Carlson,Scoot Henderson,12,-0.32,-0.5,-0.05,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-POR,Jayson Kent,Damian Lillard,8,-0.32,0.18,0.29,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
+POR,Deni Avdija,Damian Lillard,16,0.32,0.08,0.29,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+POR,Yang Hansen,Damian Lillard,11,-0.32,0.33,-0.54,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
+SA,Carter Bryant,Victor Wembanyama,17,0.32,-0.16,-0.16,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+SA,Jordan McLaughlin,Julian Champagnie,13,-0.32,-0.1,0.05,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 SA,Jordan McLaughlin,Tarris Reed Jr.,10,0.32,0.76,0.09,"Tarris Reed Jr.'s assists have lined up with Jordan McLaughlin's points across 10 shared games (r 0.76). Pairing check, not a star."
 SA,Tarris Reed Jr.,Harrison Barnes,11,0.32,0.25,0.38,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 TOR,Jakob Poeltl,Trayce Jackson-Davis,10,-0.32,-0.25,-0.33,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -672,7 +673,6 @@ DAL,Santi Aldama,Kyrie Irving,9,0.31,-0.03,0.19,No assist-to-points link across 
 DAL,Walter Clayton Jr.,Zaccharie Risacher,17,-0.31,-0.18,-0.1,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 DET,Chaz Lanier,Daniss Jenkins,8,-0.31,0.38,0.58,"Chaz Lanier's assists have lined up with Daniss Jenkins's points across 8 shared games (r 0.58). Pairing check, not a star."
 DET,John Collins,Cade Cunningham,15,-0.31,0.33,-0.32,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-GS,Charles Bassey,Draymond Green,12,0.31,-0.42,0.59,"Charles Bassey's assists have lined up with Draymond Green's points across 12 shared games (r 0.59). Pairing check, not a star."
 HOU,Jae'Sean Tate,Kevin Durant,10,0.31,0.34,-0.1,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 IND,Aaron Nesmith,Braden Smith,9,-0.31,-0.43,0.22,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 IND,Ivica Zubac,Andrew Nembhard,11,-0.31,0.77,-0.39,"Andrew Nembhard's assists have lined up with Ivica Zubac's points across 11 shared games (r 0.77). Pairing check, not a star."
@@ -690,9 +690,8 @@ ORL,Wendell Carter Jr.,Jalen Suggs,9,0.31,0.47,0.38,No assist-to-points link acr
 PHI,LeBron James,Labaron Philon Jr.,9,0.31,-0.23,-0.15,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 PHI,LeBron James,VJ Edgecombe,14,0.31,0.46,-0.02,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 PHI,Tyrese Maxey,Adem Bona,11,-0.31,0.49,0.23,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
-SA,Jordan McLaughlin,Julian Champagnie,12,-0.31,-0.08,0.03,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 SA,Julian Champagnie,Dylan Harper,15,-0.31,0.27,-0.1,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SAC,Malik Monk,Keegan Murray,9,-0.31,-0.16,-0.64,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+SAC,Malik Monk,Keegan Murray,10,-0.31,-0.16,-0.47,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 TOR,Jakob Poeltl,Jamison Battle,15,0.31,-0.09,0.52,"Jakob Poeltl's assists have lined up with Jamison Battle's points across 15 shared games (r 0.52). Pairing check, not a star."
 WSH,Bub Carrington,Kyshawn George,18,-0.31,-0.03,-0.35,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 BOS,Mitchell Robinson,Hugo Gonzalez,14,-0.3,-0.19,-0.18,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
@@ -700,6 +699,8 @@ DEN,DeMar DeRozan,Christian Braun,15,-0.3,-0.16,0.24,No assist-to-points link ac
 DEN,Jamal Murray,Bryce Hopkins,8,-0.3,0.12,0.56,"Jamal Murray's assists have lined up with Bryce Hopkins's points across 8 shared games (r 0.56). Pairing check, not a star."
 DET,John Collins,Daniss Jenkins,17,0.3,0.46,0.19,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 DET,Tolu Smith,Cade Cunningham,8,0.3,-0.24,-0.33,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
+GS,Charles Bassey,Will Richard,15,0.3,-0.0,-0.35,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+GS,Gary Payton II,Al Horford,13,0.3,0.08,0.25,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 LAC,Max Strus,Darius Garland,11,0.3,0.14,0.25,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 LAL,Matisse Thybulle,Luka Doncic,16,-0.3,0.14,-0.12,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 MEM,Quinten Post,Olivier-Maxence Prosper,9,0.3,-0.24,,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
@@ -713,10 +714,8 @@ NY,Karl-Anthony Towns,Mohamed Diawara,8,-0.3,-0.01,-0.47,No assist-to-points lin
 ORL,Jamal Cain,Goga Bitadze,13,-0.3,0.21,-0.04,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 ORL,Jevon Carter,Wendell Carter Jr.,13,-0.3,0.16,-0.42,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 PHI,LeBron James,Tyrese Maxey,14,0.3,0.07,0.37,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-POR,Jayson Kent,Sidy Cissoko,8,-0.3,-0.34,0.51,"Jayson Kent's assists have lined up with Sidy Cissoko's points across 8 shared games (r 0.51). Pairing check, not a star."
 SA,De'Aaron Fox,Keldon Johnson,16,-0.3,-0.38,-0.17,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 SA,Dylan Harper,Tarris Reed Jr.,9,-0.3,-0.62,0.0,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-SAC,Domantas Sabonis,Keegan Murray,9,0.3,0.2,-0.13,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 UTAH,Josh Green,Keyonte George,16,0.3,0.27,0.23,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 WSH,Bilal Coulibaly,Will Riley,15,0.3,-0.17,-0.42,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 WSH,Kyshawn George,Tre Johnson,17,0.3,-0.01,0.18,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
@@ -732,7 +731,6 @@ DAL,P.J. Washington,Moussa Cisse,11,-0.29,-0.44,0.19,No assist-to-points link ac
 DEN,Aaron Gordon,Christian Braun,16,0.29,-0.27,0.72,"Aaron Gordon's assists have lined up with Christian Braun's points across 16 shared games (r 0.72). Pairing check, not a star."
 DEN,DeMar DeRozan,Trevon Brazile,15,-0.29,-0.12,0.24,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 DEN,Tyus Jones,Bryce Hopkins,8,0.29,0.06,0.77,"Tyus Jones's assists have lined up with Bryce Hopkins's points across 8 shared games (r 0.77). Pairing check, not a star."
-GS,Georges Niang,De'Anthony Melton,17,-0.29,-0.34,0.1,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 HOU,Bogdan Bogdanovic,Alperen Sengun,17,0.29,-0.14,0.34,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 IND,Pascal Siakam,Ivica Zubac,13,0.29,-0.29,0.09,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 LAC,Kobe Sanders,Keaton Wagler,17,-0.29,0.37,0.19,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
@@ -746,10 +744,7 @@ ORL,Desmond Bane,Jase Richardson,12,-0.29,-0.14,-0.39,No assist-to-points link a
 PHI,Labaron Philon Jr.,VJ Edgecombe,11,0.29,0.03,-0.05,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 PHI,Tyrese Maxey,VJ Edgecombe,17,-0.29,-0.04,0.4,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 POR,Jrue Holiday,Branden Carlson,12,-0.29,-0.43,-0.13,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-POR,Jrue Holiday,Sidy Cissoko,17,0.29,-0.07,0.32,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-POR,Scoot Henderson,Donovan Clingan,17,-0.29,0.01,-0.27,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 SA,Carter Bryant,Tarris Reed Jr.,11,-0.29,0.24,0.34,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
-SAC,Precious Achiuwa,Emanuel Sharp,14,-0.29,-0.41,0.27,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 TOR,Immanuel Quickley,Collin Murray-Boyles,14,0.29,0.11,0.08,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 TOR,Kyle Anderson,Collin Murray-Boyles,9,0.29,-0.29,-0.27,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 TOR,Scottie Barnes,Collin Murray-Boyles,11,0.29,-0.37,0.45,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
@@ -783,9 +778,11 @@ ORL,Goga Bitadze,Franz Wagner,15,0.28,0.15,0.24,No assist-to-points link across 
 ORL,Jamal Cain,Anthony Black,12,0.28,0.33,0.34,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 PHX,Devin Booker,Collin Gillespie,17,-0.28,0.05,0.47,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Miles Bridges,Oso Ighodaro,15,-0.28,0.23,-0.11,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+POR,Scoot Henderson,Donovan Clingan,18,-0.28,0.01,-0.23,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 SA,Devin Vassell,Tarris Reed Jr.,9,0.28,0.08,0.2,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 SA,Keldon Johnson,Tarris Reed Jr.,11,0.28,0.13,-0.16,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 SA,Stephon Castle,Dylan Harper,15,-0.28,-0.2,0.17,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+SAC,Alex Karaban,Darius Acuff Jr.,9,0.28,0.77,0.24,"Darius Acuff Jr.'s assists have lined up with Alex Karaban's points across 9 shared games (r 0.77). Pairing check, not a star."
 TOR,Jamal Shead,Jaden Bradley,9,-0.28,0.86,-0.25,"Jaden Bradley's assists have lined up with Jamal Shead's points across 9 shared games (r 0.86). Pairing check, not a star."
 UTAH,Keyonte George,Kyle Filipowski,11,-0.28,-0.45,-0.44,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 WSH,Tre Mann,AJ Dybantsa,8,-0.28,-0.39,0.39,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
@@ -799,6 +796,7 @@ CHI,Norman Powell,Tre Jones,13,-0.27,0.1,0.33,No assist-to-points link across 13
 CLE,James Harden,Evan Mobley,12,-0.27,0.04,0.38,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 DAL,Daniel Gafford,Kyrie Irving,15,0.27,0.55,0.04,"Kyrie Irving's assists have lined up with Daniel Gafford's points across 15 shared games (r 0.55). Pairing check, not a star."
 DET,Cade Cunningham,Ausar Thompson,14,0.27,0.54,0.5,"Ausar Thompson's assists have lined up with Cade Cunningham's points across 14 shared games (r 0.54). Pairing check, not a star."
+GS,Gary Payton II,Draymond Green,13,0.27,0.25,0.06,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 HOU,Bogdan Bogdanovic,Bruce Thornton,11,0.27,,0.32,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 HOU,Jabari Smith Jr.,Amen Thompson,18,-0.27,-0.22,0.0,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 HOU,Kevin Durant,Oscar Tshiebwe,11,-0.27,0.08,-0.06,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
@@ -821,7 +819,8 @@ OKC,Isaiah Hartenstein,Brooks Barnhizer,11,0.27,-0.44,-0.2,No assist-to-points l
 OKC,Micah Peavy,Jared McCain,13,0.27,-0.26,-0.05,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 PHI,Anfernee Simons,Labaron Philon Jr.,12,0.27,0.05,0.32,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 PHI,Jaylen Brown,Adem Bona,10,0.27,0.0,-0.14,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-SAC,Alex Karaban,Darius Acuff Jr.,8,0.27,0.84,0.22,"Darius Acuff Jr.'s assists have lined up with Alex Karaban's points across 8 shared games (r 0.84). Pairing check, not a star."
+POR,Jrue Holiday,Damian Lillard,18,0.27,-0.23,0.16,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SA,Stephon Castle,Carter Bryant,18,-0.27,0.3,-0.25,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 SAC,Zach LaVine,Domantas Sabonis,15,-0.27,-0.12,0.11,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 TOR,RJ Barrett,Jamison Battle,14,0.27,0.15,-0.17,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 WSH,Deandre Ayton,Bub Carrington,18,0.27,0.28,-0.19,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
@@ -836,7 +835,7 @@ CHI,Matas Buzelis,Josh Giddey,18,0.26,0.19,0.56,"Matas Buzelis's assists have li
 DAL,Cooper Flagg,Kyrie Irving,15,0.26,0.25,-0.15,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 DAL,Max Christie,Cooper Flagg,14,-0.26,0.18,-0.09,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 DEN,Nikola Jokic,DeMar DeRozan,15,-0.26,-0.11,0.13,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-GS,Gary Payton II,Brandon Williams,9,-0.26,0.24,0.4,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+GS,De'Anthony Melton,Yaxel Lendeborg,18,0.26,-0.03,-0.21,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 GS,LJ Cryer,Graham Ike,12,0.26,0.7,0.28,"Graham Ike's assists have lined up with LJ Cryer's points across 12 shared games (r 0.7). Pairing check, not a star."
 GS,LJ Cryer,Gui Santos,11,-0.26,-0.13,0.24,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 IND,Larry Nance Jr.,Jalen Slawson,15,-0.26,0.12,-0.18,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -849,8 +848,8 @@ ORL,Desmond Bane,Nikola Vucevic,13,0.26,0.06,0.38,No assist-to-points link acros
 ORL,Goga Bitadze,Tristan da Silva,13,-0.26,0.38,0.19,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 PHI,Kentavious Caldwell-Pope,VJ Edgecombe,18,0.26,0.01,-0.04,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 SA,De'Aaron Fox,Harrison Barnes,14,-0.26,-0.6,-0.55,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+SA,Jordan McLaughlin,Devin Vassell,11,-0.26,-0.51,-0.28,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 SA,Luke Kornet,Dylan Harper,15,-0.26,0.3,-0.6,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SA,Stephon Castle,Carter Bryant,17,-0.26,0.3,-0.23,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 UTAH,Josh Okogie,Brice Sensabaugh,18,0.26,0.51,0.47,"Brice Sensabaugh's assists have lined up with Josh Okogie's points across 18 shared games (r 0.51). Pairing check, not a star."
 WSH,Bub Carrington,Bilal Coulibaly,17,-0.26,-0.33,0.05,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 ATL,Jock Landale,Jalen Johnson,9,0.25,0.03,0.3,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
@@ -862,7 +861,8 @@ DAL,Naji Marshall,Cooper Flagg,14,-0.25,-0.23,-0.34,No assist-to-points link acr
 DAL,Santi Aldama,Cooper Flagg,9,0.25,-0.05,-0.09,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 DEN,Nikola Jokic,Bryce Hopkins,8,0.25,0.52,0.65,"Nikola Jokic's assists have lined up with Bryce Hopkins's points across 8 shared games (r 0.65). Pairing check, not a star."
 DET,Ronald Holland II,Daniss Jenkins,14,-0.25,0.47,0.3,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-GS,Brandon Williams,Yaxel Lendeborg,10,0.25,-0.01,0.24,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
+GS,Al Horford,Charles Bassey,13,-0.25,0.11,0.38,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+GS,Will Richard,Draymond Green,14,-0.25,-0.32,-0.11,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 HOU,Marcus Smart,Bogdan Bogdanovic,13,0.25,0.27,0.27,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 IND,Ivica Zubac,Jarace Walker,12,0.25,0.18,0.24,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 LAL,Collin Sexton,Sandro Mamukelashvili,17,0.25,0.21,0.54,"Collin Sexton's assists have lined up with Sandro Mamukelashvili's points across 17 shared games (r 0.54). Pairing check, not a star."
@@ -878,9 +878,8 @@ NO,Dejounte Murray,Saddiq Bey,9,0.25,-0.44,0.27,No assist-to-points link across 
 NY,Jose Alvarado,Miles McBride,9,-0.25,-0.18,-0.09,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 NY,Josh Hart,Andre Drummond,15,0.25,0.29,-0.07,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 PHI,Justin Edwards,VJ Edgecombe,8,0.25,0.21,,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-POR,Yang Hansen,Damian Lillard,10,-0.25,0.51,-0.6,"Damian Lillard's assists have lined up with Yang Hansen's points across 10 shared games (r 0.51). Pairing check, not a star."
 SA,Dylan Harper,Victor Wembanyama,15,0.25,0.02,-0.16,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SA,Luke Kornet,Julian Champagnie,18,0.25,-0.02,0.38,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SA,Luke Kornet,Julian Champagnie,19,0.25,-0.02,0.34,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 TOR,Ja'Kobe Walter,Alijah Martin,16,-0.25,-0.11,-0.19,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 TOR,Ja'Kobe Walter,Allen Graves,17,0.25,0.23,0.16,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 TOR,Jamal Shead,Collin Murray-Boyles,15,-0.25,-0.23,0.61,"Jamal Shead's assists have lined up with Collin Murray-Boyles's points across 15 shared games (r 0.61). Pairing check, not a star."
@@ -894,6 +893,10 @@ CHI,Zach Collins,Tre Jones,12,0.24,0.61,0.64,"Zach Collins's assists have lined 
 CLE,Mario Hezonja,Evan Mobley,12,0.24,0.08,0.62,"Mario Hezonja's assists have lined up with Evan Mobley's points across 12 shared games (r 0.62). Pairing check, not a star."
 DAL,Marcus Sasser,Morez Johnson Jr.,12,0.24,0.26,0.37,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 DAL,Naji Marshall,Max Christie,12,0.24,0.62,-0.06,"Max Christie's assists have lined up with Naji Marshall's points across 12 shared games (r 0.62). Pairing check, not a star."
+GS,Brandon Williams,Gui Santos,9,0.24,-0.16,0.45,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+GS,De'Anthony Melton,Brandin Podziemski,16,0.24,0.61,0.19,"Brandin Podziemski's assists have lined up with De'Anthony Melton's points across 16 shared games (r 0.61). Pairing check, not a star."
+GS,Gary Payton II,De'Anthony Melton,16,-0.24,0.18,0.14,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+GS,Gui Santos,Draymond Green,12,0.24,0.06,0.06,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 HOU,Jae'Sean Tate,Reed Sheppard,9,-0.24,0.22,-0.09,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 HOU,Tari Eason,Bruce Thornton,11,-0.24,,0.37,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 LAC,Darius Garland,Isaiah Jackson,16,0.24,0.3,0.38,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
@@ -914,7 +917,8 @@ OKC,Micah Peavy,Aday Mara,10,0.24,-0.29,0.07,No assist-to-points link across 10 
 ORL,Jamal Cain,Jalen Suggs,8,-0.24,0.15,-0.42,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 PHI,Dean Wade,Adem Bona,9,0.24,0.21,0.06,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 PHI,Jaylen Brown,Jabari Walker,13,0.24,0.09,-0.3,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
-POR,Toumani Camara,Sidy Cissoko,17,0.24,0.24,0.46,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+POR,Deni Avdija,Sidy Cissoko,16,0.24,-0.36,0.29,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+POR,Sidy Cissoko,Donovan Clingan,18,-0.24,0.28,0.1,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 SAC,Daeqwon Plowden,Darius Acuff Jr.,12,0.24,0.22,-0.35,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 TOR,Jaden Bradley,Alijah Martin,9,0.24,0.16,-0.01,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 TOR,Jamison Battle,Collin Murray-Boyles,15,-0.24,-0.14,-0.14,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -924,7 +928,7 @@ CHI,Isaac Okoro,Matas Buzelis,18,0.23,-0.01,0.14,No assist-to-points link across
 CLE,Mario Hezonja,Tyrese Proctor,18,0.23,0.46,0.14,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 DEN,Bryce Hopkins,Trevon Brazile,8,-0.23,0.27,0.37,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 DET,John Collins,Ronald Holland II,14,-0.23,0.28,-0.19,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-GS,Al Horford,Charles Bassey,12,-0.23,0.12,0.39,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
+GS,Georges Niang,Yaxel Lendeborg,18,-0.23,-0.0,0.04,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 GS,LJ Cryer,Will Richard,12,0.23,-0.27,-0.0,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 HOU,Tari Eason,Isaiah Crawford,11,-0.23,-0.2,0.24,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 IND,Larry Nance Jr.,Aaron Nesmith,15,-0.23,0.07,0.32,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -943,7 +947,9 @@ MIN,Rudy Gobert,Jaden McDaniels,18,-0.23,-0.24,0.08,No assist-to-points link acr
 MIN,Trey Lyles,Joan Beringer,19,-0.23,0.19,-0.21,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 NY,Jalen Brunson,OG Anunoby,15,0.23,-0.43,-0.17,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 NY,Mikal Bridges,Tyler Kolek,16,-0.23,-0.49,-0.41,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-POR,Toumani Camara,Donovan Clingan,17,-0.23,-0.16,-0.12,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+POR,Sidy Cissoko,Damian Lillard,18,0.23,-0.37,0.23,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SAC,Leaky Black,Darius Acuff Jr.,13,0.23,-0.13,0.02,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+SAC,Precious Achiuwa,Emanuel Sharp,15,-0.23,-0.27,0.34,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 TOR,Jamison Battle,Jamal Shead,17,0.23,0.14,0.28,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 UTAH,Isaiah Collier,Darryn Peterson,16,0.23,-0.19,0.03,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 UTAH,Mo Bamba,Ace Bailey,15,-0.23,0.59,-0.27,"Ace Bailey's assists have lined up with Mo Bamba's points across 15 shared games (r 0.59). Pairing check, not a star."
@@ -954,7 +960,6 @@ BOS,Paul George,Jordan Walsh,15,-0.22,0.38,0.03,No assist-to-points link across 
 CLE,Thomas Bryant,Peyton Watson,9,0.22,-0.06,0.2,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 DAL,Caleb Martin,Moussa Cisse,8,-0.22,-0.45,0.16,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 GS,Graham Ike,Draymond Green,10,0.22,0.11,0.01,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-GS,Will Richard,Yaxel Lendeborg,16,-0.22,0.06,-0.07,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 IND,Kelly Oubre Jr.,Jarace Walker,15,-0.22,-0.07,-0.13,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 IND,Kelly Oubre Jr.,Obi Toppin,14,-0.22,0.19,0.44,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 LAC,Rui Hachimura,Kobe Sanders,15,0.22,-0.33,-0.48,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -969,7 +974,7 @@ NY,OG Anunoby,Andre Drummond,15,-0.22,-0.19,-0.21,No assist-to-points link acros
 PHI,LeBron James,Jaylen Brown,12,-0.22,-0.13,-0.01,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 PHX,Dillon Brooks,Ryan Dunn,17,0.22,0.23,-0.04,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Miles Bridges,Ryan Dunn,17,0.22,0.12,0.19,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-SAC,Leaky Black,Darius Acuff Jr.,12,0.22,-0.11,0.02,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
+POR,Jrue Holiday,Sidy Cissoko,18,0.22,-0.07,0.37,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 TOR,Jaden Bradley,Collin Murray-Boyles,8,-0.22,0.05,-0.28,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 UTAH,Keyonte George,Darryn Peterson,18,-0.22,-0.24,-0.06,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 WSH,Alex Sarr,Tre Johnson,16,0.22,0.43,0.61,"Alex Sarr's assists have lined up with Tre Johnson's points across 16 shared games (r 0.61). Pairing check, not a star."
@@ -985,10 +990,7 @@ CHI,Buddy Hield,Leonard Miller,11,0.21,0.5,-0.15,No assist-to-points link across
 CHI,Jordan Hawkins,Matas Buzelis,10,0.21,-0.33,0.55,"Jordan Hawkins's assists have lined up with Matas Buzelis's points across 10 shared games (r 0.55). Pairing check, not a star."
 CLE,Mario Hezonja,Sam Merrill,13,-0.21,0.2,-0.08,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 DET,John Collins,Ausar Thompson,16,-0.21,-0.02,-0.28,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-GS,Brandin Podziemski,Draymond Green,13,0.21,0.04,-0.23,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
-GS,Charles Bassey,Brandin Podziemski,14,0.21,-0.57,0.17,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-GS,Georges Niang,Yaxel Lendeborg,17,-0.21,0.04,0.06,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-GS,Will Richard,Draymond Green,13,-0.21,-0.28,-0.11,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+GS,Brandin Podziemski,Yaxel Lendeborg,16,0.21,0.03,0.5,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 HOU,Fred VanVleet,Tari Eason,16,-0.21,-0.38,-0.35,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 HOU,Jabari Smith Jr.,Isaiah Crawford,11,0.21,-0.23,0.12,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 LAC,Brook Lopez,Kobe Sanders,17,-0.21,0.17,-0.33,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
@@ -1005,7 +1007,6 @@ NY,Jordan Clarkson,Mikal Bridges,12,-0.21,-0.21,-0.39,No assist-to-points link a
 OKC,Isaiah Hartenstein,Aday Mara,16,-0.21,-0.15,0.38,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 PHI,Jabari Walker,Labaron Philon Jr.,10,0.21,-0.41,0.09,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 PHX,Oso Ighodaro,Ryan Dunn,15,-0.21,-0.13,-0.43,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SA,Keldon Johnson,Julian Champagnie,18,0.21,0.12,0.01,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 SAC,Malik Monk,Daeqwon Plowden,11,0.21,0.1,0.55,"Malik Monk's assists have lined up with Daeqwon Plowden's points across 11 shared games (r 0.55). Pairing check, not a star."
 TOR,Immanuel Quickley,Scottie Barnes,12,-0.21,0.23,0.61,"Immanuel Quickley's assists have lined up with Scottie Barnes's points across 12 shared games (r 0.61). Pairing check, not a star."
 UTAH,Tony Bradley,Darryn Peterson,9,-0.21,-0.05,0.18,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
@@ -1027,7 +1028,7 @@ DAL,Morez Johnson Jr.,Kyrie Irving,14,-0.2,-0.36,-0.26,No assist-to-points link 
 DEN,Aaron Gordon,Marvin Bagley III,16,-0.2,0.48,-0.53,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DEN,Cameron Johnson,Christian Braun,13,0.2,0.31,0.61,"Cameron Johnson's assists have lined up with Christian Braun's points across 13 shared games (r 0.61). Pairing check, not a star."
 DEN,Nikola Jokic,Cameron Johnson,13,0.2,0.38,0.21,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
-GS,Brandin Podziemski,Yaxel Lendeborg,15,0.2,0.0,0.56,"Brandin Podziemski's assists have lined up with Yaxel Lendeborg's points across 15 shared games (r 0.56). Pairing check, not a star."
+GS,Charles Bassey,Brandin Podziemski,15,0.2,-0.53,0.16,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 GS,Stephen Curry,De'Anthony Melton,10,-0.2,-0.67,-0.08,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 HOU,Bogdan Bogdanovic,Amen Thompson,18,0.2,0.47,0.35,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 HOU,Bogdan Bogdanovic,Jabari Smith Jr.,19,-0.2,0.23,-0.19,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
@@ -1046,7 +1047,8 @@ ORL,Jalen Suggs,Franz Wagner,9,-0.2,0.05,-0.44,No assist-to-points link across 9
 ORL,Wendell Carter Jr.,Tristan da Silva,15,-0.2,-0.17,0.11,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 PHI,LeBron James,Kentavious Caldwell-Pope,15,0.2,0.59,0.18,"Kentavious Caldwell-Pope's assists have lined up with LeBron James's points across 15 shared games (r 0.59). Pairing check, not a star."
 PHX,Miles Bridges,Collin Gillespie,17,0.2,0.27,0.06,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-SAC,Malik Monk,Darius Acuff Jr.,16,-0.2,-0.16,-0.26,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+SA,Keldon Johnson,Julian Champagnie,19,0.2,0.15,0.01,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
+SAC,Domantas Sabonis,Dylan Cardwell,10,-0.2,-0.03,-0.04,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 SAC,Zach LaVine,Nique Clifford,8,0.2,-0.16,0.5,"Zach LaVine's assists have lined up with Nique Clifford's points across 8 shared games (r 0.5). Pairing check, not a star."
 ATL,CJ McCollum,Jock Landale,9,0.19,0.18,0.17,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 BOS,Derrick White,Paul George,14,-0.19,0.06,0.21,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
@@ -1061,6 +1063,7 @@ DEN,Marvin Bagley III,Trevon Brazile,16,-0.19,0.24,0.04,No assist-to-points link
 DET,Javonte Green,Ronald Holland II,14,-0.19,-0.19,0.07,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 GS,Gary Payton II,LJ Cryer,11,-0.19,-0.1,-0.19,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 GS,Stephen Curry,Will Richard,9,-0.19,0.18,-0.3,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+GS,Will Richard,Yaxel Lendeborg,17,-0.19,0.09,-0.07,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 HOU,Fred VanVleet,Bruce Thornton,8,0.19,,-0.05,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 LAL,Quentin Grimes,Jake LaRavia,15,-0.19,0.04,0.21,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 MEM,Cam Spencer,GG Jackson,12,-0.19,0.11,0.52,"Cam Spencer's assists have lined up with GG Jackson's points across 12 shared games (r 0.52). Pairing check, not a star."
@@ -1074,8 +1077,10 @@ ORL,Desmond Bane,Wendell Carter Jr.,16,-0.19,-0.09,-0.38,No assist-to-points lin
 PHX,Dillon Brooks,Collin Gillespie,17,-0.19,-0.11,0.09,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Miles Bridges,Khaman Maluach,17,-0.19,-0.12,0.21,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Ryan Dunn,Khaman Maluach,17,0.19,0.27,0.24,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-POR,Deni Avdija,Damian Lillard,15,0.19,-0.12,0.28,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SA,Stephon Castle,Harrison Barnes,16,0.19,0.12,0.18,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+POR,Robert Williams III,Deni Avdija,14,-0.19,0.63,-0.06,"Deni Avdija's assists have lined up with Robert Williams III's points across 14 shared games (r 0.63). Pairing check, not a star."
+SA,Carter Bryant,Harrison Barnes,16,0.19,-0.22,0.16,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+SA,Devin Vassell,Carter Bryant,16,-0.19,0.02,-0.01,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+SA,Stephon Castle,Harrison Barnes,17,0.19,0.12,0.17,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 TOR,Jamal Shead,Scottie Barnes,12,0.19,-0.07,0.75,"Jamal Shead's assists have lined up with Scottie Barnes's points across 12 shared games (r 0.75). Pairing check, not a star."
 TOR,RJ Barrett,Alijah Martin,13,0.19,0.11,0.19,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 UTAH,Jaxson Hayes,Kyle Filipowski,10,0.19,-0.31,-0.27,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -1091,8 +1096,9 @@ CLE,Peyton Watson,Meleek Thomas,12,-0.18,-0.08,-0.09,No assist-to-points link ac
 DAL,Caleb Martin,Naji Marshall,12,0.18,0.14,0.18,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 DAL,Daniel Gafford,Morez Johnson Jr.,17,0.18,-0.09,-0.02,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 DET,Ausar Thompson,Daniss Jenkins,16,-0.18,-0.46,0.32,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-GS,Gary Payton II,Draymond Green,12,0.18,0.15,-0.05,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-GS,Georges Niang,Al Horford,14,0.18,0.16,-0.09,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+GS,Brandon Williams,Yaxel Lendeborg,11,0.18,-0.07,0.2,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
+GS,De'Anthony Melton,Will Richard,17,-0.18,0.1,0.0,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+GS,Georges Niang,Gary Payton II,16,0.18,0.15,-0.11,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 IND,Jay Huff,Andrew Nembhard,11,0.18,-0.15,0.03,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 LAC,Kris Dunn,Darius Garland,17,-0.18,0.56,0.21,"Darius Garland's assists have lined up with Kris Dunn's points across 17 shared games (r 0.56). Pairing check, not a star."
 LAC,Rui Hachimura,Darius Garland,15,-0.18,-0.23,0.13,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -1117,10 +1123,8 @@ PHI,Dean Wade,Tyrese Maxey,15,0.18,0.34,0.64,"Dean Wade's assists have lined up 
 PHI,Joel Embiid,Labaron Philon Jr.,8,0.18,-0.06,0.12,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 PHX,Devin Booker,Khaman Maluach,17,-0.18,0.38,0.1,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Jalen Green,Ryan Dunn,17,-0.18,0.02,0.18,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-POR,Jrue Holiday,Yang Hansen,10,-0.18,-0.02,-0.34,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-SA,Carter Bryant,Harrison Barnes,15,0.18,-0.22,0.17,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SA,Devin Vassell,Carter Bryant,15,-0.18,-0.03,-0.03,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SA,Keldon Johnson,Harrison Barnes,16,0.18,-0.03,0.46,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+SA,Keldon Johnson,Harrison Barnes,17,0.18,-0.05,0.46,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+SAC,Malik Monk,Darius Acuff Jr.,17,-0.18,-0.17,-0.26,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 TOR,Immanuel Quickley,Jamison Battle,15,0.18,0.23,-0.1,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 TOR,Immanuel Quickley,Trayce Jackson-Davis,11,0.18,0.14,0.43,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 TOR,Jamison Battle,Jaden Bradley,9,-0.18,0.64,0.21,"Jaden Bradley's assists have lined up with Jamison Battle's points across 9 shared games (r 0.64). Pairing check, not a star."
@@ -1145,6 +1149,8 @@ DAL,P.J. Washington,Naji Marshall,13,0.17,0.1,0.34,No assist-to-points link acro
 DAL,P.J. Washington,Walter Clayton Jr.,15,0.17,0.11,0.46,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 DAL,Walter Clayton Jr.,Kyrie Irving,14,-0.17,-0.02,-0.24,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 DET,Ronald Holland II,Ausar Thompson,13,-0.17,-0.0,-0.44,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+GS,Brandon Williams,Charles Bassey,9,0.17,0.18,0.1,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+GS,Gary Payton II,Brandon Williams,10,-0.17,0.26,0.43,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 GS,Graham Ike,Malevy Leons,10,0.17,0.04,0.75,"Graham Ike's assists have lined up with Malevy Leons's points across 10 shared games (r 0.75). Pairing check, not a star."
 HOU,Bogdan Bogdanovic,Kevin Durant,19,0.17,0.23,0.2,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 HOU,Marcus Smart,Reed Sheppard,10,-0.17,0.28,0.18,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -1162,6 +1168,9 @@ NY,Jordan Clarkson,Andre Drummond,12,0.17,-0.12,0.38,No assist-to-points link ac
 OKC,Kenrich Williams,Bennett Stirtz,19,0.17,0.47,0.38,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 ORL,Jamal Cain,Jase Richardson,12,0.17,0.39,0.04,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 POR,Micah Potter,Damian Lillard,9,-0.17,0.69,-0.67,"Damian Lillard's assists have lined up with Micah Potter's points across 9 shared games (r 0.69). Pairing check, not a star."
+POR,Toumani Camara,Donovan Clingan,18,-0.17,-0.15,-0.14,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SAC,Domantas Sabonis,Leaky Black,12,-0.17,-0.04,-0.11,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
+SAC,Domantas Sabonis,Malik Monk,16,-0.17,0.13,-0.24,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 TOR,Immanuel Quickley,Allen Graves,15,-0.17,0.17,0.21,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 TOR,Kyle Anderson,Allen Graves,10,-0.17,0.04,0.23,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 TOR,RJ Barrett,Ja'Kobe Walter,14,-0.17,0.24,0.01,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
@@ -1179,6 +1188,7 @@ DAL,P.J. Washington,Marcus Sasser,12,-0.16,0.25,-0.06,No assist-to-points link a
 DET,John Collins,Kevin Huerter,17,-0.16,0.04,0.16,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 DET,Kevin Huerter,Ausar Thompson,16,-0.16,-0.21,-0.44,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DET,Kevin Huerter,Ronald Holland II,14,0.16,0.14,0.32,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+GS,Brandin Podziemski,Draymond Green,14,0.16,-0.02,-0.09,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 GS,Georges Niang,LJ Cryer,13,-0.16,-0.26,-0.29,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 GS,Graham Ike,Brandin Podziemski,11,0.16,-0.2,-0.18,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 HOU,Kevin Durant,Amen Thompson,18,0.16,0.54,-0.08,"Amen Thompson's assists have lined up with Kevin Durant's points across 18 shared games (r 0.54). Pairing check, not a star."
@@ -1205,12 +1215,13 @@ PHI,Joel Embiid,Anfernee Simons,14,-0.16,0.17,0.24,No assist-to-points link acro
 PHX,Collin Gillespie,Khaman Maluach,17,0.16,-0.21,0.28,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Devin Booker,Jalen Green,17,-0.16,-0.03,0.05,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Jordan Goodwin,Oso Ighodaro,11,-0.16,-0.01,-0.6,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
-POR,Jayson Kent,Donovan Clingan,8,-0.16,0.29,-0.49,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 POR,Micah Potter,Branden Carlson,8,0.16,-0.11,0.53,"Micah Potter's assists have lined up with Branden Carlson's points across 8 shared games (r 0.53). Pairing check, not a star."
-POR,Scoot Henderson,Sidy Cissoko,17,-0.16,0.02,0.54,"Scoot Henderson's assists have lined up with Sidy Cissoko's points across 17 shared games (r 0.54). Pairing check, not a star."
-POR,Sidy Cissoko,Donovan Clingan,17,-0.16,0.31,0.11,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+POR,Scoot Henderson,Yang Hansen,11,0.16,0.15,-0.17,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
+POR,Toumani Camara,Sidy Cissoko,18,0.16,0.23,0.47,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SA,Jordan McLaughlin,Carter Bryant,13,-0.16,0.24,-0.05,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+SA,Jordan McLaughlin,Harrison Barnes,13,-0.16,0.47,0.34,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 SA,Victor Wembanyama,Tarris Reed Jr.,10,-0.16,0.01,0.45,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-SAC,De'Andre Hunter,Darius Acuff Jr.,15,-0.16,0.49,-0.4,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+SAC,De'Andre Hunter,Darius Acuff Jr.,16,-0.16,0.49,-0.41,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 TOR,Immanuel Quickley,Ja'Kobe Walter,15,-0.16,0.48,-0.36,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 UTAH,Svi Mykhailiuk,Jaxson Hayes,15,-0.16,-0.09,-0.22,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 UTAH,Tony Bradley,Keyonte George,8,-0.16,0.04,0.73,"Tony Bradley's assists have lined up with Keyonte George's points across 8 shared games (r 0.73). Pairing check, not a star."
@@ -1238,7 +1249,6 @@ CHI,Zach Collins,Noa Essengue,11,-0.15,0.04,-0.14,No assist-to-points link acros
 DAL,Caleb Martin,Cooper Flagg,14,-0.15,-0.13,0.03,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 DAL,Morez Johnson Jr.,Tobi Lawal,8,-0.15,-0.28,0.24,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 DEN,Nikola Jokic,Christian Braun,16,0.15,0.3,0.37,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-GS,Al Horford,Gui Santos,12,0.15,0.25,-0.46,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 GS,LJ Cryer,Brandin Podziemski,11,-0.15,-0.44,-0.26,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 HOU,Bogdan Bogdanovic,Isaiah Crawford,11,0.15,-0.01,0.21,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 HOU,Fred VanVleet,Bogdan Bogdanovic,16,0.15,-0.04,-0.26,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
@@ -1258,11 +1268,10 @@ OKC,Shai Gilgeous-Alexander,Nique Clifford,8,-0.15,-0.41,-0.63,No assist-to-poin
 PHI,Kentavious Caldwell-Pope,Dean Wade,15,0.15,-0.09,-0.03,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 PHI,LeBron James,Adem Bona,9,-0.15,-0.44,-0.53,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 PHX,Jordan Goodwin,Jalen Green,13,-0.15,-0.41,-0.4,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
-SA,Jordan McLaughlin,Carter Bryant,12,-0.15,0.23,-0.11,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-SA,Jordan McLaughlin,Harrison Barnes,12,-0.15,0.46,0.33,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-SA,Jordan McLaughlin,Stephon Castle,12,0.15,0.22,0.06,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-SAC,Domantas Sabonis,Leaky Black,11,-0.15,-0.09,-0.1,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
-SAC,Leaky Black,Precious Achiuwa,9,0.15,0.51,0.4,"Precious Achiuwa's assists have lined up with Leaky Black's points across 9 shared games (r 0.51). Pairing check, not a star."
+POR,Deni Avdija,Donovan Clingan,16,-0.15,0.38,0.46,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+POR,Scoot Henderson,Sidy Cissoko,18,-0.15,0.02,0.47,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SA,Jordan McLaughlin,Stephon Castle,13,0.15,0.24,0.03,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+SAC,Domantas Sabonis,Emanuel Sharp,17,0.15,0.42,-0.04,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 SAC,Zach LaVine,Darius Acuff Jr.,16,-0.15,-0.13,-0.31,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 TOR,Jakob Poeltl,Jaden Bradley,8,-0.15,0.51,-0.23,"Jaden Bradley's assists have lined up with Jakob Poeltl's points across 8 shared games (r 0.51). Pairing check, not a star."
 TOR,RJ Barrett,Trayce Jackson-Davis,9,0.15,0.22,0.06,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
@@ -1285,6 +1294,10 @@ DAL,Daniel Gafford,Walter Clayton Jr.,17,0.14,-0.15,-0.26,No assist-to-points li
 DEN,Aaron Gordon,Spencer Jones,9,-0.14,-0.19,-0.6,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 DEN,DeMar DeRozan,Spencer Jones,9,0.14,-0.48,0.58,"DeMar DeRozan's assists have lined up with Spencer Jones's points across 9 shared games (r 0.58). Pairing check, not a star."
 DET,John Collins,Tolu Smith,9,-0.14,-0.32,0.05,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+GS,Al Horford,Brandin Podziemski,14,0.14,0.42,0.37,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+GS,Georges Niang,De'Anthony Melton,18,-0.14,-0.17,0.16,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+GS,Will Richard,Gui Santos,14,-0.14,0.47,-0.09,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+GS,Yaxel Lendeborg,Draymond Green,15,-0.14,0.18,-0.15,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 HOU,Tari Eason,Amen Thompson,18,0.14,0.58,-0.29,"Amen Thompson's assists have lined up with Tari Eason's points across 18 shared games (r 0.58). Pairing check, not a star."
 IND,Larry Nance Jr.,Jay Huff,14,-0.14,-0.04,0.54,"Larry Nance Jr.'s assists have lined up with Jay Huff's points across 14 shared games (r 0.54). Pairing check, not a star."
 LAC,Kobe Sanders,Gradey Dick,16,0.14,0.52,0.5,"Gradey Dick's assists have lined up with Kobe Sanders's points across 16 shared games (r 0.52). Pairing check, not a star."
@@ -1302,9 +1315,7 @@ OKC,Shai Gilgeous-Alexander,Ajay Mitchell,16,-0.14,0.17,-0.13,No assist-to-point
 PHI,Justin Edwards,Labaron Philon Jr.,8,0.14,0.1,,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 PHX,Devin Booker,Ryan Dunn,17,-0.14,-0.04,0.25,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 POR,Branden Carlson,Donovan Clingan,12,0.14,0.06,-0.28,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-POR,Robert Williams III,Deni Avdija,13,-0.14,0.64,0.1,"Deni Avdija's assists have lined up with Robert Williams III's points across 13 shared games (r 0.64). Pairing check, not a star."
-POR,Sidy Cissoko,Damian Lillard,17,0.14,-0.58,0.23,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-POR,Toumani Camara,Yang Hansen,10,-0.14,-0.62,-0.41,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
+POR,Jrue Holiday,Yang Hansen,11,-0.14,-0.02,-0.41,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 SAC,Daeqwon Plowden,Precious Achiuwa,10,0.14,0.39,0.59,"Daeqwon Plowden's assists have lined up with Precious Achiuwa's points across 10 shared games (r 0.59). Pairing check, not a star."
 UTAH,Jaxson Hayes,Brice Sensabaugh,15,0.14,-0.16,-0.23,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 UTAH,Jaxson Hayes,Isaiah Collier,14,0.14,0.25,-0.09,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
@@ -1331,8 +1342,6 @@ DET,Ausar Thompson,Chaz Lanier,8,0.13,0.44,0.06,No assist-to-points link across 
 DET,Duncan Robinson,Ausar Thompson,11,0.13,-0.3,-0.27,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 DET,Duncan Robinson,Cade Cunningham,12,-0.13,0.09,-0.49,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 DET,Javonte Green,Cade Cunningham,15,-0.13,-0.1,-0.27,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-GS,Al Horford,Draymond Green,12,0.13,0.09,0.06,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-GS,Brandon Williams,Gui Santos,8,0.13,-0.14,0.53,"Brandon Williams's assists have lined up with Gui Santos's points across 8 shared games (r 0.53). Pairing check, not a star."
 HOU,Jabari Smith Jr.,Oscar Tshiebwe,11,-0.13,0.02,0.16,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 HOU,Marcus Smart,Alperen Sengun,12,-0.13,0.1,-0.12,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 LAC,Brook Lopez,Baba Miller,15,-0.13,0.19,-0.16,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -1355,10 +1364,7 @@ PHI,Kentavious Caldwell-Pope,Anfernee Simons,19,0.13,0.2,0.19,No assist-to-point
 PHX,Miles Bridges,Jordan Goodwin,13,-0.13,0.66,-0.17,"Jordan Goodwin's assists have lined up with Miles Bridges's points across 13 shared games (r 0.66). Pairing check, not a star."
 POR,Branden Carlson,Damian Lillard,12,-0.13,0.54,-0.52,"Damian Lillard's assists have lined up with Branden Carlson's points across 12 shared games (r 0.54). Pairing check, not a star."
 POR,Branden Carlson,Yang Hansen,8,0.13,0.49,-0.03,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-POR,Scoot Henderson,Yang Hansen,10,0.13,0.16,-0.21,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 SA,De'Aaron Fox,Tarris Reed Jr.,10,0.13,-0.26,-0.4,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-SA,Luke Kornet,Devin Vassell,16,0.13,-0.37,0.26,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-SAC,Domantas Sabonis,Malik Monk,15,-0.13,0.13,-0.24,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 SAC,Zach LaVine,Daeqwon Plowden,11,-0.13,0.68,-0.2,"Daeqwon Plowden's assists have lined up with Zach LaVine's points across 11 shared games (r 0.68). Pairing check, not a star."
 SAC,Zach LaVine,Leaky Black,11,-0.13,0.05,-0.29,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 SAC,Zach LaVine,Malik Monk,15,-0.13,-0.22,-0.25,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
@@ -1379,8 +1385,8 @@ CLE,Sam Merrill,Craig Porter Jr.,8,-0.12,-0.07,0.62,"Sam Merrill's assists have 
 DAL,Santi Aldama,Zaccharie Risacher,9,-0.12,-0.06,0.06,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 DAL,Tobi Lawal,Zaccharie Risacher,8,-0.12,0.02,0.48,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 DET,Kevin Huerter,Cade Cunningham,15,0.12,-0.14,-0.06,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-GS,Al Horford,Brandin Podziemski,13,0.12,0.5,0.38,"Brandin Podziemski's assists have lined up with Al Horford's points across 13 shared games (r 0.5). Pairing check, not a star."
 GS,Charles Bassey,Malevy Leons,9,0.12,0.59,0.51,"Malevy Leons's assists have lined up with Charles Bassey's points across 9 shared games (r 0.59). Pairing check, not a star."
+GS,Georges Niang,Al Horford,15,0.12,0.16,-0.12,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 GS,Graham Ike,Will Richard,12,-0.12,-0.3,0.18,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 HOU,Fred VanVleet,Oscar Tshiebwe,9,-0.12,0.34,0.3,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 HOU,Jabari Smith Jr.,Reed Sheppard,16,-0.12,-0.09,0.3,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
@@ -1406,9 +1412,10 @@ PHX,Collin Gillespie,Ryan Dunn,17,-0.12,-0.22,0.24,No assist-to-points link acro
 PHX,Devin Booker,Oso Ighodaro,15,0.12,0.25,-0.19,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 PHX,Miles Bridges,Jalen Green,17,-0.12,0.01,0.55,"Miles Bridges's assists have lined up with Jalen Green's points across 17 shared games (r 0.55). Pairing check, not a star."
 PHX,Ryan Dunn,Koa Peat,10,-0.12,-0.19,-0.05,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-POR,Robert Williams III,Donovan Clingan,14,-0.12,-0.08,0.15,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-SA,Luke Kornet,Carter Bryant,17,-0.12,0.46,0.03,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-SA,Victor Wembanyama,Harrison Barnes,15,-0.12,0.05,0.25,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+SA,Devin Vassell,Keldon Johnson,17,-0.12,0.32,0.03,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+SA,Luke Kornet,Carter Bryant,18,-0.12,0.46,-0.01,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SA,Luke Kornet,Devin Vassell,17,0.12,-0.36,0.35,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+SA,Victor Wembanyama,Harrison Barnes,16,-0.12,0.07,0.25,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 TOR,Immanuel Quickley,Alijah Martin,14,-0.12,-0.17,-0.17,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 TOR,Jakob Poeltl,Allen Graves,15,-0.12,-0.24,0.18,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 TOR,Scottie Barnes,Alijah Martin,11,-0.12,0.09,0.02,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
@@ -1432,12 +1439,10 @@ DAL,Daniel Gafford,Zaccharie Risacher,18,-0.11,0.06,0.33,No assist-to-points lin
 DAL,Marcus Sasser,Max Christie,10,0.11,0.16,0.36,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 DEN,Tyus Jones,Christian Braun,16,0.11,-0.0,-0.18,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DET,Tolu Smith,Daniss Jenkins,9,0.11,0.13,-0.33,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-GS,Al Horford,De'Anthony Melton,14,0.11,0.27,0.18,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-GS,Brandon Williams,Charles Bassey,8,0.11,0.14,0.06,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-GS,De'Anthony Melton,Draymond Green,14,-0.11,0.19,0.65,"De'Anthony Melton's assists have lined up with Draymond Green's points across 14 shared games (r 0.65). Pairing check, not a star."
+GS,De'Anthony Melton,Draymond Green,15,0.11,0.37,0.68,"De'Anthony Melton's assists have lined up with Draymond Green's points across 15 shared games (r 0.68). Pairing check, not a star."
 GS,De'Anthony Melton,Malevy Leons,10,0.11,0.02,-0.1,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-GS,Georges Niang,Gary Payton II,15,0.11,0.11,-0.17,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-GS,Yaxel Lendeborg,Draymond Green,14,-0.11,0.23,-0.12,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+GS,Georges Niang,Charles Bassey,16,0.11,-0.38,0.12,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+GS,Gui Santos,Yaxel Lendeborg,15,-0.11,0.07,0.01,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 HOU,Fred VanVleet,Jabari Smith Jr.,16,-0.11,-0.05,0.7,"Fred VanVleet's assists have lined up with Jabari Smith Jr.'s points across 16 shared games (r 0.7). Pairing check, not a star."
 IND,Obi Toppin,Andrew Nembhard,12,0.11,-0.16,-0.47,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 IND,Obi Toppin,Jalen Slawson,13,0.11,-0.06,0.64,"Obi Toppin's assists have lined up with Jalen Slawson's points across 13 shared games (r 0.64). Pairing check, not a star."
@@ -1468,7 +1473,6 @@ ORL,Wendell Carter Jr.,Anthony Black,14,-0.11,0.55,-0.2,"Anthony Black's assists
 PHI,LeBron James,Dean Wade,11,-0.11,0.01,0.35,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 PHX,Devin Booker,Dillon Brooks,17,0.11,-0.08,0.22,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Dillon Brooks,Jalen Green,17,0.11,0.32,0.64,"Dillon Brooks's assists have lined up with Jalen Green's points across 17 shared games (r 0.64). Pairing check, not a star."
-POR,Deni Avdija,Sidy Cissoko,15,0.11,-0.42,0.28,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 POR,Micah Potter,Scoot Henderson,9,0.11,-0.38,-0.07,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 SAC,Domantas Sabonis,Daeqwon Plowden,11,-0.11,-0.07,-0.29,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 UTAH,Svi Mykhailiuk,Josh Green,17,-0.11,-0.13,0.26,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
@@ -1483,12 +1487,9 @@ DAL,Santi Aldama,Morez Johnson Jr.,8,0.1,0.07,-0.03,No assist-to-points link acr
 DEN,Christian Braun,Trevon Brazile,16,0.1,-0.02,0.02,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DET,Javonte Green,Paul Reed,17,-0.1,-0.26,0.01,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 DET,Paul Reed,Cade Cunningham,15,-0.1,0.15,0.22,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-GS,Charles Bassey,Gui Santos,12,-0.1,0.21,0.18,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-GS,De'Anthony Melton,Charles Bassey,15,-0.1,0.06,0.44,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 GS,De'Anthony Melton,LJ Cryer,13,-0.1,-0.18,-0.03,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
-GS,De'Anthony Melton,Will Richard,16,-0.1,0.12,0.11,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-GS,Gary Payton II,Charles Bassey,13,-0.1,0.05,0.14,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
-GS,Georges Niang,Charles Bassey,15,0.1,-0.41,0.12,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+GS,Gary Payton II,Brandin Podziemski,14,-0.1,0.18,-0.16,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+GS,Gary Payton II,Will Richard,16,-0.1,0.31,0.35,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 GS,Will Richard,Malevy Leons,9,0.1,0.33,0.29,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 HOU,Amen Thompson,Reed Sheppard,15,-0.1,0.37,0.29,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 HOU,Tari Eason,Alperen Sengun,17,0.1,0.11,-0.09,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
@@ -1514,9 +1515,9 @@ ORL,Wendell Carter Jr.,Jase Richardson,13,-0.1,0.36,0.2,No assist-to-points link
 PHI,Kentavious Caldwell-Pope,Tyrese Maxey,18,-0.1,-0.19,0.23,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 PHX,Dillon Brooks,Khaman Maluach,17,0.1,-0.15,0.29,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Dillon Brooks,Oso Ighodaro,15,-0.1,-0.03,0.41,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-POR,Jrue Holiday,Scoot Henderson,17,0.1,0.5,-0.17,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-SA,Julian Champagnie,Carter Bryant,17,-0.1,0.46,0.29,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-SAC,Domantas Sabonis,De'Andre Hunter,14,0.1,0.12,-0.29,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+SA,Julian Champagnie,Carter Bryant,18,-0.1,0.45,0.29,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SA,Keldon Johnson,Carter Bryant,18,0.1,0.45,0.28,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SAC,Emanuel Sharp,Darius Acuff Jr.,18,-0.1,-0.25,-0.13,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 TOR,Alijah Martin,Allen Graves,16,-0.1,-0.28,-0.09,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 TOR,RJ Barrett,Jaden Bradley,9,-0.1,-0.39,-0.29,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 TOR,Scottie Barnes,Allen Graves,12,-0.1,-0.66,-0.1,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
@@ -1531,6 +1532,8 @@ CHI,Josh Giddey,Caleb Wilson,10,0.09,0.22,0.32,No assist-to-points link across 1
 CHI,Norman Powell,Josh Giddey,13,0.09,0.6,0.1,"Josh Giddey's assists have lined up with Norman Powell's points across 13 shared games (r 0.6). Pairing check, not a star."
 CLE,Thomas Bryant,Jarrett Allen,10,-0.09,0.4,-0.04,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 DET,Paul Reed,Daniss Jenkins,17,-0.09,-0.2,-0.17,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+GS,Al Horford,Brandon Williams,10,-0.09,0.33,-0.06,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
+GS,Brandon Williams,Draymond Green,9,0.09,0.47,0.06,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 GS,Malevy Leons,Draymond Green,8,0.09,-0.72,,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 GS,Stephen Curry,Yaxel Lendeborg,10,-0.09,0.11,-0.22,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 HOU,Alperen Sengun,Bruce Thornton,10,0.09,,-0.2,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -1552,9 +1555,11 @@ NY,Karl-Anthony Towns,Tyler Kolek,15,0.09,0.13,0.14,No assist-to-points link acr
 OKC,Brooks Barnhizer,Aday Mara,9,-0.09,0.41,0.54,"Brooks Barnhizer's assists have lined up with Aday Mara's points across 9 shared games (r 0.54). Pairing check, not a star."
 OKC,Kenrich Williams,Ajay Mitchell,17,-0.09,-0.13,-0.18,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 OKC,Shai Gilgeous-Alexander,Jared McCain,18,0.09,-0.46,0.03,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
-POR,Jrue Holiday,Deni Avdija,15,0.09,0.3,0.48,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+POR,Deni Avdija,Scoot Henderson,16,0.09,0.16,-0.45,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+POR,Jrue Holiday,Scoot Henderson,18,0.09,0.5,-0.17,"Scoot Henderson's assists have lined up with Jrue Holiday's points across 18 shared games (r 0.5). Pairing check, not a star."
 POR,Micah Potter,Toumani Camara,9,-0.09,-0.31,-0.73,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-SA,Jordan McLaughlin,Victor Wembanyama,11,-0.09,0.53,-0.03,"Victor Wembanyama's assists have lined up with Jordan McLaughlin's points across 11 shared games (r 0.53). Pairing check, not a star."
+POR,Toumani Camara,Yang Hansen,11,-0.09,-0.62,-0.41,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
+SAC,Domantas Sabonis,De'Andre Hunter,15,0.09,0.16,-0.29,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 SAC,Domantas Sabonis,Nique Clifford,8,0.09,-0.31,0.12,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 TOR,Jamison Battle,Scottie Barnes,12,0.09,0.61,-0.68,"Scottie Barnes's assists have lined up with Jamison Battle's points across 12 shared games (r 0.61). Pairing check, not a star."
 WSH,Bub Carrington,Anthony Davis,16,-0.09,0.53,0.25,"Anthony Davis's assists have lined up with Bub Carrington's points across 16 shared games (r 0.53). Pairing check, not a star."
@@ -1572,7 +1577,8 @@ DAL,Walter Clayton Jr.,Cooper Flagg,16,-0.08,0.03,0.33,No assist-to-points link 
 DEN,Tyus Jones,Cameron Johnson,13,0.08,0.21,0.47,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 DET,John Collins,Chaz Lanier,8,0.08,0.05,-0.09,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 DET,Paul Reed,Ronald Holland II,14,0.08,0.13,-0.04,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-GS,Georges Niang,Will Richard,16,0.08,0.03,0.17,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+GS,Al Horford,Draymond Green,13,0.08,0.03,0.07,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+GS,Georges Niang,Brandin Podziemski,16,-0.08,0.07,-0.31,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 GS,Graham Ike,Yaxel Lendeborg,13,-0.08,-0.07,-0.31,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 IND,Aaron Nesmith,Quenton Jackson,15,-0.08,0.43,0.16,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 IND,Larry Nance Jr.,Pascal Siakam,17,-0.08,0.18,-0.24,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
@@ -1594,11 +1600,9 @@ OKC,Isaiah Hartenstein,Jared McCain,19,-0.08,0.23,0.53,"Isaiah Hartenstein's ass
 OKC,Isaiah Hartenstein,Jaylin Williams,9,-0.08,0.08,0.21,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 PHI,Dean Wade,VJ Edgecombe,14,0.08,0.5,-0.3,"VJ Edgecombe's assists have lined up with Dean Wade's points across 14 shared games (r 0.5). Pairing check, not a star."
 SA,De'Aaron Fox,Devin Vassell,14,-0.08,-0.01,-0.08,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-SA,Devin Vassell,Stephon Castle,16,-0.08,0.49,-0.15,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+SA,Devin Vassell,Victor Wembanyama,16,0.08,-0.09,0.08,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 SA,Jordan McLaughlin,De'Aaron Fox,10,0.08,-0.21,-0.33,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-SA,Julian Champagnie,Victor Wembanyama,17,-0.08,-0.25,0.29,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 SA,Luke Kornet,De'Aaron Fox,16,0.08,-0.14,-0.41,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-SAC,Emanuel Sharp,Darius Acuff Jr.,17,-0.08,-0.32,-0.11,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 UTAH,Ace Bailey,Darryn Peterson,19,0.08,-0.06,-0.28,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 UTAH,Lauri Markkanen,Ace Bailey,8,-0.08,-0.08,-0.41,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 UTAH,Svi Mykhailiuk,Keyonte George,18,-0.08,0.07,-0.05,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
@@ -1615,8 +1619,6 @@ CHI,Buddy Hield,Patrick Williams,9,-0.07,-0.25,-0.0,No assist-to-points link acr
 DAL,Moussa Cisse,Cooper Flagg,10,0.07,-0.25,0.14,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 DEN,Nikola Jokic,Tyus Jones,16,-0.07,0.25,0.26,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DEN,Tyus Jones,DeMar DeRozan,15,-0.07,0.41,0.1,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-GS,Gary Payton II,Brandin Podziemski,13,-0.07,0.07,-0.15,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
-GS,Gui Santos,Draymond Green,11,0.07,-0.35,0.11,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 HOU,Fred VanVleet,Reed Sheppard,14,-0.07,-0.38,-0.2,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 HOU,Jae'Sean Tate,Alperen Sengun,9,0.07,-0.21,-0.28,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 HOU,Kevin Durant,Reed Sheppard,16,-0.07,0.51,-0.31,"Reed Sheppard's assists have lined up with Kevin Durant's points across 16 shared games (r 0.51). Pairing check, not a star."
@@ -1643,9 +1645,13 @@ OKC,Jared McCain,Brooks Barnhizer,11,-0.07,0.26,0.0,No assist-to-points link acr
 PHI,Adem Bona,VJ Edgecombe,10,-0.07,0.51,-0.3,"VJ Edgecombe's assists have lined up with Adem Bona's points across 10 shared games (r 0.51). Pairing check, not a star."
 PHX,Jalen Green,Khaman Maluach,17,0.07,-0.15,0.14,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Koa Peat,Khaman Maluach,10,-0.07,-0.05,0.32,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-POR,Deni Avdija,Scoot Henderson,15,0.07,0.23,-0.46,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SA,Julian Champagnie,Harrison Barnes,16,0.07,0.14,0.1,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-SA,Keldon Johnson,Carter Bryant,17,0.07,0.51,0.27,"Carter Bryant's assists have lined up with Keldon Johnson's points across 17 shared games (r 0.51). Pairing check, not a star."
+POR,Donovan Clingan,Damian Lillard,18,-0.07,0.11,0.16,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+POR,Robert Williams III,Donovan Clingan,15,-0.07,-0.07,0.22,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+SA,Julian Champagnie,Harrison Barnes,17,0.07,0.14,0.1,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+SA,Julian Champagnie,Victor Wembanyama,18,-0.07,-0.25,0.25,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SAC,De'Andre Hunter,Precious Achiuwa,14,0.07,-0.12,-0.25,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+SAC,Domantas Sabonis,Precious Achiuwa,14,0.07,0.03,0.14,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+SAC,Leaky Black,Precious Achiuwa,10,0.07,0.43,0.38,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 TOR,Jakob Poeltl,Immanuel Quickley,13,-0.07,0.38,0.3,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 TOR,Jamal Shead,Ja'Kobe Walter,17,0.07,-0.1,-0.28,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 TOR,Trayce Jackson-Davis,Scottie Barnes,10,-0.07,-0.47,-0.21,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -1670,7 +1676,10 @@ DEN,Aaron Gordon,Bryce Hopkins,8,0.06,-0.17,-0.35,No assist-to-points link acros
 DET,Cade Cunningham,Ronald Holland II,13,-0.06,0.1,-0.52,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 DET,Javonte Green,Daniss Jenkins,17,-0.06,0.08,0.16,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 GS,Al Horford,Stephen Curry,9,0.06,0.1,-0.13,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+GS,De'Anthony Melton,Charles Bassey,16,-0.06,0.08,0.41,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+GS,Gary Payton II,Charles Bassey,14,-0.06,0.07,0.15,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 GS,Gary Payton II,Graham Ike,11,-0.06,-0.12,-0.44,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
+GS,Gary Payton II,Yaxel Lendeborg,16,-0.06,0.14,0.21,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 HOU,Kevin Durant,Alperen Sengun,17,-0.06,-0.36,0.31,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 IND,Andrew Nembhard,Jarace Walker,13,-0.06,0.24,0.23,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 LAL,Austin Reaves,Collin Sexton,11,0.06,-0.0,-0.37,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
@@ -1694,7 +1703,6 @@ PHI,Kentavious Caldwell-Pope,Labaron Philon Jr.,12,-0.06,-0.48,-0.17,No assist-t
 PHX,Collin Gillespie,Jalen Green,17,-0.06,-0.54,-0.39,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 PHX,Devin Booker,Miles Bridges,17,-0.06,0.02,0.15,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 SA,De'Aaron Fox,Julian Champagnie,16,-0.06,-0.14,0.11,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-SAC,De'Andre Hunter,Precious Achiuwa,13,0.06,-0.14,-0.27,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 TOR,Jamison Battle,Allen Graves,17,0.06,-0.37,-0.05,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 UTAH,Josh Okogie,Jaxson Hayes,14,-0.06,-0.03,-0.16,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 WSH,Bilal Coulibaly,Alex Sarr,17,0.06,0.38,-0.32,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
@@ -1708,7 +1716,7 @@ CHI,Norman Powell,Matas Buzelis,13,0.05,0.06,0.82,"Norman Powell's assists have 
 CHI,Zach Collins,Josh Giddey,12,0.05,0.17,-0.49,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 DAL,Marcus Sasser,Zaccharie Risacher,12,0.05,0.08,0.09,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 DEN,Tyus Jones,Trevon Brazile,16,0.05,0.37,-0.1,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-GS,Georges Niang,Brandin Podziemski,15,-0.05,0.0,-0.29,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+GS,Georges Niang,Gui Santos,15,-0.05,0.01,0.17,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 IND,Kelly Oubre Jr.,Andrew Nembhard,13,-0.05,0.08,0.26,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 IND,Kelly Oubre Jr.,Ivica Zubac,12,0.05,-0.23,0.0,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 LAC,Derrick Jones Jr.,Baba Miller,14,-0.05,-0.11,0.01,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
@@ -1732,9 +1740,11 @@ ORL,Tristan da Silva,Jase Richardson,11,-0.05,-0.29,0.08,No assist-to-points lin
 PHI,Joel Embiid,VJ Edgecombe,14,0.05,0.32,0.33,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 PHI,Tyrese Maxey,Jabari Walker,14,-0.05,-0.65,-0.12,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 PHX,Devin Booker,Koa Peat,10,-0.05,0.36,-0.08,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-POR,Jrue Holiday,Donovan Clingan,17,-0.05,0.35,0.17,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
+POR,Robert Williams III,Damian Lillard,15,-0.05,-0.55,-0.02,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+POR,Scoot Henderson,Jayson Kent,9,0.05,0.85,0.09,"Jayson Kent's assists have lined up with Scoot Henderson's points across 9 shared games (r 0.85). Pairing check, not a star."
+POR,Toumani Camara,Deni Avdija,16,-0.05,0.26,0.23,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+SA,Devin Vassell,Stephon Castle,17,-0.05,0.53,-0.16,"Stephon Castle's assists have lined up with Devin Vassell's points across 17 shared games (r 0.53). Pairing check, not a star."
 SA,Stephon Castle,Tarris Reed Jr.,11,0.05,0.12,0.59,"Stephon Castle's assists have lined up with Tarris Reed Jr.'s points across 11 shared games (r 0.59). Pairing check, not a star."
-SAC,Keegan Murray,Darius Acuff Jr.,10,0.05,0.32,0.07,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 TOR,Jamison Battle,Ja'Kobe Walter,17,-0.05,0.22,0.24,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 TOR,Trayce Jackson-Davis,Jamal Shead,12,-0.05,-0.12,0.44,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 UTAH,Darryn Peterson,Brice Sensabaugh,19,-0.05,0.03,-0.12,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
@@ -1748,9 +1758,7 @@ DEN,Aaron Gordon,DeMar DeRozan,15,-0.04,0.08,-0.32,No assist-to-points link acro
 DEN,Cameron Johnson,DeMar DeRozan,12,-0.04,0.5,-0.05,"DeMar DeRozan's assists have lined up with Cameron Johnson's points across 12 shared games (r 0.5). Pairing check, not a star."
 DET,Javonte Green,John Collins,17,-0.04,0.45,-0.18,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 DET,Tolu Smith,Ausar Thompson,8,0.04,0.29,0.17,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
-GS,Gary Payton II,Will Richard,15,-0.04,0.34,0.4,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 GS,Graham Ike,Gui Santos,11,0.04,-0.11,-0.08,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
-GS,Gui Santos,Yaxel Lendeborg,14,-0.04,0.27,-0.0,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 GS,Stephen Curry,Charles Bassey,8,-0.04,0.07,0.17,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 HOU,Bogdan Bogdanovic,Reed Sheppard,16,-0.04,0.59,-0.29,"Reed Sheppard's assists have lined up with Bogdan Bogdanovic's points across 16 shared games (r 0.59). Pairing check, not a star."
 HOU,Isaiah Crawford,Alperen Sengun,10,0.04,-0.32,0.18,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
@@ -1771,10 +1779,10 @@ PHI,Jabari Walker,VJ Edgecombe,15,-0.04,0.17,0.41,No assist-to-points link acros
 PHI,LeBron James,Anfernee Simons,15,-0.04,0.18,0.23,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 PHX,Luke Kennard,Khaman Maluach,16,-0.04,0.03,0.16,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 PHX,Luke Kennard,Miles Bridges,16,-0.04,-0.13,0.01,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-POR,Jrue Holiday,Toumani Camara,17,-0.04,0.29,0.21,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-POR,Toumani Camara,Scoot Henderson,17,0.04,0.08,0.52,"Toumani Camara's assists have lined up with Scoot Henderson's points across 17 shared games (r 0.52). Pairing check, not a star."
+POR,Jayson Kent,Donovan Clingan,9,0.04,0.31,-0.32,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+POR,Jrue Holiday,Deni Avdija,16,0.04,0.29,0.53,"Jrue Holiday's assists have lined up with Deni Avdija's points across 16 shared games (r 0.53). Pairing check, not a star."
+POR,Toumani Camara,Scoot Henderson,18,0.04,0.1,0.51,"Toumani Camara's assists have lined up with Scoot Henderson's points across 18 shared games (r 0.51). Pairing check, not a star."
 SA,De'Aaron Fox,Carter Bryant,15,0.04,-0.1,0.23,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SAC,Domantas Sabonis,Precious Achiuwa,13,0.04,-0.14,0.14,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 SAC,Precious Achiuwa,Nique Clifford,8,0.04,0.25,-0.23,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
 TOR,Kyle Anderson,Alijah Martin,10,-0.04,0.5,0.68,"Kyle Anderson's assists have lined up with Alijah Martin's points across 10 shared games (r 0.68). Pairing check, not a star."
 WSH,Deandre Ayton,Kyshawn George,19,0.04,0.47,0.49,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
@@ -1791,7 +1799,7 @@ DET,Cade Cunningham,Daniss Jenkins,15,-0.03,-0.25,-0.04,No assist-to-points link
 DET,John Collins,Paul Reed,17,-0.03,0.06,-0.1,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 DET,Paul Reed,Tolu Smith,9,0.03,-0.11,-0.73,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 GS,Charles Bassey,LJ Cryer,12,-0.03,-0.1,0.02,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-GS,Gary Payton II,Yaxel Lendeborg,15,-0.03,0.23,0.23,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+GS,Georges Niang,Will Richard,17,0.03,0.03,0.13,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 GS,Malevy Leons,Gui Santos,9,0.03,0.18,0.04,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 HOU,Isaiah Crawford,Amen Thompson,10,-0.03,-0.18,,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 HOU,Kevin Durant,Isaiah Crawford,11,-0.03,0.08,-0.12,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
@@ -1814,9 +1822,6 @@ ORL,Alex Morales,Tristan da Silva,8,-0.03,0.65,0.59,"Tristan da Silva's assists 
 ORL,Goga Bitadze,Alex Morales,9,0.03,0.11,-0.02,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 ORL,Wendell Carter Jr.,Jamal Cain,15,0.03,-0.28,-0.23,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 POR,Branden Carlson,Deni Avdija,10,-0.03,-0.28,0.03,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
-POR,Deni Avdija,Donovan Clingan,15,-0.03,0.41,0.51,"Deni Avdija's assists have lined up with Donovan Clingan's points across 15 shared games (r 0.51). Pairing check, not a star."
-SA,Jordan McLaughlin,Keldon Johnson,12,0.03,0.19,0.22,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-SAC,Domantas Sabonis,Dylan Cardwell,9,-0.03,0.13,0.02,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 TOR,Jakob Poeltl,RJ Barrett,12,-0.03,-0.11,0.04,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 TOR,Jamal Shead,Alijah Martin,16,-0.03,0.27,0.71,"Jamal Shead's assists have lined up with Alijah Martin's points across 16 shared games (r 0.71). Pairing check, not a star."
 UTAH,Svi Mykhailiuk,Tony Bradley,9,0.03,-0.14,0.58,"Svi Mykhailiuk's assists have lined up with Tony Bradley's points across 9 shared games (r 0.58). Pairing check, not a star."
@@ -1835,6 +1840,7 @@ DEN,Aaron Gordon,Trevon Brazile,16,0.02,0.08,0.35,No assist-to-points link acros
 DEN,Cameron Johnson,Jamal Murray,13,0.02,0.59,0.2,"Jamal Murray's assists have lined up with Cameron Johnson's points across 13 shared games (r 0.59). Pairing check, not a star."
 DET,Duncan Robinson,Ronald Holland II,12,0.02,-0.33,0.16,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 DET,Javonte Green,Ausar Thompson,16,-0.02,-0.09,-0.28,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
+GS,Al Horford,Gui Santos,13,0.02,0.25,-0.33,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 GS,LJ Cryer,Draymond Green,10,0.02,-0.18,-0.12,No assist-to-points link across 10 shared games. The correlation columns still show the raw numbers.
 HOU,Amen Thompson,Alperen Sengun,16,0.02,0.03,-0.03,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 IND,Kelly Oubre Jr.,Aaron Nesmith,14,0.02,0.44,0.38,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
@@ -1862,10 +1868,11 @@ ORL,Desmond Bane,Tristan da Silva,14,0.02,0.22,-0.08,No assist-to-points link ac
 PHI,Jaylen Brown,VJ Edgecombe,15,0.02,-0.14,0.24,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 PHI,Kentavious Caldwell-Pope,Jabari Walker,15,0.02,0.43,0.22,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 PHX,Oso Ighodaro,Khaman Maluach,15,-0.02,-0.18,-0.4,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-POR,Donovan Clingan,Damian Lillard,17,0.02,0.24,0.17,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
-POR,Toumani Camara,Deni Avdija,15,0.02,0.28,0.19,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
-SA,Devin Vassell,Keldon Johnson,16,-0.02,0.35,-0.05,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-SA,Devin Vassell,Victor Wembanyama,15,-0.02,-0.08,0.16,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
+POR,Jrue Holiday,Toumani Camara,18,-0.02,0.28,0.16,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
+SA,Jordan McLaughlin,Keldon Johnson,13,-0.02,0.16,0.32,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+SA,Jordan McLaughlin,Victor Wembanyama,12,-0.02,0.52,-0.15,"Victor Wembanyama's assists have lined up with Jordan McLaughlin's points across 12 shared games (r 0.52). Pairing check, not a star."
+SAC,Keegan Murray,Darius Acuff Jr.,11,0.02,0.4,0.06,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
+SAC,Precious Achiuwa,Darius Acuff Jr.,15,-0.02,0.31,0.09,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 TOR,Jamison Battle,Alijah Martin,16,-0.02,0.53,-0.11,"Alijah Martin's assists have lined up with Jamison Battle's points across 16 shared games (r 0.53). Pairing check, not a star."
 UTAH,Isaiah Collier,Kyle Filipowski,12,0.02,0.15,-0.47,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
 UTAH,Lauri Markkanen,Keyonte George,8,-0.02,0.23,0.25,No assist-to-points link across 8 shared games. The correlation columns still show the raw numbers.
@@ -1893,7 +1900,7 @@ DEN,Nikola Jokic,Marvin Bagley III,16,-0.01,-0.14,0.13,No assist-to-points link 
 DET,Javonte Green,Kevin Huerter,17,0.01,0.4,0.04,No assist-to-points link across 17 shared games. The correlation columns still show the raw numbers.
 DET,Paul Reed,Ausar Thompson,16,0.01,-0.01,0.47,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 DET,Tolu Smith,Ronald Holland II,8,0.01,-0.08,0.81,"Tolu Smith's assists have lined up with Ronald Holland II's points across 8 shared games (r 0.81). Pairing check, not a star."
-GS,Will Richard,Gui Santos,13,-0.01,0.46,-0.09,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
+GS,De'Anthony Melton,Gui Santos,15,-0.01,-0.04,0.46,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 HOU,Jabari Smith Jr.,Bruce Thornton,11,-0.01,,0.01,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 HOU,Kevin Durant,Jabari Smith Jr.,19,0.01,0.01,-0.29,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 HOU,Oscar Tshiebwe,Tari Eason,11,-0.01,0.28,0.46,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
@@ -1908,11 +1915,9 @@ NY,Mohamed Diawara,Andre Drummond,8,-0.01,0.04,-0.1,No assist-to-points link acr
 ORL,Jevon Carter,Alex Morales,9,0.01,0.55,0.32,"Alex Morales's assists have lined up with Jevon Carter's points across 9 shared games (r 0.55). Pairing check, not a star."
 PHI,Joel Embiid,Tyrese Maxey,13,0.01,0.27,-0.04,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 PHI,Kentavious Caldwell-Pope,Joel Embiid,14,0.01,0.77,0.16,"Joel Embiid's assists have lined up with Kentavious Caldwell-Pope's points across 14 shared games (r 0.77). Pairing check, not a star."
+POR,Jrue Holiday,Donovan Clingan,18,-0.01,0.34,0.11,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
 POR,Micah Potter,Donovan Clingan,9,-0.01,-0.68,-0.3,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
-POR,Robert Williams III,Damian Lillard,14,0.01,-0.56,0.1,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
-POR,Scoot Henderson,Jayson Kent,8,-0.01,0.85,0.05,"Jayson Kent's assists have lined up with Scoot Henderson's points across 8 shared games (r 0.85). Pairing check, not a star."
-SA,Julian Champagnie,Stephon Castle,18,-0.01,0.37,0.37,No assist-to-points link across 18 shared games. The correlation columns still show the raw numbers.
-SAC,Precious Achiuwa,Darius Acuff Jr.,14,-0.01,0.3,0.12,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
+SA,Julian Champagnie,Stephon Castle,19,-0.01,0.36,0.35,No assist-to-points link across 19 shared games. The correlation columns still show the raw numbers.
 TOR,Immanuel Quickley,Jamal Shead,15,0.01,-0.15,-0.14,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 TOR,RJ Barrett,Jamal Shead,14,0.01,0.14,0.05,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 TOR,Trayce Jackson-Davis,Ja'Kobe Walter,12,0.01,0.12,0.48,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
@@ -1923,8 +1928,9 @@ BKN,Day'Ron Sharpe,Josh Minott,9,0.0,0.12,-0.31,No assist-to-points link across 
 BKN,Michael Porter Jr.,Day'Ron Sharpe,16,0.0,0.24,0.6,"Michael Porter Jr.'s assists have lined up with Day'Ron Sharpe's points across 16 shared games (r 0.6). Pairing check, not a star."
 DAL,Moussa Cisse,Zaccharie Risacher,11,0.0,0.27,0.05,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
 DET,Javonte Green,Duncan Robinson,12,0.0,-0.06,-0.22,No assist-to-points link across 12 shared games. The correlation columns still show the raw numbers.
-GS,Al Horford,Brandon Williams,9,0.0,0.42,-0.07,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
+GS,Al Horford,De'Anthony Melton,15,0.0,0.15,0.16,No assist-to-points link across 15 shared games. The correlation columns still show the raw numbers.
 GS,Charles Bassey,Graham Ike,11,0.0,-0.08,-0.09,No assist-to-points link across 11 shared games. The correlation columns still show the raw numbers.
+GS,Charles Bassey,Gui Santos,13,-0.0,0.19,0.16,No assist-to-points link across 13 shared games. The correlation columns still show the raw numbers.
 HOU,Fred VanVleet,Alperen Sengun,14,0.0,0.18,0.01,No assist-to-points link across 14 shared games. The correlation columns still show the raw numbers.
 IND,Kelly Oubre Jr.,Pascal Siakam,16,-0.0,-0.03,0.36,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 LAC,Kobe Sanders,Baba Miller,15,-0.0,0.14,0.57,"Kobe Sanders's assists have lined up with Baba Miller's points across 15 shared games (r 0.57). Pairing check, not a star."
@@ -1950,7 +1956,6 @@ NY,Karl-Anthony Towns,Miles McBride,15,0.0,-0.43,0.2,No assist-to-points link ac
 ORL,Jamal Cain,Alex Morales,9,0.0,0.1,0.63,"Jamal Cain's assists have lined up with Alex Morales's points across 9 shared games (r 0.63). Pairing check, not a star."
 PHX,Oso Ighodaro,Koa Peat,9,0.0,0.15,0.0,No assist-to-points link across 9 shared games. The correlation columns still show the raw numbers.
 SA,De'Aaron Fox,Victor Wembanyama,16,-0.0,-0.1,0.31,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
-SAC,Domantas Sabonis,Emanuel Sharp,16,-0.0,0.24,-0.06,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 SAC,Zach LaVine,Emanuel Sharp,16,0.0,-0.1,-0.08,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 UTAH,Isaiah Collier,Ace Bailey,16,0.0,0.11,0.11,No assist-to-points link across 16 shared games. The correlation columns still show the raw numbers.
 UTAH,Josh Okogie,Isaiah Collier,15,-0.0,-0.17,0.5,"Josh Okogie's assists have lined up with Isaiah Collier's points across 15 shared games (r 0.5). Pairing check, not a star."
