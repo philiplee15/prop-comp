@@ -1,13 +1,13 @@
 {
-  "pulled_at": "Fri Nov 27, 9:48 AM ET",
+  "pulled_at": "Fri Nov 27, 5:32 PM ET",
   "slate": "2026-11-27",
   "book": "FanDuel published prices",
   "counts": {
     "games": 11,
-    "book": 645,
-    "prizepicks": 847,
-    "matched": 289,
-    "playable": 3
+    "book": 670,
+    "prizepicks": 940,
+    "matched": 288,
+    "playable": 11
   },
   "slips": [
     {
@@ -91,7 +91,283 @@
       "bar": 0.5503212081491042
     }
   ],
-  "cards": [],
+  "cards": [
+    {
+      "id": "6-flex",
+      "label": "6-pick Flex",
+      "payout": "25x",
+      "bar": 0.5421,
+      "ev": 1.165,
+      "same_game": false,
+      "legs": [
+        {
+          "player": "Myles Turner",
+          "team": "MIL",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "under",
+          "fair": 0.5717,
+          "game": "Milwaukee Bucks @ Detroit Pistons"
+        },
+        {
+          "player": "Mikel Brown Jr.",
+          "team": "BKN",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.567,
+          "game": "Brooklyn Nets @ Toronto Raptors"
+        },
+        {
+          "player": "Zach Edey",
+          "team": "MEM",
+          "stat_label": "Rebounds",
+          "line": 7.5,
+          "side": "under",
+          "fair": 0.5631,
+          "game": "Memphis Grizzlies @ Minnesota Timberwolves"
+        },
+        {
+          "player": "Devin Vassell",
+          "team": "SAS",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5585,
+          "game": "Los Angeles Lakers @ San Antonio Spurs"
+        },
+        {
+          "player": "Brook Lopez",
+          "team": "LAC",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5511,
+          "game": "New Orleans Pelicans @ Los Angeles Clippers"
+        },
+        {
+          "player": "Naji Marshall",
+          "team": "DAL",
+          "stat_label": "Points",
+          "line": 11.5,
+          "side": "under",
+          "fair": 0.5428,
+          "game": "Dallas Mavericks @ Phoenix Suns"
+        }
+      ]
+    },
+    {
+      "id": "5-flex",
+      "label": "5-pick Flex",
+      "payout": "10x",
+      "bar": 0.5425,
+      "ev": 1.136,
+      "same_game": false,
+      "legs": [
+        {
+          "player": "Myles Turner",
+          "team": "MIL",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "under",
+          "fair": 0.5717,
+          "game": "Milwaukee Bucks @ Detroit Pistons"
+        },
+        {
+          "player": "Mikel Brown Jr.",
+          "team": "BKN",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.567,
+          "game": "Brooklyn Nets @ Toronto Raptors"
+        },
+        {
+          "player": "Zach Edey",
+          "team": "MEM",
+          "stat_label": "Rebounds",
+          "line": 7.5,
+          "side": "under",
+          "fair": 0.5631,
+          "game": "Memphis Grizzlies @ Minnesota Timberwolves"
+        },
+        {
+          "player": "Devin Vassell",
+          "team": "SAS",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5585,
+          "game": "Los Angeles Lakers @ San Antonio Spurs"
+        },
+        {
+          "player": "Brook Lopez",
+          "team": "LAC",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5511,
+          "game": "New Orleans Pelicans @ Los Angeles Clippers"
+        }
+      ]
+    },
+    {
+      "id": "6-power",
+      "label": "6-pick Power",
+      "payout": "37.5x",
+      "bar": 0.5466,
+      "ev": 1.169,
+      "same_game": true,
+      "legs": [
+        {
+          "player": "Myles Turner",
+          "team": "MIL",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "under",
+          "fair": 0.5717,
+          "game": "Milwaukee Bucks @ Detroit Pistons"
+        },
+        {
+          "player": "Mikel Brown Jr.",
+          "team": "BKN",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.567,
+          "game": "Brooklyn Nets @ Toronto Raptors"
+        },
+        {
+          "player": "Zach Edey",
+          "team": "MEM",
+          "stat_label": "Rebounds",
+          "line": 7.5,
+          "side": "under",
+          "fair": 0.5631,
+          "game": "Memphis Grizzlies @ Minnesota Timberwolves"
+        },
+        {
+          "player": "Devin Vassell",
+          "team": "SAS",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5585,
+          "game": "Los Angeles Lakers @ San Antonio Spurs"
+        },
+        {
+          "player": "Brook Lopez",
+          "team": "LAC",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5511,
+          "game": "New Orleans Pelicans @ Los Angeles Clippers"
+        },
+        {
+          "player": "De'Aaron Fox",
+          "team": "SAS",
+          "stat_label": "Points",
+          "line": 3.5,
+          "side": "under",
+          "fair": 0.5548,
+          "game": "Los Angeles Lakers @ San Antonio Spurs"
+        }
+      ]
+    },
+    {
+      "id": "5-power",
+      "label": "5-pick Power",
+      "payout": "20x",
+      "bar": 0.5493,
+      "ev": 1.124,
+      "same_game": false,
+      "legs": [
+        {
+          "player": "Myles Turner",
+          "team": "MIL",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "under",
+          "fair": 0.5717,
+          "game": "Milwaukee Bucks @ Detroit Pistons"
+        },
+        {
+          "player": "Mikel Brown Jr.",
+          "team": "BKN",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.567,
+          "game": "Brooklyn Nets @ Toronto Raptors"
+        },
+        {
+          "player": "Zach Edey",
+          "team": "MEM",
+          "stat_label": "Rebounds",
+          "line": 7.5,
+          "side": "under",
+          "fair": 0.5631,
+          "game": "Memphis Grizzlies @ Minnesota Timberwolves"
+        },
+        {
+          "player": "Devin Vassell",
+          "team": "SAS",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5585,
+          "game": "Los Angeles Lakers @ San Antonio Spurs"
+        },
+        {
+          "player": "Brook Lopez",
+          "team": "LAC",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.5511,
+          "game": "New Orleans Pelicans @ Los Angeles Clippers"
+        }
+      ]
+    },
+    {
+      "id": "3-power",
+      "label": "3-pick Power",
+      "payout": "6x",
+      "bar": 0.5503,
+      "ev": 1.095,
+      "same_game": false,
+      "legs": [
+        {
+          "player": "Myles Turner",
+          "team": "MIL",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "under",
+          "fair": 0.5717,
+          "game": "Milwaukee Bucks @ Detroit Pistons"
+        },
+        {
+          "player": "Mikel Brown Jr.",
+          "team": "BKN",
+          "stat_label": "Points",
+          "line": 2.5,
+          "side": "over",
+          "fair": 0.567,
+          "game": "Brooklyn Nets @ Toronto Raptors"
+        },
+        {
+          "player": "Zach Edey",
+          "team": "MEM",
+          "stat_label": "Rebounds",
+          "line": 7.5,
+          "side": "under",
+          "fair": 0.5631,
+          "game": "Memphis Grizzlies @ Minnesota Timberwolves"
+        }
+      ]
+    }
+  ],
   "legs": [
     {
       "player": "Myles Turner",
@@ -100,9 +376,9 @@
       "stat_label": "Points",
       "line": 2.5,
       "side": "under",
-      "fair": 0.5936,
-      "over": 130,
-      "under": -174,
+      "fair": 0.5717,
+      "over": 118,
+      "under": -158,
       "game": "Milwaukee Bucks @ Detroit Pistons",
       "event_id": "36358260",
       "tip": "Fri 7:40 PM ET",
@@ -113,25 +389,71 @@
         "5-power",
         "3-power",
         "4-power",
-        "2-power",
-        "3-flex",
         "4-flex"
       ],
       "playable": true
     },
     {
-      "player": "Jaden McDaniels",
-      "team": "MIN",
+      "player": "Mikel Brown Jr.",
+      "team": "BKN",
       "stat": "pts",
       "stat_label": "Points",
-      "line": 5.5,
+      "line": 2.5,
+      "side": "over",
+      "fair": 0.567,
+      "over": -154,
+      "under": 116,
+      "game": "Brooklyn Nets @ Toronto Raptors",
+      "event_id": "36358269",
+      "tip": "Fri 7:40 PM ET",
+      "clears": [
+        "6-flex",
+        "5-flex",
+        "6-power",
+        "5-power",
+        "3-power",
+        "4-power",
+        "4-flex"
+      ],
+      "playable": true
+    },
+    {
+      "player": "Zach Edey",
+      "team": "MEM",
+      "stat": "reb",
+      "stat_label": "Rebounds",
+      "line": 7.5,
       "side": "under",
-      "fair": 0.5511,
-      "over": 108,
-      "under": -144,
+      "fair": 0.5631,
+      "over": 116,
+      "under": -148,
       "game": "Memphis Grizzlies @ Minnesota Timberwolves",
       "event_id": "36358264",
       "tip": "Fri 8:40 PM ET",
+      "clears": [
+        "6-flex",
+        "5-flex",
+        "6-power",
+        "5-power",
+        "3-power",
+        "4-power",
+        "4-flex"
+      ],
+      "playable": true
+    },
+    {
+      "player": "Devin Vassell",
+      "team": "SAS",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 2.5,
+      "side": "over",
+      "fair": 0.5585,
+      "over": -148,
+      "under": 112,
+      "game": "Los Angeles Lakers @ San Antonio Spurs",
+      "event_id": "36358261",
+      "tip": "Fri 9:40 PM ET",
       "clears": [
         "6-flex",
         "5-flex",
@@ -143,15 +465,126 @@
       "playable": true
     },
     {
-      "player": "Miles Bridges",
-      "team": "PHX",
+      "player": "De'Aaron Fox",
+      "team": "SAS",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 3.5,
+      "side": "under",
+      "fair": 0.5548,
+      "over": 110,
+      "under": -146,
+      "game": "Los Angeles Lakers @ San Antonio Spurs",
+      "event_id": "36358261",
+      "tip": "Fri 9:40 PM ET",
+      "clears": [
+        "6-flex",
+        "5-flex",
+        "6-power",
+        "5-power",
+        "3-power",
+        "4-flex"
+      ],
+      "playable": true
+    },
+    {
+      "player": "Dylan Harper",
+      "team": "SAS",
       "stat": "reb",
       "stat_label": "Rebounds",
-      "line": 6.5,
+      "line": 4.5,
+      "side": "under",
+      "fair": 0.5548,
+      "over": 110,
+      "under": -146,
+      "game": "Los Angeles Lakers @ San Antonio Spurs",
+      "event_id": "36358261",
+      "tip": "Fri 9:40 PM ET",
+      "clears": [
+        "6-flex",
+        "5-flex",
+        "6-power",
+        "5-power",
+        "3-power",
+        "4-flex"
+      ],
+      "playable": true
+    },
+    {
+      "player": "Brook Lopez",
+      "team": "LAC",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 2.5,
+      "side": "over",
+      "fair": 0.5511,
+      "over": -144,
+      "under": 108,
+      "game": "New Orleans Pelicans @ Los Angeles Clippers",
+      "event_id": "36358268",
+      "tip": "Fri 9:40 PM ET",
+      "clears": [
+        "6-flex",
+        "5-flex",
+        "6-power",
+        "5-power",
+        "3-power",
+        "4-flex"
+      ],
+      "playable": true
+    },
+    {
+      "player": "Jaime Jaquez Jr.",
+      "team": "MIL",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 3.5,
+      "side": "under",
+      "fair": 0.5511,
+      "over": 108,
+      "under": -144,
+      "game": "Milwaukee Bucks @ Detroit Pistons",
+      "event_id": "36358260",
+      "tip": "Fri 7:40 PM ET",
+      "clears": [
+        "6-flex",
+        "5-flex",
+        "6-power",
+        "5-power",
+        "3-power",
+        "4-flex"
+      ],
+      "playable": true
+    },
+    {
+      "player": "Ayo Dosunmu",
+      "team": "MIN",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 5.5,
       "side": "under",
       "fair": 0.5458,
       "over": 106,
       "under": -140,
+      "game": "Memphis Grizzlies @ Minnesota Timberwolves",
+      "event_id": "36358264",
+      "tip": "Fri 8:40 PM ET",
+      "clears": [
+        "6-flex",
+        "5-flex"
+      ],
+      "playable": true
+    },
+    {
+      "player": "Naji Marshall",
+      "team": "DAL",
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 11.5,
+      "side": "under",
+      "fair": 0.5428,
+      "over": 106,
+      "under": -136,
       "game": "Dallas Mavericks @ Phoenix Suns",
       "event_id": "36358263",
       "tip": "Fri 9:10 PM ET",
@@ -162,146 +595,37 @@
       "playable": true
     },
     {
-      "player": "Devin Booker",
-      "team": "PHX",
-      "stat": "ast",
-      "stat_label": "Assists",
-      "line": 5.5,
-      "side": "under",
-      "fair": 0.5419,
-      "over": 104,
-      "under": -138,
-      "game": "Dallas Mavericks @ Phoenix Suns",
-      "event_id": "36358263",
-      "tip": "Fri 9:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Klay Thompson",
-      "team": "MIA",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 12.5,
-      "side": "under",
-      "fair": 0.5419,
-      "over": 104,
-      "under": -138,
-      "game": "Miami Heat @ New York Knicks",
-      "event_id": "36358262",
-      "tip": "Fri 7:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Nickeil Alexander-Walker",
-      "team": "ATL",
-      "stat": "fg3m",
-      "stat_label": "Threes",
-      "line": 3.5,
-      "side": "under",
-      "fair": 0.5419,
-      "over": 104,
-      "under": -138,
-      "game": "Atlanta Hawks @ Boston Celtics",
-      "event_id": "36358258",
-      "tip": "Fri 8:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Andrew Wiggins",
-      "team": "MIA",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 7.5,
-      "side": "over",
-      "fair": 0.5379,
-      "over": -136,
-      "under": 102,
-      "game": "Miami Heat @ New York Knicks",
-      "event_id": "36358262",
-      "tip": "Fri 7:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Charles Bassey",
-      "team": "GSW",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 9.5,
-      "side": "over",
-      "fair": 0.5379,
-      "over": -136,
-      "under": 102,
-      "game": "Golden State Warriors @ Portland Trail Blazers",
-      "event_id": "36358266",
-      "tip": "Fri 9:40 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Christian Braun",
-      "team": "DEN",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 12.5,
-      "side": "under",
-      "fair": 0.5379,
-      "over": 102,
-      "under": -136,
-      "game": "Denver Nuggets @ Utah Jazz",
-      "event_id": "36358267",
-      "tip": "Fri 9:40 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Danny Wolf",
+      "player": "Noah Clowney",
       "team": "BKN",
-      "stat": "reb",
-      "stat_label": "Rebounds",
-      "line": 4.5,
-      "side": "over",
-      "fair": 0.5379,
-      "over": -136,
-      "under": 102,
+      "stat": "pts",
+      "stat_label": "Points",
+      "line": 8.5,
+      "side": "under",
+      "fair": 0.5428,
+      "over": 106,
+      "under": -136,
       "game": "Brooklyn Nets @ Toronto Raptors",
       "event_id": "36358269",
       "tip": "Fri 7:40 PM ET",
-      "clears": [],
-      "playable": false
+      "clears": [
+        "6-flex",
+        "5-flex"
+      ],
+      "playable": true
     },
     {
-      "player": "Deni Avdija",
+      "player": "Sidy Cissoko",
       "team": "POR",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 5.5,
+      "stat": "reb",
+      "stat_label": "Rebounds",
+      "line": 3.5,
       "side": "over",
-      "fair": 0.5379,
-      "over": -136,
-      "under": 102,
+      "fair": 0.5419,
+      "over": -138,
+      "under": 104,
       "game": "Golden State Warriors @ Portland Trail Blazers",
       "event_id": "36358266",
       "tip": "Fri 9:40 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Jaden McDaniels",
-      "team": "MIN",
-      "stat": "reb",
-      "stat_label": "Rebounds",
-      "line": 5.5,
-      "side": "over",
-      "fair": 0.5379,
-      "over": -136,
-      "under": 102,
-      "game": "Memphis Grizzlies @ Minnesota Timberwolves",
-      "event_id": "36358264",
-      "tip": "Fri 8:40 PM ET",
       "clears": [],
       "playable": false
     }
