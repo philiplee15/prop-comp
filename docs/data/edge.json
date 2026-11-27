@@ -1,13 +1,13 @@
 {
-  "pulled_at": "Thu Nov 26, 11:51 PM ET",
+  "pulled_at": "Fri Nov 27, 2:13 AM ET",
   "slate": "2026-11-27",
   "book": "FanDuel published prices",
   "counts": {
     "games": 11,
-    "book": 609,
-    "prizepicks": 414,
+    "book": 664,
+    "prizepicks": 630,
     "matched": 278,
-    "playable": 4
+    "playable": 5
   },
   "slips": [
     {
@@ -91,7 +91,100 @@
       "bar": 0.5503212081491042
     }
   ],
-  "cards": [],
+  "cards": [
+    {
+      "id": "5-flex",
+      "label": "5-pick Flex",
+      "payout": "10x",
+      "bar": 0.5425,
+      "ev": 1.053,
+      "same_game": true,
+      "legs": [
+        {
+          "player": "Caleb Martin",
+          "team": "DAL",
+          "stat_label": "Rebounds",
+          "line": 3.5,
+          "side": "over",
+          "fair": 0.5548,
+          "game": "Dallas Mavericks @ Phoenix Suns"
+        },
+        {
+          "player": "Julius Randle",
+          "team": "BKN",
+          "stat_label": "Threes",
+          "line": 1.5,
+          "side": "under",
+          "fair": 0.5548,
+          "game": "Brooklyn Nets @ Toronto Raptors"
+        },
+        {
+          "player": "Keyonte George",
+          "team": "UTA",
+          "stat_label": "Assists",
+          "line": 6.5,
+          "side": "under",
+          "fair": 0.5511,
+          "game": "Denver Nuggets @ Utah Jazz"
+        },
+        {
+          "player": "Jaden McDaniels",
+          "team": "MIN",
+          "stat_label": "Rebounds",
+          "line": 5.5,
+          "side": "over",
+          "fair": 0.5458,
+          "game": "Memphis Grizzlies @ Minnesota Timberwolves"
+        },
+        {
+          "player": "Miles Bridges",
+          "team": "PHX",
+          "stat_label": "Rebounds",
+          "line": 6.5,
+          "side": "under",
+          "fair": 0.5458,
+          "game": "Dallas Mavericks @ Phoenix Suns"
+        }
+      ]
+    },
+    {
+      "id": "3-power",
+      "label": "3-pick Power",
+      "payout": "6x",
+      "bar": 0.5503,
+      "ev": 1.018,
+      "same_game": false,
+      "legs": [
+        {
+          "player": "Caleb Martin",
+          "team": "DAL",
+          "stat_label": "Rebounds",
+          "line": 3.5,
+          "side": "over",
+          "fair": 0.5548,
+          "game": "Dallas Mavericks @ Phoenix Suns"
+        },
+        {
+          "player": "Julius Randle",
+          "team": "BKN",
+          "stat_label": "Threes",
+          "line": 1.5,
+          "side": "under",
+          "fair": 0.5548,
+          "game": "Brooklyn Nets @ Toronto Raptors"
+        },
+        {
+          "player": "Keyonte George",
+          "team": "UTA",
+          "stat_label": "Assists",
+          "line": 6.5,
+          "side": "under",
+          "fair": 0.5511,
+          "game": "Denver Nuggets @ Utah Jazz"
+        }
+      ]
+    }
+  ],
   "legs": [
     {
       "player": "Caleb Martin",
@@ -140,6 +233,29 @@
       "playable": true
     },
     {
+      "player": "Keyonte George",
+      "team": "UTA",
+      "stat": "ast",
+      "stat_label": "Assists",
+      "line": 6.5,
+      "side": "under",
+      "fair": 0.5511,
+      "over": 108,
+      "under": -144,
+      "game": "Denver Nuggets @ Utah Jazz",
+      "event_id": "36358267",
+      "tip": "Fri 9:40 PM ET",
+      "clears": [
+        "6-flex",
+        "5-flex",
+        "6-power",
+        "5-power",
+        "3-power",
+        "4-flex"
+      ],
+      "playable": true
+    },
+    {
       "player": "Jaden McDaniels",
       "team": "MIN",
       "stat": "reb",
@@ -159,18 +275,18 @@
       "playable": true
     },
     {
-      "player": "Zach Edey",
-      "team": "MEM",
+      "player": "Miles Bridges",
+      "team": "PHX",
       "stat": "reb",
       "stat_label": "Rebounds",
-      "line": 7.5,
+      "line": 6.5,
       "side": "under",
       "fair": 0.5458,
       "over": 106,
       "under": -140,
-      "game": "Memphis Grizzlies @ Minnesota Timberwolves",
-      "event_id": "36358264",
-      "tip": "Fri 8:40 PM ET",
+      "game": "Dallas Mavericks @ Phoenix Suns",
+      "event_id": "36358263",
+      "tip": "Fri 9:10 PM ET",
       "clears": [
         "6-flex",
         "5-flex"
@@ -194,17 +310,33 @@
       "playable": false
     },
     {
-      "player": "Luka Don\u010di\u0107",
-      "team": "LAL",
+      "player": "Giannis Antetokounmpo",
+      "team": "MIA",
       "stat": "reb",
       "stat_label": "Rebounds",
-      "line": 6.5,
-      "side": "under",
+      "line": 11.5,
+      "side": "over",
       "fair": 0.5419,
-      "over": 104,
-      "under": -138,
-      "game": "Los Angeles Lakers @ San Antonio Spurs",
-      "event_id": "36358261",
+      "over": -138,
+      "under": 104,
+      "game": "Miami Heat @ New York Knicks",
+      "event_id": "36358262",
+      "tip": "Fri 7:10 PM ET",
+      "clears": [],
+      "playable": false
+    },
+    {
+      "player": "Jamal Murray",
+      "team": "DEN",
+      "stat": "ast",
+      "stat_label": "Assists",
+      "line": 5.5,
+      "side": "over",
+      "fair": 0.5419,
+      "over": -138,
+      "under": 104,
+      "game": "Denver Nuggets @ Utah Jazz",
+      "event_id": "36358267",
       "tip": "Fri 9:40 PM ET",
       "clears": [],
       "playable": false
@@ -226,47 +358,31 @@
       "playable": false
     },
     {
-      "player": "Miles Bridges",
-      "team": "PHX",
+      "player": "Myles Turner",
+      "team": "MIL",
       "stat": "reb",
       "stat_label": "Rebounds",
-      "line": 6.5,
-      "side": "under",
+      "line": 5.5,
+      "side": "over",
       "fair": 0.5419,
-      "over": 104,
-      "under": -138,
-      "game": "Dallas Mavericks @ Phoenix Suns",
-      "event_id": "36358263",
-      "tip": "Fri 9:10 PM ET",
+      "over": -138,
+      "under": 104,
+      "game": "Milwaukee Bucks @ Detroit Pistons",
+      "event_id": "36358260",
+      "tip": "Fri 7:40 PM ET",
       "clears": [],
       "playable": false
     },
     {
-      "player": "Ace Bailey",
-      "team": "UTA",
-      "stat": "pts",
-      "stat_label": "Points",
-      "line": 15.5,
-      "side": "under",
-      "fair": 0.5379,
-      "over": 102,
-      "under": -136,
-      "game": "Denver Nuggets @ Utah Jazz",
-      "event_id": "36358267",
-      "tip": "Fri 9:40 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Austin Reaves",
-      "team": "LAL",
+      "player": "Stephon Castle",
+      "team": "SAS",
       "stat": "pts",
       "stat_label": "Points",
       "line": 17.5,
       "side": "under",
-      "fair": 0.5379,
-      "over": 102,
-      "under": -136,
+      "fair": 0.5419,
+      "over": 104,
+      "under": -138,
       "game": "Los Angeles Lakers @ San Antonio Spurs",
       "event_id": "36358261",
       "tip": "Fri 9:40 PM ET",
@@ -274,34 +390,18 @@
       "playable": false
     },
     {
-      "player": "Devin Booker",
-      "team": "PHX",
-      "stat": "ast",
-      "stat_label": "Assists",
-      "line": 5.5,
-      "side": "under",
-      "fair": 0.5379,
-      "over": 102,
-      "under": -136,
-      "game": "Dallas Mavericks @ Phoenix Suns",
-      "event_id": "36358263",
-      "tip": "Fri 9:10 PM ET",
-      "clears": [],
-      "playable": false
-    },
-    {
-      "player": "Giannis Antetokounmpo",
-      "team": "MIA",
+      "player": "Zach Edey",
+      "team": "MEM",
       "stat": "reb",
       "stat_label": "Rebounds",
-      "line": 11.5,
-      "side": "over",
-      "fair": 0.5379,
-      "over": -136,
-      "under": 102,
-      "game": "Miami Heat @ New York Knicks",
-      "event_id": "36358262",
-      "tip": "Fri 7:10 PM ET",
+      "line": 7.5,
+      "side": "under",
+      "fair": 0.5419,
+      "over": 104,
+      "under": -138,
+      "game": "Memphis Grizzlies @ Minnesota Timberwolves",
+      "event_id": "36358264",
+      "tip": "Fri 8:40 PM ET",
       "clears": [],
       "playable": false
     }
